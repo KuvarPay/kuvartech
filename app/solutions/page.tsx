@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
-import { breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap } from "@/components/styles";
+import {
+  breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap, wrapBase,
+} from "@/components/styles";
 
 export const metadata = {
   title: "Solutions",
@@ -35,6 +37,31 @@ const INFRA = [
   { n: "04", h: "99.98% uptime", p: "Redundant, multi-region infrastructure engineered to stay on." },
 ];
 
+const PROD = "scroll-mt-[100px] border-t border-line py-[88px]";
+const PROD_HEAD = "grid grid-cols-1 items-center gap-10 w921:grid-cols-2 w921:gap-14";
+const PROD_BADGE_ROW = "mb-6 flex items-center gap-3.5";
+const PROD_MARK = "grid size-[60px] place-items-center rounded-brand-md bg-ink";
+const PROD_NAME = "mb-[18px] font-display text-[clamp(40px,5vw,68px)] font-black leading-none tracking-[-0.045em]";
+const PROD_TAGLINE = "mb-7 max-w-[520px] text-[clamp(18px,1.6vw,22px)] text-ink-2 text-pretty";
+const PROD_VISUAL = "relative grid min-h-[380px] place-items-center overflow-hidden rounded-brand p-10";
+const VISUAL_DARK = `${PROD_VISUAL} bg-[linear-gradient(150deg,#0A0A0A,#161616)]`;
+const FEAT_GRID = "mt-13 grid grid-cols-1 gap-5 w881:grid-cols-3";
+const GW_CARD = "w-full max-w-[340px] rounded-brand border border-[#262626] bg-[#141414] p-6 text-[#FAFAF7]";
+const GW_ROW = "flex items-center justify-between border-b border-[#262626] py-3 text-[14px] last:border-b-0";
+const GW_LABEL = "text-[#9CA3AF]";
+
+function Feature({ f }: { f: { icon: string; title: string; body: string; d: number } }) {
+  return (
+    <div className={`${card} p-7`} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
+      <span className="mb-5 grid size-11 place-items-center rounded-brand-md bg-accent text-accent-ink">
+        <Icon name={f.icon as Parameters<typeof Icon>[0]["name"]} size={22} sw={2} />
+      </span>
+      <h4 className="mb-2.5 font-display text-[19px] font-bold tracking-[-0.02em]">{f.title}</h4>
+      <p className="text-[14.5px] text-ink-2">{f.body}</p>
+    </div>
+  );
+}
+
 export default function SolutionsPage() {
   return (
     <>
@@ -43,14 +70,14 @@ export default function SolutionsPage() {
         <div className={wrap}>
           <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>Solutions</span></div>
           <span className="eyebrow" data-reveal>Our Solutions</span>
-          <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
+          <h1 className={`${hDisplay} reveal-words mt-[18px] max-w-[14ch]`} data-reveal-words>
             Products built on shared rails.
           </h1>
-          <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px" }}>
+          <p className={`${lede} mt-6 [--reveal-delay:140ms]`} data-reveal>
             Each Kuvar product solves a hard money problem in Africa. They run on one bank-grade
             infrastructure core — so reliability, compliance and reach compound with every launch.
           </p>
-          <div style={{ display: "flex", gap: "14px", marginTop: "32px", flexWrap: "wrap" }} data-reveal>
+          <div className="mt-8 flex flex-wrap gap-3.5" data-reveal>
             <a className={btn("ghost")} href="#kuvarpay">KuvarPay</a>
             <a className={btn("ghost")} href="#kuvarsend">KuvarSend</a>
             <a className={btn("ghost")} href="#platform">Developer Platform</a>
@@ -59,159 +86,162 @@ export default function SolutionsPage() {
       </header>
 
       {/* KuvarPay */}
-      <section className="prod" id="kuvarpay" data-screen-label="Solutions — KuvarPay">
+      <section className={PROD} id="kuvarpay" data-screen-label="Solutions — KuvarPay">
         <div className={wrap}>
-          <div className="prod-head">
+          <div className={PROD_HEAD}>
             <div>
-              <div className="prod-badge-row">
-                <span className="prod-mark">
+              <div className={PROD_BADGE_ROW}>
+                <span className={PROD_MARK}>
                   <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
                     <path d="M11 11 L20 20 L11 29" stroke="#CDF140" strokeWidth="4.6" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M21 11 L30 20 L21 29" stroke="#CDF140" strokeWidth="4.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>
               </div>
-              <h2 className="prod-name" data-reveal>Kuvar<span className="accent">Pay</span></h2>
-              <p className="prod-tagline" data-reveal style={{ "--reveal-delay": "80ms" }}>
+              <h2 className={PROD_NAME} data-reveal>Kuvar<span className="text-accent-deep">Pay</span></h2>
+              <p className={`${PROD_TAGLINE} [--reveal-delay:80ms]`} data-reveal>
                 Payment infrastructure that lets businesses accept crypto — on any chain or coin —
                 from their customers and settle in their own local currency, with all the crypto
                 complexity abstracted away. Collect through payment links, a web checkout or our API
                 — and pay suppliers across our markets in their local currencies too.
               </p>
-              <a className={btn("primary")} href="https://kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal style={{ "--reveal-delay": "140ms" }}>
+              <a className={`${btn("primary")} [--reveal-delay:140ms]`} href="https://kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal>
                 Get Started
                 <ArrowRight size={17} />
               </a>
             </div>
-            <div className="prod-visual pay" data-reveal style={{ "--reveal-delay": "120ms" }}>
-              <div className="gw-card tilt">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                  <span style={{ fontFamily: "var(--display)", fontWeight: 800, fontSize: "16px" }}>Checkout</span>
-                  <span className="gw-chip">Secured by KuvarPay</span>
+            <div className={`${VISUAL_DARK} [--reveal-delay:120ms]`} data-reveal>
+              <div className={`${GW_CARD} tilt`}>
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="font-display text-[16px] font-extrabold">Checkout</span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[rgba(205,241,64,0.14)] px-2.5 py-[5px] text-[11.5px] font-semibold text-accent">
+                    Secured by KuvarPay
+                  </span>
                 </div>
-                <div className="gw-row"><span className="gw-label">Pay to</span><span style={{ fontWeight: 600 }}>Acme Stores</span></div>
-                <div className="gw-row"><span className="gw-label">Amount due</span><span className="gw-amt">₦64,500</span></div>
-                <div style={{ padding: "14px 0", borderBottom: "1px solid #262626" }}>
-                  <div className="gw-label" style={{ marginBottom: "10px", fontSize: "13px" }}>Pay with crypto — any coin, any chain</div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                <div className={GW_ROW}><span className={GW_LABEL}>Pay to</span><span className="font-semibold">Acme Stores</span></div>
+                <div className={GW_ROW}>
+                  <span className={GW_LABEL}>Amount due</span>
+                  <span className="font-display text-[30px] font-extrabold tracking-[-0.03em]">₦64,500</span>
+                </div>
+                <div className="border-b border-[#262626] py-3.5">
+                  <div className={`${GW_LABEL} mb-2.5 text-[13px]`}>Pay with crypto — any coin, any chain</div>
+                  <div className="flex flex-wrap gap-2">
                     {["USDT", "USDC", "BTC", "ETH"].map((c) => (
-                      <span key={c} style={{ border: "1px solid #2f2f2f", borderRadius: "8px", padding: "6px 10px", fontSize: "12px", fontWeight: 600 }}>{c}</span>
+                      <span key={c} className="rounded-lg border border-[#2f2f2f] px-2.5 py-1.5 text-[12px] font-semibold">{c}</span>
                     ))}
-                    <span style={{ border: "1px solid #2f2f2f", borderRadius: "8px", padding: "6px 10px", fontSize: "12px", fontWeight: 600, color: "#9CA3AF" }}>+ more</span>
+                    <span className="rounded-lg border border-[#2f2f2f] px-2.5 py-1.5 text-[12px] font-semibold text-[#9CA3AF]">+ more</span>
                   </div>
                 </div>
-                <div className="gw-btn">Pay with crypto</div>
-                <div style={{ textAlign: "center", marginTop: "12px", color: "#9CA3AF", fontSize: "11.5px" }}>
+                <div className="mt-[18px] w-full rounded-brand-md bg-accent p-3.5 text-center font-body font-bold text-[#0A0A0A]">Pay with crypto</div>
+                <div className="mt-3 text-center text-[11.5px] text-[#9CA3AF]">
                   Acme is settled in NGN — crypto complexity handled for them
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="feat-grid">
-            {PAY_FEATURES.map((f) => (
-              <div className={`${card} feat`} key={f.title} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
-                <span className="feat-icon"><Icon name={f.icon} size={22} sw={2} /></span>
-                <h4>{f.title}</h4>
-                <p>{f.body}</p>
-              </div>
-            ))}
+          <div className={FEAT_GRID}>
+            {PAY_FEATURES.map((f) => <Feature f={f} key={f.title} />)}
           </div>
         </div>
       </section>
 
       {/* KuvarSend */}
-      <section className="prod" id="kuvarsend" data-screen-label="Solutions — KuvarSend">
+      <section className={PROD} id="kuvarsend" data-screen-label="Solutions — KuvarSend">
         <div className={wrap}>
-          <div className="prod-head">
-            <div className="prod-visual send" data-reveal style={{ "--reveal-delay": "120ms" }}>
-              <img className="app-shot light" src="/assets/kuvarsend-app-light.png" alt="KuvarSend app" />
-              <img className="app-shot dark" src="/assets/kuvarsend-app-dark.png" alt="KuvarSend app" />
+          <div className={PROD_HEAD}>
+            <div className={`${PROD_VISUAL} border border-line bg-surface-2 [--reveal-delay:120ms]`} data-reveal>
+              <img className="block max-h-[420px] max-w-full rounded-brand-md shadow-brand-lg dark:hidden" src="/assets/kuvarsend-app-light.png" alt="KuvarSend app" />
+              <img className="hidden max-h-[420px] max-w-full rounded-brand-md shadow-brand-lg dark:block" src="/assets/kuvarsend-app-dark.png" alt="KuvarSend app" />
             </div>
             <div>
-              <div className="prod-badge-row">
-                <span className="prod-mark"><img src="/assets/kuvarsend-mark.png" alt="KuvarSend" /></span>
-                <span className="tag-pill"><span className="dot"></span> Closed beta · Invite only</span>
+              <div className={PROD_BADGE_ROW}>
+                <span className={PROD_MARK}><img src="/assets/kuvarsend-mark.png" alt="KuvarSend" className="size-[38px] object-contain" /></span>
+                <span className="inline-flex items-center gap-2 rounded-pill border border-line bg-card px-3.5 py-[7px] text-[13px] font-medium text-ink-2">
+                  <span className="pill-dot"></span> Closed beta · Invite only
+                </span>
               </div>
-              <h2 className="prod-name" data-reveal>Kuvar<span className="accent">Send</span></h2>
-              <p className="prod-tagline" data-reveal style={{ "--reveal-delay": "80ms" }}>
+              <h2 className={PROD_NAME} data-reveal>Kuvar<span className="text-accent-deep">Send</span></h2>
+              <p className={`${PROD_TAGLINE} [--reveal-delay:80ms]`} data-reveal>
                 Cross-border money transfer across Africa. Hold value in a USD-denominated wallet and
                 pay out to recipients in their local currency — fast, transparent and borderless.
               </p>
-              <a className={btn("primary")} href="#" data-reveal style={{ "--reveal-delay": "140ms" }}>
+              <a className={`${btn("primary")} [--reveal-delay:140ms]`} href="#" data-reveal>
                 Join the waitlist
                 <ArrowRight size={17} />
               </a>
             </div>
           </div>
 
-          <div className="grid-2" style={{ marginTop: "52px", alignItems: "start" }}>
+          <div className="mt-13 grid grid-cols-1 items-start gap-10 w881:grid-cols-2 w881:gap-14">
             <div>
               <span className="eyebrow" data-reveal>Pay out locally</span>
-              <h3 className={hSection} data-reveal style={{ "--reveal-delay": "80ms", marginTop: "16px", fontSize: "clamp(26px,3vw,40px)" }}>
+              {/* Written out rather than composed from hSection: this heading takes a
+                  smaller clamp, and two font-size utilities would resolve by source order. */}
+              <h3
+                className="m-0 mt-4 font-display text-[clamp(26px,3vw,40px)] font-extrabold leading-[1.02] tracking-[-0.04em] text-balance [--reveal-delay:80ms]"
+                data-reveal
+              >
                 One wallet. Every local currency.
               </h3>
-              <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "16px" }}>
+              <p className={`${lede} mt-4 [--reveal-delay:140ms]`} data-reveal>
                 Senders keep a stable USD balance. Recipients receive in the money they actually
                 spend — no guesswork, no hidden FX.
               </p>
             </div>
-            <div className="payout-list" data-reveal style={{ "--reveal-delay": "120ms" }}>
+            <div className="flex w-full max-w-[360px] flex-col gap-2.5 [--reveal-delay:120ms]" data-reveal>
               {PAYOUTS.map((p) => (
-                <div className="payout" key={p.cur}>
-                  <span className="flag">{p.flag}</span>
-                  <div className="py-info"><div className="py-cur">{p.cur}</div><div className="py-name">{p.name}</div></div>
-                  <span className="py-time">{p.time}</span>
+                <div className="flex items-center gap-3.5 rounded-brand-md border border-line bg-card px-4 py-3.5" key={p.cur}>
+                  <span className="text-[24px]">{p.flag}</span>
+                  <div className="flex-1">
+                    <div className="font-display text-[15px] font-bold">{p.cur}</div>
+                    <div className="text-[12.5px] text-ink-3">{p.name}</div>
+                  </div>
+                  <span className="text-[12px] font-semibold text-accent-deep">{p.time}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="feat-grid">
-            {SEND_FEATURES.map((f) => (
-              <div className={`${card} feat`} key={f.title} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
-                <span className="feat-icon"><Icon name={f.icon} size={22} sw={2} /></span>
-                <h4>{f.title}</h4>
-                <p>{f.body}</p>
-              </div>
-            ))}
+          <div className={FEAT_GRID}>
+            {SEND_FEATURES.map((f) => <Feature f={f} key={f.title} />)}
           </div>
         </div>
       </section>
 
       {/* Developer platform */}
-      <section className="prod" id="platform" data-screen-label="Solutions — Platform">
+      <section className={PROD} id="platform" data-screen-label="Solutions — Platform">
         <div className={wrap}>
-          <div className="prod-head">
+          <div className={PROD_HEAD}>
             <div>
-              <div className="prod-badge-row">
-                <span className="prod-mark" style={{ background: "var(--bg-2)", border: "1px solid var(--border)" }}>
+              <div className={PROD_BADGE_ROW}>
+                <span className="grid size-[60px] place-items-center rounded-brand-md border border-line bg-surface-2">
                   <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="16 18 22 12 16 6" />
                     <polyline points="8 6 2 12 8 18" />
                   </svg>
                 </span>
               </div>
-              <h2 className="prod-name" data-reveal>Developer Platform</h2>
-              <p className="prod-tagline" data-reveal style={{ "--reveal-delay": "80ms" }}>
+              <h2 className={PROD_NAME} data-reveal>Developer Platform</h2>
+              <p className={`${PROD_TAGLINE} [--reveal-delay:80ms]`} data-reveal>
                 The same rails our own products run on, exposed as one clean API. Payments, payouts,
                 wallets and compliance — for any builder in Africa.
               </p>
-              <a className={btn("primary")} href="https://developers.kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal style={{ "--reveal-delay": "140ms" }}>
+              <a className={`${btn("primary")} [--reveal-delay:140ms]`} href="https://developers.kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal>
                 Read the docs
                 <ArrowRight size={17} />
               </a>
             </div>
-            <div className="prod-visual pay" data-reveal style={{ "--reveal-delay": "120ms" }}>
-              <div className="gw-card tilt" style={{ fontFamily: "ui-monospace,SFMono-Regular,Menlo,monospace", fontSize: "12.5px", lineHeight: 1.7 }}>
-                <div style={{ color: "#9CA3AF" }}>{"// one call, every rail"}</div>
-                <div><span style={{ color: "var(--accent)" }}>const</span> payout = <span style={{ color: "var(--accent)" }}>await</span> kuvar.payouts.create({"{"}</div>
-                <div style={{ paddingLeft: "16px" }}>amount: <span style={{ color: "#CDF140" }}>250</span>,</div>
-                <div style={{ paddingLeft: "16px" }}>currency: <span style={{ color: "#CDF140" }}>&quot;KES&quot;</span>,</div>
-                <div style={{ paddingLeft: "16px" }}>channel: <span style={{ color: "#CDF140" }}>&quot;mpesa&quot;</span>,</div>
-                <div style={{ paddingLeft: "16px" }}>recipient: account_id</div>
+            <div className={`${VISUAL_DARK} [--reveal-delay:120ms]`} data-reveal>
+              <div className={`${GW_CARD} tilt font-mono text-[12.5px] leading-[1.7]`}>
+                <div className="text-[#9CA3AF]">{"// one call, every rail"}</div>
+                <div><span className="text-accent">const</span> payout = <span className="text-accent">await</span> kuvar.payouts.create({"{"}</div>
+                <div className="pl-4">amount: <span className="text-[#CDF140]">250</span>,</div>
+                <div className="pl-4">currency: <span className="text-[#CDF140]">&quot;KES&quot;</span>,</div>
+                <div className="pl-4">channel: <span className="text-[#CDF140]">&quot;mpesa&quot;</span>,</div>
+                <div className="pl-4">recipient: account_id</div>
                 <div>{"}"});</div>
-                <div style={{ marginTop: "10px", color: "#9CA3AF" }}>→ settled in <span style={{ color: "var(--accent)" }}>42s</span></div>
+                <div className="mt-2.5 text-[#9CA3AF]">→ settled in <span className="text-accent">42s</span></div>
               </div>
             </div>
           </div>
@@ -221,17 +251,17 @@ export default function SolutionsPage() {
       {/* Shared infrastructure */}
       <section className={section} data-screen-label="Solutions — Infrastructure">
         <div className={wrap}>
-          <div className="infra-band" data-reveal>
-            <div style={{ maxWidth: "640px" }}>
-              <span className="eyebrow">One core, many products</span>
-              <h2 className={hSection} style={{ marginTop: "16px" }}>Why everything runs on the same rails.</h2>
+          <div className="rounded-brand bg-band px-14 py-16 text-band-ink" data-reveal>
+            <div className="max-w-[640px]">
+              <span className="eyebrow is-accent">One core, many products</span>
+              <h2 className={`${hSection} mt-4 text-band-ink`}>Why everything runs on the same rails.</h2>
             </div>
-            <div className="infra-grid">
+            <div className="mt-11 grid grid-cols-2 gap-7 w881:grid-cols-4">
               {INFRA.map((i) => (
-                <div className="infra-item" key={i.n}>
-                  <div className="ii-num">{i.n}</div>
-                  <h4>{i.h}</h4>
-                  <p>{i.p}</p>
+                <div key={i.n}>
+                  <div className="mb-3 font-display text-[15px] font-extrabold text-accent">{i.n}</div>
+                  <h4 className="mb-2 font-display text-[19px] font-bold tracking-[-0.02em] text-band-ink">{i.h}</h4>
+                  <p className="text-[14px] text-band-ink-3">{i.p}</p>
                 </div>
               ))}
             </div>
@@ -240,10 +270,10 @@ export default function SolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section className={sectionTight} style={{ paddingBottom: "96px" }} data-screen-label="Solutions — CTA">
-        <div className={wrap} style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
+      <section className={`${sectionTight} pb-24`} data-screen-label="Solutions — CTA">
+        <div className={`${wrapBase} max-w-[760px] text-center`}>
           <h2 className={`${hSection} reveal-words`} data-reveal-words>Build on the rails moving Africa.</h2>
-          <div style={{ display: "flex", gap: "14px", justifyContent: "center", marginTop: "28px", flexWrap: "wrap" }} data-reveal>
+          <div className="mt-7 flex flex-wrap justify-center gap-3.5" data-reveal>
             <Link className={btn("primary", "lg")} href="/contact">
               Get in touch
               <ArrowRight size={17} />

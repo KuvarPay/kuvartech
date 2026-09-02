@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
-import { breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap } from "@/components/styles";
+import {
+  breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap, wrapBase,
+} from "@/components/styles";
 
 export const metadata = {
   title: "Careers",
@@ -32,6 +34,12 @@ const ROLES = [
   { dept: "Design", title: "Senior Product Designer", loc: "Remote · Africa" },
 ];
 
+const CULTURE_STATS = [
+  { n: "60+", l: "Team members" },
+  { n: "9", l: "Nationalities" },
+  { n: "Remote", l: "First, async culture" },
+];
+
 export default function CareersPage() {
   return (
     <>
@@ -39,14 +47,14 @@ export default function CareersPage() {
         <div className={wrap}>
           <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>Careers</span></div>
           <span className="eyebrow" data-reveal>Careers</span>
-          <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "15ch" }}>
+          <h1 className={`${hDisplay} reveal-words mt-[18px] max-w-[15ch]`} data-reveal-words>
             Build the money rails for a continent.
           </h1>
-          <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px", maxWidth: "660px" }}>
+          <p className={`${lede} mt-6 max-w-[660px] [--reveal-delay:140ms]`} data-reveal>
             We&apos;re a team of builders solving one of the hardest, highest-impact problems in the world
             — and we&apos;re hiring across engineering, product, compliance and operations.
           </p>
-          <div style={{ display: "flex", gap: "14px", marginTop: "32px", flexWrap: "wrap" }} data-reveal>
+          <div className="mt-8 flex flex-wrap gap-3.5" data-reveal>
             <a className={btn("primary", "lg")} href="#roles">
               See open roles
               <ArrowRight size={17} />
@@ -58,18 +66,20 @@ export default function CareersPage() {
       {/* Why join */}
       <section className={section} data-screen-label="Careers — Why join">
         <div className={wrap}>
-          <div style={{ maxWidth: "640px", marginBottom: "44px" }}>
+          <div className="mb-11 max-w-[640px]">
             <span className="eyebrow" data-reveal>Why Kuvar</span>
-            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
+            <h2 className={`${hSection} reveal-words mt-4`} data-reveal-words>
               Work that actually moves the needle.
             </h2>
           </div>
-          <div className="why-grid">
+          <div className="grid grid-cols-1 gap-[22px] w881:grid-cols-3">
             {WHY.map((w) => (
-              <div className={`${card} why`} key={w.title} data-reveal style={{ "--reveal-delay": `${w.d}ms` }}>
-                <span className="why-icon"><Icon name={w.icon} size={23} sw={2} /></span>
-                <h3>{w.title}</h3>
-                <p>{w.body}</p>
+              <div className={`${card} p-8`} key={w.title} data-reveal style={{ "--reveal-delay": `${w.d}ms` }}>
+                <span className="mb-[22px] grid size-[46px] place-items-center rounded-brand-md bg-accent text-accent-ink">
+                  <Icon name={w.icon} size={23} sw={2} />
+                </span>
+                <h3 className="mb-3 font-display text-[21px] font-bold tracking-[-0.02em]">{w.title}</h3>
+                <p className="text-[15px] text-ink-2">{w.body}</p>
               </div>
             ))}
           </div>
@@ -79,46 +89,49 @@ export default function CareersPage() {
       {/* Culture */}
       <section className={sectionTight} data-screen-label="Careers — Culture">
         <div className={wrap}>
-          <div className="culture-band grid-2" data-reveal>
+          <div
+            className="grid grid-cols-1 items-center gap-10 rounded-brand bg-band px-14 py-16 text-band-ink w881:grid-cols-2 w881:gap-14"
+            data-reveal
+          >
             <div>
-              <span className="eyebrow">Our culture</span>
-              <p className="culture-quote" style={{ marginTop: "22px" }}>
-                We move with <em>urgency</em>, hold ourselves to <em>bank-grade</em> standards, and
+              <span className="eyebrow is-accent">Our culture</span>
+              <p className="mt-[22px] max-w-[20ch] font-display text-[clamp(24px,3vw,38px)] font-bold leading-[1.28] tracking-[-0.03em] text-band-ink">
+                We move with <em className="italic text-accent">urgency</em>, hold ourselves to <em className="italic text-accent">bank-grade</em> standards, and
                 never forget there&apos;s a real person behind every transaction.
               </p>
             </div>
-            <div className="cc-stats" style={{ gap: "40px" }}>
-              <div className="cc-stat">
-                <div className="n" style={{ fontFamily: "var(--display)", fontWeight: 800, fontSize: "38px", letterSpacing: "-0.03em", color: "var(--accent)" }}>60+</div>
-                <div className="l" style={{ fontSize: "13.5px", color: "var(--dark-section-ink-3)" }}>Team members</div>
-              </div>
-              <div className="cc-stat">
-                <div className="n" style={{ fontFamily: "var(--display)", fontWeight: 800, fontSize: "38px", letterSpacing: "-0.03em", color: "var(--accent)" }}>9</div>
-                <div className="l" style={{ fontSize: "13.5px", color: "var(--dark-section-ink-3)" }}>Nationalities</div>
-              </div>
-              <div className="cc-stat">
-                <div className="n" style={{ fontFamily: "var(--display)", fontWeight: 800, fontSize: "38px", letterSpacing: "-0.03em", color: "var(--accent)" }}>Remote</div>
-                <div className="l" style={{ fontSize: "13.5px", color: "var(--dark-section-ink-3)" }}>First, async culture</div>
-              </div>
+            <div className="flex flex-wrap gap-10">
+              {CULTURE_STATS.map((s) => (
+                <div key={s.l}>
+                  <div className="font-display text-[38px] font-extrabold tracking-[-0.03em] text-accent">{s.n}</div>
+                  <div className="text-[13.5px] text-band-ink-3">{s.l}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Perks */}
-      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Careers — Benefits">
+      <section className={`${section} bg-surface-2`} data-screen-label="Careers — Benefits">
         <div className={wrap}>
-          <div style={{ maxWidth: "640px", marginBottom: "40px" }}>
+          <div className="mb-10 max-w-[640px]">
             <span className="eyebrow" data-reveal>Benefits</span>
-            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
+            <h2 className={`${hSection} reveal-words mt-4`} data-reveal-words>
               How we take care of our team.
             </h2>
           </div>
-          <div className="perks" data-reveal>
+          <div
+            className="grid grid-cols-1 overflow-hidden rounded-brand border border-line bg-card w521:grid-cols-2 w881:grid-cols-3"
+            data-reveal
+          >
             {PERKS.map((p) => (
-              <div className="perk" key={p.label}>
+              <div
+                className="flex items-center gap-3.5 border-r border-b border-line p-7 [&_svg]:size-[22px] [&_svg]:shrink-0 [&_svg]:text-accent-deep"
+                key={p.label}
+              >
                 <Icon name={p.icon} size={22} sw={2} />
-                <span>{p.label}</span>
+                <span className="font-body text-[15px] font-semibold">{p.label}</span>
               </div>
             ))}
           </div>
@@ -128,28 +141,36 @@ export default function CareersPage() {
       {/* Open roles */}
       <section className={section} id="roles" data-screen-label="Careers — Open roles">
         <div className={wrap}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "20px", marginBottom: "36px", flexWrap: "wrap" }}>
-            <div style={{ maxWidth: "560px" }}>
+          <div className="mb-9 flex flex-wrap items-end justify-between gap-5">
+            <div className="max-w-[560px]">
               <span className="eyebrow" data-reveal>Open roles</span>
-              <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
+              <h2 className={`${hSection} reveal-words mt-4`} data-reveal-words>
                 Find your seat.
               </h2>
             </div>
-            <span className="text-ink-3" data-reveal style={{ fontSize: "14px" }}>
+            <span className="text-[14px] text-ink-3" data-reveal>
               Don&apos;t see your role? Email{" "}
-              <Link href="/contact" style={{ color: "var(--ink)", fontWeight: 600 }}>careers@kuvar.co</Link>
+              <Link href="/contact" className="font-semibold text-ink">careers@kuvar.co</Link>
             </span>
           </div>
-          <div className="roles" data-reveal>
+          <div className="flex flex-col border-t border-line" data-reveal>
             {ROLES.map((r) => (
-              <Link className="role" href="/contact" key={r.title}>
+              <Link
+                className="group grid grid-cols-[1fr_auto] items-center gap-x-[18px] gap-y-1.5 border-b border-line px-1.5 py-6 transition-[padding,background-color] duration-[180ms] hover:pl-3.5 w721:grid-cols-[2fr_1fr_1fr_auto] w721:gap-[18px]"
+                href="/contact"
+                key={r.title}
+              >
                 <div>
-                  <span className="dept-tag">{r.dept}</span>
-                  <div className="role-title" style={{ marginTop: "8px" }}>{r.title}</div>
+                  <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-3">
+                    {r.dept}
+                  </span>
+                  <div className="mt-2 font-display text-[18.5px] font-bold tracking-[-0.02em]">{r.title}</div>
                 </div>
-                <div className="r-dept">{r.dept}</div>
-                <div className="r-loc">{r.loc}</div>
-                <span className="role-arrow"><ArrowRight size={17} /></span>
+                <div className="col-start-1 text-[13.5px] text-ink-3 w721:col-start-auto">{r.dept}</div>
+                <div className="col-start-1 text-[13.5px] text-ink-3 w721:col-start-auto">{r.loc}</div>
+                <span className="grid size-[38px] place-items-center rounded-full border border-line-2 text-ink-2 transition-[background-color,color,border-color] duration-[180ms] group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+                  <ArrowRight size={17} />
+                </span>
               </Link>
             ))}
           </div>
@@ -157,13 +178,13 @@ export default function CareersPage() {
       </section>
 
       {/* CTA */}
-      <section className={sectionTight} style={{ paddingBottom: "96px" }} data-screen-label="Careers — CTA">
-        <div className={wrap} style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
+      <section className={`${sectionTight} pb-24`} data-screen-label="Careers — CTA">
+        <div className={`${wrapBase} max-w-[760px] text-center`}>
           <h2 className={`${hSection} reveal-words`} data-reveal-words>Let&apos;s build it together.</h2>
-          <p className={lede} data-reveal style={{ "--reveal-delay": "100ms", margin: "18px auto 0" }}>
+          <p className={`${lede} mx-auto mt-[18px] [--reveal-delay:100ms]`} data-reveal>
             Send us your CV and a note on what you&apos;d want to own.
           </p>
-          <div style={{ display: "flex", gap: "14px", justifyContent: "center", marginTop: "28px", flexWrap: "wrap" }} data-reveal>
+          <div className="mt-7 flex flex-wrap justify-center gap-3.5" data-reveal>
             <Link className={btn("primary", "lg")} href="/contact">
               Apply now
               <ArrowRight size={17} />

@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
-import { arrowLink, btn, card, cardHover, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
+import {
+  arrowLink, btn, card, cardHover, hSection, lede, section, sectionTight, wrap,
+  stat, statDividerOnAccent, statGrid, statLabelOnAccent, statNumOnAccent,
+  teamInfo, teamInitials, teamName, teamPhoto, teamRole,
+  valueBody, valueCell, valueGrid, valueIcon, valueTitle,
+  pressBody, pressExcerpt, pressMeta, pressTag, pressThumb, pressTitle,
+} from "@/components/styles";
 
 const VALUES = [
   { icon: "shield", title: "Trust is the product", body: "We hold other people's money. Security, compliance and uptime are not features — they are the foundation everything else stands on.", d: 0 },
@@ -23,31 +29,53 @@ const PARTNERS = [
   "Atlas Telco", "Kora Networks", "Nile Ventures", "FirstGate", "Lagos FinHub",
 ];
 
+const IMPACT = [
+  { to: "14", suffix: "+", label: "Countries on our rails" },
+  { to: "38000", suffix: "+", label: "Merchants & agents" },
+  { to: "12.4", suffix: "M", prefix: "$", decimals: "1", label: "Processed monthly" },
+  { to: "5", suffix: "M+", label: "Transactions to date" },
+];
+
+const NEWS = [
+  { icon: "newspaper", tag: "Announcement", date: "· May 2026", title: "Kuvar Technologies raises to expand its pan-African payment rails", excerpt: "New capital will accelerate corridor coverage and the launch of the Kuvar Developer Platform.", d: 0 },
+  { icon: "globe2", tag: "Product", date: "· Apr 2026", title: "KuvarSend opens its USD wallet to five new African markets", excerpt: "Recipients can now cash out in NGN, GHS, KES, XOF and ZAR within minutes.", d: 100 },
+  { icon: "star", tag: "Recognition", date: "· Mar 2026", title: "Named among Africa's most promising fintech infrastructure firms", excerpt: "Kuvar recognised for reliability and breadth of its cross-border settlement network.", d: 200 },
+] as const;
+
+const ROUTES = [
+  { href: "/contact#partnerships", name: "Partnerships", desc: "Banks, telcos & infrastructure providers" },
+  { href: "/contact#press", name: "Press & media", desc: "Interviews, brand assets & statements" },
+  { href: "/contact#investors", name: "Investor relations", desc: "For current & prospective investors" },
+  { href: "/contact#support", name: "Product support", desc: "Help with KuvarPay or KuvarSend" },
+];
+
+const PC_TAG = "rounded-pill bg-surface-2 px-[11px] py-[5px] font-body text-[12.5px] font-medium text-ink-3";
+const PC_NAME = "font-display text-[30px] font-extrabold tracking-[-0.03em]";
+
 export default function HomePage() {
   return (
     <>
       {/* Hero */}
-      <header className="hero" data-screen-label="Home — Hero">
-        <div className={`${wrap} hero-grid`}>
-          <div className="hero-copy">
+      <header className="relative overflow-clip pt-14 pb-[88px]" data-screen-label="Home — Hero">
+        <div className={`${wrap} grid grid-cols-1 items-center gap-12 w981:grid-cols-[1.05fr_0.95fr] w981:gap-14`}>
+          <div>
             <a
-              className="tag-pill"
+              className="inline-flex items-center gap-2 rounded-pill border border-line bg-card px-3.5 py-[7px] text-[13px] font-medium text-ink-2"
               href="https://developers.kuvarpay.com/"
               target="_blank"
               rel="noopener noreferrer"
               data-reveal
-              style={{ textDecoration: "none" }}
             >
-              <span className="dot"></span> New — the Kuvar Developer Platform is now live
+              <span className="pill-dot"></span> New — the Kuvar Developer Platform is now live
             </a>
-            <h1 className="hero-headline reveal-words" data-reveal-words>
+            <h1 className="reveal-words mt-[26px] mb-6 font-display text-[clamp(46px,6.6vw,96px)] font-black leading-[0.97] tracking-[-0.05em] text-balance" data-reveal-words>
               The financial infrastructure layer for Africa.
             </h1>
-            <p className="hero-sub" data-reveal style={{ "--reveal-delay": "120ms" }}>
+            <p className="mb-9 max-w-[540px] text-[clamp(17px,1.3vw,20px)] text-ink-2 text-pretty [--reveal-delay:120ms]" data-reveal>
               Kuvar Technologies builds the rails that move money across borders, power merchants,
               and connect African commerce to the world — one trusted product at a time.
             </p>
-            <div className="hero-ctas" data-reveal style={{ "--reveal-delay": "200ms" }}>
+            <div className="mb-11 flex flex-wrap gap-3.5 [--reveal-delay:200ms]" data-reveal>
               <Link className={btn("primary", "lg")} href="/solutions">
                 Explore Solutions
                 <ArrowRight size={17} />
@@ -56,25 +84,27 @@ export default function HomePage() {
                 Our Story
               </Link>
             </div>
-            <div className="hero-trust" data-reveal style={{ "--reveal-delay": "280ms" }}>
-              <div className="ht-cell">
-                <span className="ht-num">5+</span>
-                <span className="ht-lbl">Countries</span>
+            <div className="flex max-w-[560px] flex-wrap items-center gap-[30px] border-t border-line pt-7 [--reveal-delay:280ms]" data-reveal>
+              <div className="flex flex-col gap-[3px]">
+                <span className="font-display text-[26px] font-extrabold tracking-[-0.03em]">5+</span>
+                <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Countries</span>
               </div>
-              <span className="ht-div"></span>
-              <div className="ht-cell">
-                <span className="ht-num">2</span>
-                <span className="ht-lbl">Public products</span>
+              <span className="h-[34px] w-px bg-line-2"></span>
+              <div className="flex flex-col gap-[3px]">
+                <span className="font-display text-[26px] font-extrabold tracking-[-0.03em]">2</span>
+                <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Public products</span>
               </div>
-              <span className="ht-div"></span>
-              <div className="ht-cell">
-                <span className="ht-num">99.98%</span>
-                <span className="ht-lbl">Rail uptime</span>
+              <span className="h-[34px] w-px bg-line-2"></span>
+              <div className="flex flex-col gap-[3px]">
+                <span className="font-display text-[26px] font-extrabold tracking-[-0.03em]">99.98%</span>
+                <span className="text-[12px] font-medium uppercase tracking-[0.08em] text-ink-3">Rail uptime</span>
               </div>
             </div>
           </div>
 
-          <div className="hero-visual" data-reveal style={{ "--reveal-delay": "160ms" }}>
+          {/* The currency network keeps its CSS: absolute node placement plus
+              four keyframe animations. */}
+          <div className="[--reveal-delay:160ms]" data-reveal>
             <div className="hero-stage">
               <div className="morph"></div>
               <svg className="net-svg" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
@@ -110,72 +140,78 @@ export default function HomePage() {
       {/* Solutions */}
       <section className={section} id="solutions" data-screen-label="Home — Solutions">
         <div className={wrap}>
-          <div style={{ marginBottom: "48px", maxWidth: "720px" }}>
+          <div className="mb-12 max-w-[720px]">
             <span className="eyebrow" data-reveal>Our Solutions</span>
-            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words mt-[18px]`} data-reveal-words>
               Two products. One infrastructure.
             </h2>
-            <p className={lede} data-reveal style={{ "--reveal-delay": "120ms", marginTop: "18px" }}>
+            <p className={`${lede} mt-[18px] [--reveal-delay:120ms]`} data-reveal>
               Each Kuvar product solves a hard money problem in Africa — built on shared, bank-grade
               rails so they work together by design.
             </p>
           </div>
 
-          <div className="solutions-grid">
+          <div className="grid grid-cols-1 gap-[22px] w881:grid-cols-2">
             {/* KuvarPay */}
-            <Link className={`${card} p-8 product-card tilt`} href="/solutions#kuvarpay" data-reveal style={{ "--reveal-delay": "0ms" }}>
-              <span className="pc-glow"></span>
-              <div className="pc-head">
-                <span className="pc-mark"><img src="/assets/kuvarpay-mark.svg" alt="KuvarPay" /></span>
-                <span className="pc-badge">Live</span>
+            <Link className={`${card} tilt group relative flex min-h-[340px] flex-col gap-6 overflow-hidden p-9`} href="/solutions#kuvarpay" data-reveal style={{ "--reveal-delay": "0ms" }}>
+              <span className="pointer-events-none absolute -top-[120px] -right-[120px] size-[360px] rounded-full bg-accent opacity-10 blur-[70px] transition-opacity duration-300 group-hover:opacity-[0.18]"></span>
+              <div className="flex items-center justify-between gap-4">
+                <span className="grid size-[52px] shrink-0 place-items-center rounded-brand-md bg-ink">
+                  <img src="/assets/kuvarpay-mark.svg" alt="KuvarPay" className="size-[34px] object-contain" />
+                </span>
+                <span className="rounded-pill border border-line px-[11px] py-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-3">Live</span>
               </div>
               <div>
-                <h3 className="pc-name">Kuvar<span className="pay" style={{ color: "var(--accent-deep)" }}>Pay</span></h3>
-                <p className="pc-tagline">Full payments infrastructure — a payment gateway, merchant tools, and an agent network spanning Africa.</p>
+                <h3 className={PC_NAME}>Kuvar<span className="text-accent-deep">Pay</span></h3>
+                <p className="flex-1 text-[16px] text-ink-2">Full payments infrastructure — a payment gateway, merchant tools, and an agent network spanning Africa.</p>
               </div>
-              <div className="pc-tags">
-                <span className="pc-tag">Payment gateway</span>
-                <span className="pc-tag">Merchant tools</span>
-                <span className="pc-tag">Agent network</span>
+              <div className="flex flex-wrap gap-2">
+                <span className={PC_TAG}>Payment gateway</span>
+                <span className={PC_TAG}>Merchant tools</span>
+                <span className={PC_TAG}>Agent network</span>
               </div>
-              <div className="pc-foot">
-                <span className="text-ink-3" style={{ fontSize: "13.5px" }}>Accept &amp; move money, anywhere</span>
+              <div className="flex items-center justify-between border-t border-line pt-[22px]">
+                <span className="text-[13.5px] text-ink-3">Accept &amp; move money, anywhere</span>
                 <span className={arrowLink}>Visit <ArrowRight size={16} /></span>
               </div>
             </Link>
 
             {/* KuvarSend */}
-            <Link className={`${card} p-8 product-card tilt`} href="/solutions#kuvarsend" data-reveal style={{ "--reveal-delay": "100ms" }}>
-              <span className="pc-glow"></span>
-              <div className="pc-head">
-                <span className="pc-mark"><img src="/assets/kuvarsend-mark.png" alt="KuvarSend" /></span>
-                <span className="pc-badge">Launching soon</span>
+            <Link className={`${card} tilt group relative flex min-h-[340px] flex-col gap-6 overflow-hidden p-9`} href="/solutions#kuvarsend" data-reveal style={{ "--reveal-delay": "100ms" }}>
+              <span className="pointer-events-none absolute -top-[120px] -right-[120px] size-[360px] rounded-full bg-accent opacity-10 blur-[70px] transition-opacity duration-300 group-hover:opacity-[0.18]"></span>
+              <div className="flex items-center justify-between gap-4">
+                <span className="grid size-[52px] shrink-0 place-items-center rounded-brand-md bg-ink">
+                  <img src="/assets/kuvarsend-mark.png" alt="KuvarSend" className="size-[34px] object-contain" />
+                </span>
+                <span className="rounded-pill border border-line px-[11px] py-1.5 font-body text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-3">Launching soon</span>
               </div>
               <div>
-                <h3 className="pc-name">Kuvar<span className="send" style={{ color: "var(--accent-deep)" }}>Send</span></h3>
-                <p className="pc-tagline">Cross-border money transfer across Africa. Hold a USD-denominated wallet, pay out in local currencies.</p>
+                <h3 className={PC_NAME}>Kuvar<span className="text-accent-deep">Send</span></h3>
+                <p className="flex-1 text-[16px] text-ink-2">Cross-border money transfer across Africa. Hold a USD-denominated wallet, pay out in local currencies.</p>
               </div>
-              <div className="pc-tags">
-                <span className="pc-tag">USD wallet</span>
-                <span className="pc-tag">NGN · GHS · KES</span>
-                <span className="pc-tag">UGX · ZAR</span>
+              <div className="flex flex-wrap gap-2">
+                <span className={PC_TAG}>USD wallet</span>
+                <span className={PC_TAG}>NGN · GHS · KES</span>
+                <span className={PC_TAG}>UGX · ZAR</span>
               </div>
-              <div className="pc-foot">
-                <span className="text-ink-3" style={{ fontSize: "13.5px" }}>The borderless way to send</span>
+              <div className="flex items-center justify-between border-t border-line pt-[22px]">
+                <span className="text-[13.5px] text-ink-3">The borderless way to send</span>
                 <span className={arrowLink}>Visit <ArrowRight size={16} /></span>
               </div>
             </Link>
 
             {/* Platform teaser */}
-            <div className={`${card} platform-card`} data-reveal style={{ "--reveal-delay": "200ms" }}>
-              <div className="pl-left">
-                <span className="platform-icon"><Icon name="chevrons" size={24} sw={1.8} /></span>
+            <div className={`${card} col-span-full flex flex-wrap items-center justify-between gap-7 px-9 py-[30px]`} data-reveal style={{ "--reveal-delay": "200ms" }}>
+              <div className="flex items-center gap-5">
+                <span className="grid size-[50px] place-items-center rounded-brand-md border border-line bg-surface-2 text-ink-2">
+                  <Icon name="chevrons" size={24} sw={1.8} />
+                </span>
                 <div>
-                  <h3 style={{ fontFamily: "var(--display)", fontWeight: 700, fontSize: "21px", letterSpacing: "-0.02em", margin: "0 0 4px" }}>
+                  <h3 className="mb-1 font-display text-[21px] font-bold tracking-[-0.02em]">
                     Kuvar Developer Platform{" "}
-                    <span style={{ fontSize: "12px", color: "var(--accent-deep)", fontWeight: 600, letterSpacing: "0.06em" }}>· LIVE</span>
+                    <span className="text-[12px] font-semibold tracking-[0.06em] text-accent-deep">· LIVE</span>
                   </h3>
-                  <p className="text-ink-3" style={{ fontSize: "14.5px", margin: 0 }}>
+                  <p className="text-[14.5px] text-ink-3">
                     One API for payments, payouts and wallets — the same rails our own products run on.
                   </p>
                 </div>
@@ -189,19 +225,22 @@ export default function HomePage() {
       </section>
 
       {/* Story */}
-      <section className={section} style={{ background: "var(--bg-2)" }} id="story" data-screen-label="Home — Story">
-        <div className={`${wrap} story-grid`}>
+      <section className={`${section} bg-surface-2`} id="story" data-screen-label="Home — Story">
+        <div className={`${wrap} grid grid-cols-1 items-start gap-9 w881:grid-cols-[0.9fr_1.1fr] w881:gap-16`}>
           <div>
             <span className="eyebrow" data-reveal>Our Story</span>
-            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words mt-[18px]`} data-reveal-words>
               Money should move as freely as people do.
             </h2>
           </div>
-          <div className="story-body" data-reveal style={{ "--reveal-delay": "120ms" }}>
-            <p className="big">Africa is the youngest, fastest-growing market on earth — yet moving money within it remains slow, costly, and fragmented.</p>
+          <div
+            className="[--reveal-delay:120ms] [&>p]:mb-5 [&>p]:max-w-[560px] [&>p]:text-[17px] [&>p]:leading-[1.65] [&>p]:text-ink-2"
+            data-reveal
+          >
+            <p className="!mb-7 font-display !text-[clamp(22px,2.2vw,28px)] font-semibold !leading-[1.32] tracking-[-0.02em] !text-ink">Africa is the youngest, fastest-growing market on earth — yet moving money within it remains slow, costly, and fragmented.</p>
             <p>Kuvar Technologies was founded to fix that at the root: by building the underlying infrastructure that payments, transfers and commerce all depend on. Not another app on top of broken rails — the rails themselves.</p>
             <p>Today that infrastructure powers two products and a live developer platform. Every line of it is built in Africa, for Africa, to a global standard.</p>
-            <Link className={arrowLink} href="/about" style={{ marginTop: "6px" }}>
+            <Link className={`${arrowLink} mt-1.5`} href="/about">
               Read the full story <ArrowRight size={16} />
             </Link>
           </div>
@@ -211,14 +250,14 @@ export default function HomePage() {
       {/* Mission & Vision */}
       <section className={sectionTight} data-screen-label="Home — Mission & Vision">
         <div className={wrap}>
-          <div className="band mv-grid" data-reveal>
-            <div className="mv-cell">
-              <div className="mv-kicker">Mission</div>
-              <p className="mv-text">To give every African business and individual <em>borderless</em> access to the financial system — through infrastructure they can trust.</p>
+          <div className="grid grid-cols-1 overflow-hidden rounded-brand bg-band text-band-ink w881:grid-cols-2" data-reveal>
+            <div className="px-[52px] py-14">
+              <div className="mb-[22px] font-body text-[12px] font-semibold uppercase tracking-[0.16em] text-accent">Mission</div>
+              <p className="font-display text-[clamp(24px,2.6vw,36px)] font-bold leading-[1.18] tracking-[-0.03em] text-band-ink text-balance">To give every African business and individual <em className="italic text-accent">borderless</em> access to the financial system — through infrastructure they can trust.</p>
             </div>
-            <div className="mv-cell">
-              <div className="mv-kicker">Vision</div>
-              <p className="mv-text">A single, connected financial network for Africa, where value moves <em>instantly</em> across every border, currency and channel.</p>
+            <div className="border-t border-band-line px-[52px] py-14 w881:border-t-0 w881:border-l">
+              <div className="mb-[22px] font-body text-[12px] font-semibold uppercase tracking-[0.16em] text-accent">Vision</div>
+              <p className="font-display text-[clamp(24px,2.6vw,36px)] font-bold leading-[1.18] tracking-[-0.03em] text-band-ink text-balance">A single, connected financial network for Africa, where value moves <em className="italic text-accent">instantly</em> across every border, currency and channel.</p>
             </div>
           </div>
         </div>
@@ -227,37 +266,31 @@ export default function HomePage() {
       {/* Impact */}
       <section className={sectionTight} data-screen-label="Home — Impact">
         <div className={wrap}>
-          <div className="impact" data-reveal>
-            <div className="impact-head">
+          <div className="rounded-brand bg-accent px-[52px] py-16 text-accent-ink" data-reveal>
+            <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
               <div>
-                <span className="eyebrow">By the numbers</span>
-                <h2 className={hSection} style={{ marginTop: "14px", color: "var(--accent-ink)" }}>Infrastructure at scale.</h2>
+                <span className="eyebrow on-accent">By the numbers</span>
+                <h2 className={`${hSection} mt-3.5 text-accent-ink`}>Infrastructure at scale.</h2>
               </div>
-              <p style={{ maxWidth: "340px", color: "rgba(10,10,10,0.62)", margin: 0, fontSize: "15px" }}>
+              <p className="max-w-[340px] text-[15px] text-[rgba(10,10,10,0.62)]">
                 Placeholder figures — swap in your live metrics. Counters animate as they enter view.
               </p>
             </div>
-            <div className="stat-grid">
-              <div className="stat">
-                <span className="stat-num" data-counter data-to="14" data-suffix="+"></span>
-                <div className="stat-divider"></div>
-                <span className="stat-label">Countries on our rails</span>
-              </div>
-              <div className="stat">
-                <span className="stat-num" data-counter data-to="38000" data-suffix="+"></span>
-                <div className="stat-divider"></div>
-                <span className="stat-label">Merchants &amp; agents</span>
-              </div>
-              <div className="stat">
-                <span className="stat-num" data-counter data-to="12.4" data-decimals="1" data-prefix="$" data-suffix="M"></span>
-                <div className="stat-divider"></div>
-                <span className="stat-label">Processed monthly</span>
-              </div>
-              <div className="stat">
-                <span className="stat-num" data-counter data-to="5" data-suffix="M+"></span>
-                <div className="stat-divider"></div>
-                <span className="stat-label">Transactions to date</span>
-              </div>
+            <div className={statGrid}>
+              {IMPACT.map((s) => (
+                <div className={stat} key={s.label}>
+                  <span
+                    className={statNumOnAccent}
+                    data-counter
+                    data-to={s.to}
+                    data-suffix={s.suffix}
+                    {...(s.prefix ? { "data-prefix": s.prefix } : {})}
+                    {...(s.decimals ? { "data-decimals": s.decimals } : {})}
+                  ></span>
+                  <div className={statDividerOnAccent}></div>
+                  <span className={statLabelOnAccent}>{s.label}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -266,18 +299,18 @@ export default function HomePage() {
       {/* Values */}
       <section className={section} data-screen-label="Home — Values">
         <div className={wrap}>
-          <div style={{ marginBottom: "48px", maxWidth: "680px" }}>
+          <div className="mb-12 max-w-[680px]">
             <span className="eyebrow" data-reveal>What we stand for</span>
-            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words mt-[18px]`} data-reveal-words>
               Values that hold under pressure.
             </h2>
           </div>
-          <div className="value-grid">
+          <div className={valueGrid}>
             {VALUES.map((v) => (
-              <div className="value" key={v.title} data-reveal style={{ "--reveal-delay": `${v.d}ms` }}>
-                <span className="value-icon"><Icon name={v.icon} size={23} sw={2} /></span>
-                <h3 className="value-title">{v.title}</h3>
-                <p className="value-body">{v.body}</p>
+              <div className={valueCell} key={v.title} data-reveal style={{ "--reveal-delay": `${v.d}ms` }}>
+                <span className={valueIcon}><Icon name={v.icon} size={23} sw={2} /></span>
+                <h3 className={valueTitle}>{v.title}</h3>
+                <p className={valueBody}>{v.body}</p>
               </div>
             ))}
           </div>
@@ -285,12 +318,12 @@ export default function HomePage() {
       </section>
 
       {/* Team */}
-      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Home — Leadership">
+      <section className={`${section} bg-surface-2`} data-screen-label="Home — Leadership">
         <div className={wrap}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "44px", flexWrap: "wrap" }}>
-            <div style={{ maxWidth: "640px" }}>
+          <div className="mb-11 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-[640px]">
               <span className="eyebrow" data-reveal>Leadership</span>
-              <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
+              <h2 className={`${hSection} reveal-words mt-[18px]`} data-reveal-words>
                 The people building the rails.
               </h2>
             </div>
@@ -298,16 +331,16 @@ export default function HomePage() {
               Meet the full team <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="team-grid">
+          <div className="grid grid-cols-1 gap-[22px] w561:grid-cols-2 w981:grid-cols-4">
             {TEAM.map((m, i) => (
-              <div className={`${card} team-card tilt`} key={m.name} data-reveal style={{ "--reveal-delay": `${m.d}ms` }}>
-                <div className="team-photo">
+              <div className={`${card} tilt overflow-hidden`} key={m.name} data-reveal style={{ "--reveal-delay": `${m.d}ms` }}>
+                <div className={teamPhoto}>
                   <image-slot id={`team-${i + 1}`} shape="rect" placeholder="Drop photo"></image-slot>
-                  <span className="initials">{m.initials}</span>
+                  <span className={teamInitials}>{m.initials}</span>
                 </div>
-                <div className="team-info">
-                  <h3 className="team-name">{m.name}</h3>
-                  <p className="team-role">{m.role}</p>
+                <div className={teamInfo}>
+                  <h3 className={teamName}>{m.name}</h3>
+                  <p className={teamRole}>{m.role}</p>
                 </div>
               </div>
             ))}
@@ -318,12 +351,17 @@ export default function HomePage() {
       {/* Partners */}
       <section className={sectionTight} data-screen-label="Home — Partners">
         <div className={wrap}>
-          <p className="eyebrow is-plain" data-reveal style={{ display: "block", textAlign: "center", marginBottom: "28px", color: "var(--ink-3)" }}>
+          <p className="eyebrow is-plain is-block mb-7 text-ink-3" data-reveal>
             Trusted by partners across banking, mobile money &amp; infrastructure
           </p>
-          <div className="partner-strip" data-reveal>
+          <div className="grid grid-cols-2 overflow-hidden rounded-brand border border-line bg-card w881:grid-cols-5" data-reveal>
             {PARTNERS.map((p) => (
-              <div className="partner" key={p}>{p}</div>
+              <div
+                className="grid min-h-24 place-items-center border-r border-b border-line px-[18px] py-[30px] text-center font-display text-[17px] font-bold tracking-[-0.02em] text-ink-3 transition-[color,background-color] duration-200 hover:bg-card-2 hover:text-ink"
+                key={p}
+              >
+                {p}
+              </div>
             ))}
           </div>
         </div>
@@ -332,10 +370,10 @@ export default function HomePage() {
       {/* Press */}
       <section className={section} data-screen-label="Home — Newsroom">
         <div className={wrap}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "44px", flexWrap: "wrap" }}>
-            <div style={{ maxWidth: "640px" }}>
+          <div className="mb-11 flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-[640px]">
               <span className="eyebrow" data-reveal>Newsroom</span>
-              <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
+              <h2 className={`${hSection} reveal-words mt-[18px]`} data-reveal-words>
                 Kuvar in the news.
               </h2>
             </div>
@@ -343,31 +381,17 @@ export default function HomePage() {
               All press <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="press-grid">
-            <Link className={`${cardHover} press-card`} href="/press" data-reveal style={{ "--reveal-delay": "0ms" }}>
-              <div className="press-thumb"><Icon name="newspaper" size={40} sw={1.4} /></div>
-              <div className="press-body">
-                <div className="press-meta"><span className="press-tag">Announcement</span><span>· May 2026</span></div>
-                <h3 className="press-title">Kuvar Technologies raises to expand its pan-African payment rails</h3>
-                <p className="press-excerpt">New capital will accelerate corridor coverage and the launch of the Kuvar Developer Platform.</p>
-              </div>
-            </Link>
-            <Link className={`${cardHover} press-card`} href="/press" data-reveal style={{ "--reveal-delay": "100ms" }}>
-              <div className="press-thumb"><Icon name="globe2" size={40} sw={1.4} /></div>
-              <div className="press-body">
-                <div className="press-meta"><span className="press-tag">Product</span><span>· Apr 2026</span></div>
-                <h3 className="press-title">KuvarSend opens its USD wallet to five new African markets</h3>
-                <p className="press-excerpt">Recipients can now cash out in NGN, GHS, KES, XOF and ZAR within minutes.</p>
-              </div>
-            </Link>
-            <Link className={`${cardHover} press-card`} href="/press" data-reveal style={{ "--reveal-delay": "200ms" }}>
-              <div className="press-thumb"><Icon name="star" size={40} sw={1.4} /></div>
-              <div className="press-body">
-                <div className="press-meta"><span className="press-tag">Recognition</span><span>· Mar 2026</span></div>
-                <h3 className="press-title">Named among Africa's most promising fintech infrastructure firms</h3>
-                <p className="press-excerpt">Kuvar recognised for reliability and breadth of its cross-border settlement network.</p>
-              </div>
-            </Link>
+          <div className="grid grid-cols-1 gap-[22px] w881:grid-cols-3">
+            {NEWS.map((n) => (
+              <Link className={`${cardHover} flex flex-col overflow-hidden p-0`} href="/press" key={n.title} data-reveal style={{ "--reveal-delay": `${n.d}ms` }}>
+                <div className={pressThumb}><Icon name={n.icon} size={40} sw={1.4} /></div>
+                <div className={pressBody}>
+                  <div className={pressMeta}><span className={pressTag}>{n.tag}</span><span>{n.date}</span></div>
+                  <h3 className={pressTitle}>{n.title}</h3>
+                  <p className={pressExcerpt}>{n.excerpt}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -375,62 +399,69 @@ export default function HomePage() {
       {/* Careers callout */}
       <section className={sectionTight} data-screen-label="Home — Careers">
         <div className={wrap}>
-          <div className="careers-cta" data-reveal>
+          <div
+            className="grid grid-cols-1 items-center gap-7 rounded-brand bg-ink px-14 py-16 text-surface w881:grid-cols-[1.2fr_0.8fr] w881:gap-10 dark:border dark:border-line dark:bg-card"
+            data-reveal
+          >
             <div>
-              <span className="eyebrow">Careers</span>
-              <h2 className="cc-title">Help build the<br />money rails for a continent.</h2>
-              <div style={{ marginTop: "28px" }}>
+              <span className="eyebrow is-accent">Careers</span>
+              <h2 className="mt-4 font-display text-[clamp(28px,3.4vw,46px)] font-extrabold leading-[1.05] tracking-[-0.035em]">Help build the<br />money rails for a continent.</h2>
+              <div className="mt-7">
                 <Link className={btn("primary", "lg")} href="/careers">
                   See open roles
                   <ArrowRight size={17} />
                 </Link>
               </div>
             </div>
-            <div className="cc-stats">
-              <div className="cc-stat"><div className="n">60+</div><div className="l">Team members</div></div>
-              <div className="cc-stat"><div className="n">9</div><div className="l">Nationalities</div></div>
-              <div className="cc-stat"><div className="n">Remote</div><div className="l">First culture</div></div>
+            <div className="flex flex-wrap gap-9">
+              {[
+                { n: "60+", l: "Team members" },
+                { n: "9", l: "Nationalities" },
+                { n: "Remote", l: "First culture" },
+              ].map((s) => (
+                <div key={s.l}>
+                  <div className="font-display text-[32px] font-extrabold tracking-[-0.03em] text-accent">{s.n}</div>
+                  <div className="text-[13px] text-white/60 dark:text-ink-3">{s.l}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Contact */}
-      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Home — Contact">
-        <div className={`${wrap} contact-band`}>
+      <section className={`${section} bg-surface-2`} data-screen-label="Home — Contact">
+        <div className={`${wrap} grid grid-cols-1 items-center gap-9 w881:grid-cols-2 w881:gap-14`}>
           <div>
             <span className="eyebrow" data-reveal>Get in touch</span>
-            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words mt-[18px]`} data-reveal-words>
               Let&apos;s build the rails together.
             </h2>
-            <p className={lede} data-reveal style={{ "--reveal-delay": "120ms", marginTop: "18px" }}>
+            <p className={`${lede} mt-[18px] [--reveal-delay:120ms]`} data-reveal>
               Whether you&apos;re a bank, a business, the press or an investor — there&apos;s a direct line to
               the right team at Kuvar.
             </p>
-            <div style={{ marginTop: "28px" }} data-reveal>
+            <div className="mt-7" data-reveal>
               <Link className={btn("dark", "lg")} href="/contact">
                 Contact us
                 <ArrowRight size={17} />
               </Link>
             </div>
           </div>
-          <div className="route-list" data-reveal style={{ "--reveal-delay": "140ms" }}>
-            <Link className="route" href="/contact#partnerships">
-              <div><div className="route-name">Partnerships</div><div className="route-desc">Banks, telcos &amp; infrastructure providers</div></div>
-              <Icon name="arrowRight" size={20} sw={2} />
-            </Link>
-            <Link className="route" href="/contact#press">
-              <div><div className="route-name">Press &amp; media</div><div className="route-desc">Interviews, brand assets &amp; statements</div></div>
-              <Icon name="arrowRight" size={20} sw={2} />
-            </Link>
-            <Link className="route" href="/contact#investors">
-              <div><div className="route-name">Investor relations</div><div className="route-desc">For current &amp; prospective investors</div></div>
-              <Icon name="arrowRight" size={20} sw={2} />
-            </Link>
-            <Link className="route" href="/contact#support">
-              <div><div className="route-name">Product support</div><div className="route-desc">Help with KuvarPay or KuvarSend</div></div>
-              <Icon name="arrowRight" size={20} sw={2} />
-            </Link>
+          <div className="flex flex-col border-t border-line [--reveal-delay:140ms]" data-reveal>
+            {ROUTES.map((r) => (
+              <Link
+                className="flex items-center justify-between gap-[18px] border-b border-line px-1 py-[22px] transition-[padding] duration-200 hover:pl-3 [&_svg]:size-5 [&_svg]:shrink-0 [&_svg]:text-ink-3"
+                href={r.href}
+                key={r.name}
+              >
+                <div>
+                  <div className="font-display text-[19px] font-bold tracking-[-0.02em]">{r.name}</div>
+                  <div className="mt-0.5 text-[13.5px] text-ink-3">{r.desc}</div>
+                </div>
+                <Icon name="arrowRight" size={20} sw={2} />
+              </Link>
+            ))}
           </div>
         </div>
       </section>

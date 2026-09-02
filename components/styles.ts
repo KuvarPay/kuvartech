@@ -39,8 +39,13 @@ export const card =
 /** `card` plus the lift-on-hover treatment. */
 export const cardHover = `${card} hover:-translate-y-1 hover:shadow-brand`;
 
+/** Centred page column without a width cap. Use when the caller supplies its
+ *  own max-width: combining `wrap` with another max-w-* would leave two
+ *  max-width utilities competing, and source order decides, not class order. */
+export const wrapBase = "mx-auto px-gutter";
+
 /** Centred page column with the responsive gutter. */
-export const wrap = "mx-auto max-w-wrap px-gutter";
+export const wrap = `${wrapBase} max-w-wrap`;
 
 /** Vertical rhythm for a full section; tightens under 761px. */
 export const section = "py-16 w761:py-24";
@@ -76,3 +81,52 @@ export const field = "flex flex-col gap-2";
 
 /** Label above a form control. */
 export const fieldLabel = "font-body text-[13.5px] font-semibold text-ink-2";
+
+/* ---- Blocks shared by /about and / ---- */
+
+/** Bordered 3-up grid of value cells. */
+export const valueGrid =
+  "grid grid-cols-1 overflow-hidden rounded-brand border border-line bg-card w881:grid-cols-3";
+export const valueCell =
+  "flex flex-col gap-3.5 border-r border-b border-line px-8 py-[34px] transition-[background-color] duration-200 hover:bg-card-2";
+export const valueIcon =
+  "grid size-[46px] place-items-center rounded-brand-md bg-accent text-accent-ink";
+export const valueTitle = "font-display text-[21px] font-bold tracking-[-0.02em]";
+export const valueBody = "text-[14.5px] text-ink-2";
+
+/** Leadership cards. */
+export const teamPhoto =
+  "relative grid aspect-[4/5] w-full place-items-center overflow-hidden bg-[radial-gradient(120%_80%_at_50%_0%,color-mix(in_oklab,var(--accent)_22%,var(--bg-2))_0%,var(--bg-2)_60%)]";
+export const teamInitials =
+  "font-display text-[52px] font-extrabold tracking-[-0.04em] text-ink/30";
+export const teamInfo = "px-[22px] pt-5 pb-6";
+export const teamName = "mb-[3px] font-display text-[19px] font-bold tracking-[-0.02em]";
+export const teamRole = "text-[13.5px] text-ink-3";
+
+/** Animated counter block. `.suffix` is injected by SiteEffects at runtime. */
+export const statNum =
+  "font-display text-[clamp(44px,5.4vw,76px)] font-black leading-[0.95] tracking-[-0.05em] [&_.suffix]:text-accent-deep";
+export const statLabel = "font-body text-[14px] font-medium text-ink-3";
+export const statDivider = "my-1 h-px w-full bg-line";
+/* repeat(N,1fr), not grid-cols-N. Tailwind's grid-cols-N emits minmax(0,1fr),
+   which forces equal columns; the original 1fr is minmax(auto,1fr), letting a
+   wide figure like "38,000+" claim the room it needs. */
+export const statGrid =
+  "grid grid-cols-[repeat(2,1fr)] gap-5 w881:grid-cols-[repeat(4,1fr)] w881:gap-7";
+export const stat = "flex flex-col gap-1.5";
+
+/** Press teaser card, used on / and /press. */
+export const pressThumb =
+  "grid aspect-video w-full place-items-center bg-[linear-gradient(135deg,var(--bg-2),color-mix(in_oklab,var(--accent)_14%,var(--bg-2)))] text-ink-4";
+export const pressBody = "flex flex-1 flex-col gap-3 px-[26px] pt-6 pb-7";
+export const pressMeta = "flex items-center gap-2.5 text-[12.5px] text-ink-3";
+export const pressTag = "text-[11px] font-semibold uppercase tracking-[0.06em] text-accent-deep";
+export const pressTitle = "font-display text-[21px] font-bold leading-[1.2] tracking-[-0.02em]";
+export const pressExcerpt = "flex-1 text-[14px] text-ink-2";
+
+/** Stat block on the accent-coloured impact band. A separate string rather than
+ *  an override: two utilities for the same property resolve by source order. */
+export const statNumOnAccent =
+  "font-display text-[clamp(44px,5.4vw,76px)] font-black leading-[0.95] tracking-[-0.05em] text-accent-ink [&_.suffix]:text-[#0A0A0A] [&_.suffix]:opacity-55";
+export const statLabelOnAccent = "font-body text-[14px] font-medium text-[rgba(10,10,10,0.62)]";
+export const statDividerOnAccent = "my-1 h-px w-full bg-[rgba(10,10,10,0.14)]";
