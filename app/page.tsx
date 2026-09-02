@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
+import { arrowLink, btn, card, cardHover, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
 
 const VALUES = [
   { icon: "shield", title: "Trust is the product", body: "We hold other people's money. Security, compliance and uptime are not features — they are the foundation everything else stands on.", d: 0 },
@@ -27,7 +28,7 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <header className="hero" data-screen-label="Home — Hero">
-        <div className="wrap hero-grid">
+        <div className={`${wrap} hero-grid`}>
           <div className="hero-copy">
             <a
               className="tag-pill"
@@ -47,11 +48,11 @@ export default function HomePage() {
               and connect African commerce to the world — one trusted product at a time.
             </p>
             <div className="hero-ctas" data-reveal style={{ "--reveal-delay": "200ms" }}>
-              <Link className="btn btn-primary btn-lg" href="/solutions">
+              <Link className={btn("primary", "lg")} href="/solutions">
                 Explore Solutions
                 <ArrowRight size={17} />
               </Link>
-              <Link className="btn btn-ghost btn-lg" href="/about">
+              <Link className={btn("ghost", "lg")} href="/about">
                 Our Story
               </Link>
             </div>
@@ -107,14 +108,14 @@ export default function HomePage() {
       </header>
 
       {/* Solutions */}
-      <section className="section" id="solutions" data-screen-label="Home — Solutions">
-        <div className="wrap">
+      <section className={section} id="solutions" data-screen-label="Home — Solutions">
+        <div className={wrap}>
           <div style={{ marginBottom: "48px", maxWidth: "720px" }}>
             <span className="eyebrow" data-reveal>Our Solutions</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
               Two products. One infrastructure.
             </h2>
-            <p className="lede" data-reveal style={{ "--reveal-delay": "120ms", marginTop: "18px" }}>
+            <p className={lede} data-reveal style={{ "--reveal-delay": "120ms", marginTop: "18px" }}>
               Each Kuvar product solves a hard money problem in Africa — built on shared, bank-grade
               rails so they work together by design.
             </p>
@@ -122,7 +123,7 @@ export default function HomePage() {
 
           <div className="solutions-grid">
             {/* KuvarPay */}
-            <Link className="card card-pad product-card tilt" href="/solutions#kuvarpay" data-reveal style={{ "--reveal-delay": "0ms" }}>
+            <Link className={`${card} p-8 product-card tilt`} href="/solutions#kuvarpay" data-reveal style={{ "--reveal-delay": "0ms" }}>
               <span className="pc-glow"></span>
               <div className="pc-head">
                 <span className="pc-mark"><img src="/assets/kuvarpay-mark.svg" alt="KuvarPay" /></span>
@@ -138,13 +139,13 @@ export default function HomePage() {
                 <span className="pc-tag">Agent network</span>
               </div>
               <div className="pc-foot">
-                <span className="muted" style={{ fontSize: "13.5px" }}>Accept &amp; move money, anywhere</span>
-                <span className="arrow-link">Visit <ArrowRight size={16} /></span>
+                <span className="text-ink-3" style={{ fontSize: "13.5px" }}>Accept &amp; move money, anywhere</span>
+                <span className={arrowLink}>Visit <ArrowRight size={16} /></span>
               </div>
             </Link>
 
             {/* KuvarSend */}
-            <Link className="card card-pad product-card tilt" href="/solutions#kuvarsend" data-reveal style={{ "--reveal-delay": "100ms" }}>
+            <Link className={`${card} p-8 product-card tilt`} href="/solutions#kuvarsend" data-reveal style={{ "--reveal-delay": "100ms" }}>
               <span className="pc-glow"></span>
               <div className="pc-head">
                 <span className="pc-mark"><img src="/assets/kuvarsend-mark.png" alt="KuvarSend" /></span>
@@ -160,13 +161,13 @@ export default function HomePage() {
                 <span className="pc-tag">UGX · ZAR</span>
               </div>
               <div className="pc-foot">
-                <span className="muted" style={{ fontSize: "13.5px" }}>The borderless way to send</span>
-                <span className="arrow-link">Visit <ArrowRight size={16} /></span>
+                <span className="text-ink-3" style={{ fontSize: "13.5px" }}>The borderless way to send</span>
+                <span className={arrowLink}>Visit <ArrowRight size={16} /></span>
               </div>
             </Link>
 
             {/* Platform teaser */}
-            <div className="card platform-card" data-reveal style={{ "--reveal-delay": "200ms" }}>
+            <div className={`${card} platform-card`} data-reveal style={{ "--reveal-delay": "200ms" }}>
               <div className="pl-left">
                 <span className="platform-icon"><Icon name="chevrons" size={24} sw={1.8} /></span>
                 <div>
@@ -174,12 +175,12 @@ export default function HomePage() {
                     Kuvar Developer Platform{" "}
                     <span style={{ fontSize: "12px", color: "var(--accent-deep)", fontWeight: 600, letterSpacing: "0.06em" }}>· LIVE</span>
                   </h3>
-                  <p className="muted" style={{ fontSize: "14.5px", margin: 0 }}>
+                  <p className="text-ink-3" style={{ fontSize: "14.5px", margin: 0 }}>
                     One API for payments, payouts and wallets — the same rails our own products run on.
                   </p>
                 </div>
               </div>
-              <a className="arrow-link" href="https://developers.kuvarpay.com/" target="_blank" rel="noopener noreferrer">
+              <a className={arrowLink} href="https://developers.kuvarpay.com/" target="_blank" rel="noopener noreferrer">
                 View developer docs <ArrowRight size={16} />
               </a>
             </div>
@@ -188,11 +189,11 @@ export default function HomePage() {
       </section>
 
       {/* Story */}
-      <section className="section" style={{ background: "var(--bg-2)" }} id="story" data-screen-label="Home — Story">
-        <div className="wrap story-grid">
+      <section className={section} style={{ background: "var(--bg-2)" }} id="story" data-screen-label="Home — Story">
+        <div className={`${wrap} story-grid`}>
           <div>
             <span className="eyebrow" data-reveal>Our Story</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
               Money should move as freely as people do.
             </h2>
           </div>
@@ -200,7 +201,7 @@ export default function HomePage() {
             <p className="big">Africa is the youngest, fastest-growing market on earth — yet moving money within it remains slow, costly, and fragmented.</p>
             <p>Kuvar Technologies was founded to fix that at the root: by building the underlying infrastructure that payments, transfers and commerce all depend on. Not another app on top of broken rails — the rails themselves.</p>
             <p>Today that infrastructure powers two products and a live developer platform. Every line of it is built in Africa, for Africa, to a global standard.</p>
-            <Link className="arrow-link" href="/about" style={{ marginTop: "6px" }}>
+            <Link className={arrowLink} href="/about" style={{ marginTop: "6px" }}>
               Read the full story <ArrowRight size={16} />
             </Link>
           </div>
@@ -208,8 +209,8 @@ export default function HomePage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-tight" data-screen-label="Home — Mission & Vision">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Home — Mission & Vision">
+        <div className={wrap}>
           <div className="band mv-grid" data-reveal>
             <div className="mv-cell">
               <div className="mv-kicker">Mission</div>
@@ -224,13 +225,13 @@ export default function HomePage() {
       </section>
 
       {/* Impact */}
-      <section className="section-tight" data-screen-label="Home — Impact">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Home — Impact">
+        <div className={wrap}>
           <div className="impact" data-reveal>
             <div className="impact-head">
               <div>
                 <span className="eyebrow">By the numbers</span>
-                <h2 className="h-section" style={{ marginTop: "14px", color: "var(--accent-ink)" }}>Infrastructure at scale.</h2>
+                <h2 className={hSection} style={{ marginTop: "14px", color: "var(--accent-ink)" }}>Infrastructure at scale.</h2>
               </div>
               <p style={{ maxWidth: "340px", color: "rgba(10,10,10,0.62)", margin: 0, fontSize: "15px" }}>
                 Placeholder figures — swap in your live metrics. Counters animate as they enter view.
@@ -263,11 +264,11 @@ export default function HomePage() {
       </section>
 
       {/* Values */}
-      <section className="section" data-screen-label="Home — Values">
-        <div className="wrap">
+      <section className={section} data-screen-label="Home — Values">
+        <div className={wrap}>
           <div style={{ marginBottom: "48px", maxWidth: "680px" }}>
             <span className="eyebrow" data-reveal>What we stand for</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
               Values that hold under pressure.
             </h2>
           </div>
@@ -284,22 +285,22 @@ export default function HomePage() {
       </section>
 
       {/* Team */}
-      <section className="section" style={{ background: "var(--bg-2)" }} data-screen-label="Home — Leadership">
-        <div className="wrap">
+      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Home — Leadership">
+        <div className={wrap}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "44px", flexWrap: "wrap" }}>
             <div style={{ maxWidth: "640px" }}>
               <span className="eyebrow" data-reveal>Leadership</span>
-              <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "18px" }}>
+              <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
                 The people building the rails.
               </h2>
             </div>
-            <Link className="arrow-link" href="/about#team" data-reveal>
+            <Link className={arrowLink} href="/about#team" data-reveal>
               Meet the full team <ArrowRight size={16} />
             </Link>
           </div>
           <div className="team-grid">
             {TEAM.map((m, i) => (
-              <div className="card team-card tilt" key={m.name} data-reveal style={{ "--reveal-delay": `${m.d}ms` }}>
+              <div className={`${card} team-card tilt`} key={m.name} data-reveal style={{ "--reveal-delay": `${m.d}ms` }}>
                 <div className="team-photo">
                   <image-slot id={`team-${i + 1}`} shape="rect" placeholder="Drop photo"></image-slot>
                   <span className="initials">{m.initials}</span>
@@ -315,8 +316,8 @@ export default function HomePage() {
       </section>
 
       {/* Partners */}
-      <section className="section-tight" data-screen-label="Home — Partners">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Home — Partners">
+        <div className={wrap}>
           <p className="eyebrow is-plain" data-reveal style={{ display: "block", textAlign: "center", marginBottom: "28px", color: "var(--ink-3)" }}>
             Trusted by partners across banking, mobile money &amp; infrastructure
           </p>
@@ -329,21 +330,21 @@ export default function HomePage() {
       </section>
 
       {/* Press */}
-      <section className="section" data-screen-label="Home — Newsroom">
-        <div className="wrap">
+      <section className={section} data-screen-label="Home — Newsroom">
+        <div className={wrap}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "24px", marginBottom: "44px", flexWrap: "wrap" }}>
             <div style={{ maxWidth: "640px" }}>
               <span className="eyebrow" data-reveal>Newsroom</span>
-              <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "18px" }}>
+              <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
                 Kuvar in the news.
               </h2>
             </div>
-            <Link className="arrow-link" href="/press" data-reveal>
+            <Link className={arrowLink} href="/press" data-reveal>
               All press <ArrowRight size={16} />
             </Link>
           </div>
           <div className="press-grid">
-            <Link className="card press-card card-hover" href="/press" data-reveal style={{ "--reveal-delay": "0ms" }}>
+            <Link className={`${cardHover} press-card`} href="/press" data-reveal style={{ "--reveal-delay": "0ms" }}>
               <div className="press-thumb"><Icon name="newspaper" size={40} sw={1.4} /></div>
               <div className="press-body">
                 <div className="press-meta"><span className="press-tag">Announcement</span><span>· May 2026</span></div>
@@ -351,7 +352,7 @@ export default function HomePage() {
                 <p className="press-excerpt">New capital will accelerate corridor coverage and the launch of the Kuvar Developer Platform.</p>
               </div>
             </Link>
-            <Link className="card press-card card-hover" href="/press" data-reveal style={{ "--reveal-delay": "100ms" }}>
+            <Link className={`${cardHover} press-card`} href="/press" data-reveal style={{ "--reveal-delay": "100ms" }}>
               <div className="press-thumb"><Icon name="globe2" size={40} sw={1.4} /></div>
               <div className="press-body">
                 <div className="press-meta"><span className="press-tag">Product</span><span>· Apr 2026</span></div>
@@ -359,7 +360,7 @@ export default function HomePage() {
                 <p className="press-excerpt">Recipients can now cash out in NGN, GHS, KES, XOF and ZAR within minutes.</p>
               </div>
             </Link>
-            <Link className="card press-card card-hover" href="/press" data-reveal style={{ "--reveal-delay": "200ms" }}>
+            <Link className={`${cardHover} press-card`} href="/press" data-reveal style={{ "--reveal-delay": "200ms" }}>
               <div className="press-thumb"><Icon name="star" size={40} sw={1.4} /></div>
               <div className="press-body">
                 <div className="press-meta"><span className="press-tag">Recognition</span><span>· Mar 2026</span></div>
@@ -372,14 +373,14 @@ export default function HomePage() {
       </section>
 
       {/* Careers callout */}
-      <section className="section-tight" data-screen-label="Home — Careers">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Home — Careers">
+        <div className={wrap}>
           <div className="careers-cta" data-reveal>
             <div>
               <span className="eyebrow">Careers</span>
               <h2 className="cc-title">Help build the<br />money rails for a continent.</h2>
               <div style={{ marginTop: "28px" }}>
-                <Link className="btn btn-primary btn-lg" href="/careers">
+                <Link className={btn("primary", "lg")} href="/careers">
                   See open roles
                   <ArrowRight size={17} />
                 </Link>
@@ -395,19 +396,19 @@ export default function HomePage() {
       </section>
 
       {/* Contact */}
-      <section className="section" style={{ background: "var(--bg-2)" }} data-screen-label="Home — Contact">
-        <div className="wrap contact-band">
+      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Home — Contact">
+        <div className={`${wrap} contact-band`}>
           <div>
             <span className="eyebrow" data-reveal>Get in touch</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "18px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "18px" }}>
               Let&apos;s build the rails together.
             </h2>
-            <p className="lede" data-reveal style={{ "--reveal-delay": "120ms", marginTop: "18px" }}>
+            <p className={lede} data-reveal style={{ "--reveal-delay": "120ms", marginTop: "18px" }}>
               Whether you&apos;re a bank, a business, the press or an investor — there&apos;s a direct line to
               the right team at Kuvar.
             </p>
             <div style={{ marginTop: "28px" }} data-reveal>
-              <Link className="btn btn-dark btn-lg" href="/contact">
+              <Link className={btn("dark", "lg")} href="/contact">
                 Contact us
                 <ArrowRight size={17} />
               </Link>

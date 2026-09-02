@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
+import { btn, card, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "Solutions",
@@ -39,27 +40,27 @@ export default function SolutionsPage() {
     <>
       {/* hero */}
       <header className="page-hero" data-screen-label="Solutions — Hero">
-        <div className="wrap">
+        <div className={wrap}>
           <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>Solutions</span></div>
           <span className="eyebrow" data-reveal>Our Solutions</span>
-          <h1 className="h-display reveal-words" data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
+          <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
             Products built on shared rails.
           </h1>
-          <p className="lede" data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px" }}>
+          <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px" }}>
             Each Kuvar product solves a hard money problem in Africa. They run on one bank-grade
             infrastructure core — so reliability, compliance and reach compound with every launch.
           </p>
           <div style={{ display: "flex", gap: "14px", marginTop: "32px", flexWrap: "wrap" }} data-reveal>
-            <a className="btn btn-ghost" href="#kuvarpay">KuvarPay</a>
-            <a className="btn btn-ghost" href="#kuvarsend">KuvarSend</a>
-            <a className="btn btn-ghost" href="#platform">Developer Platform</a>
+            <a className={btn("ghost")} href="#kuvarpay">KuvarPay</a>
+            <a className={btn("ghost")} href="#kuvarsend">KuvarSend</a>
+            <a className={btn("ghost")} href="#platform">Developer Platform</a>
           </div>
         </div>
       </header>
 
       {/* KuvarPay */}
       <section className="prod" id="kuvarpay" data-screen-label="Solutions — KuvarPay">
-        <div className="wrap">
+        <div className={wrap}>
           <div className="prod-head">
             <div>
               <div className="prod-badge-row">
@@ -77,7 +78,7 @@ export default function SolutionsPage() {
                 complexity abstracted away. Collect through payment links, a web checkout or our API
                 — and pay suppliers across our markets in their local currencies too.
               </p>
-              <a className="btn btn-primary" href="https://kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal style={{ "--reveal-delay": "140ms" }}>
+              <a className={btn("primary")} href="https://kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal style={{ "--reveal-delay": "140ms" }}>
                 Get Started
                 <ArrowRight size={17} />
               </a>
@@ -109,7 +110,7 @@ export default function SolutionsPage() {
 
           <div className="feat-grid">
             {PAY_FEATURES.map((f) => (
-              <div className="card feat" key={f.title} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
+              <div className={`${card} feat`} key={f.title} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
                 <span className="feat-icon"><Icon name={f.icon} size={22} sw={2} /></span>
                 <h4>{f.title}</h4>
                 <p>{f.body}</p>
@@ -121,7 +122,7 @@ export default function SolutionsPage() {
 
       {/* KuvarSend */}
       <section className="prod" id="kuvarsend" data-screen-label="Solutions — KuvarSend">
-        <div className="wrap">
+        <div className={wrap}>
           <div className="prod-head">
             <div className="prod-visual send" data-reveal style={{ "--reveal-delay": "120ms" }}>
               <img className="app-shot light" src="/assets/kuvarsend-app-light.png" alt="KuvarSend app" />
@@ -137,7 +138,7 @@ export default function SolutionsPage() {
                 Cross-border money transfer across Africa. Hold value in a USD-denominated wallet and
                 pay out to recipients in their local currency — fast, transparent and borderless.
               </p>
-              <a className="btn btn-primary" href="#" data-reveal style={{ "--reveal-delay": "140ms" }}>
+              <a className={btn("primary")} href="#" data-reveal style={{ "--reveal-delay": "140ms" }}>
                 Join the waitlist
                 <ArrowRight size={17} />
               </a>
@@ -147,10 +148,10 @@ export default function SolutionsPage() {
           <div className="grid-2" style={{ marginTop: "52px", alignItems: "start" }}>
             <div>
               <span className="eyebrow" data-reveal>Pay out locally</span>
-              <h3 className="h-section" data-reveal style={{ "--reveal-delay": "80ms", marginTop: "16px", fontSize: "clamp(26px,3vw,40px)" }}>
+              <h3 className={hSection} data-reveal style={{ "--reveal-delay": "80ms", marginTop: "16px", fontSize: "clamp(26px,3vw,40px)" }}>
                 One wallet. Every local currency.
               </h3>
-              <p className="lede" data-reveal style={{ "--reveal-delay": "140ms", marginTop: "16px" }}>
+              <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "16px" }}>
                 Senders keep a stable USD balance. Recipients receive in the money they actually
                 spend — no guesswork, no hidden FX.
               </p>
@@ -168,7 +169,7 @@ export default function SolutionsPage() {
 
           <div className="feat-grid">
             {SEND_FEATURES.map((f) => (
-              <div className="card feat" key={f.title} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
+              <div className={`${card} feat`} key={f.title} data-reveal style={{ "--reveal-delay": `${f.d}ms` }}>
                 <span className="feat-icon"><Icon name={f.icon} size={22} sw={2} /></span>
                 <h4>{f.title}</h4>
                 <p>{f.body}</p>
@@ -180,7 +181,7 @@ export default function SolutionsPage() {
 
       {/* Developer platform */}
       <section className="prod" id="platform" data-screen-label="Solutions — Platform">
-        <div className="wrap">
+        <div className={wrap}>
           <div className="prod-head">
             <div>
               <div className="prod-badge-row">
@@ -196,7 +197,7 @@ export default function SolutionsPage() {
                 The same rails our own products run on, exposed as one clean API. Payments, payouts,
                 wallets and compliance — for any builder in Africa.
               </p>
-              <a className="btn btn-primary" href="https://developers.kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal style={{ "--reveal-delay": "140ms" }}>
+              <a className={btn("primary")} href="https://developers.kuvarpay.com/" target="_blank" rel="noopener noreferrer" data-reveal style={{ "--reveal-delay": "140ms" }}>
                 Read the docs
                 <ArrowRight size={17} />
               </a>
@@ -218,12 +219,12 @@ export default function SolutionsPage() {
       </section>
 
       {/* Shared infrastructure */}
-      <section className="section" data-screen-label="Solutions — Infrastructure">
-        <div className="wrap">
+      <section className={section} data-screen-label="Solutions — Infrastructure">
+        <div className={wrap}>
           <div className="infra-band" data-reveal>
             <div style={{ maxWidth: "640px" }}>
               <span className="eyebrow">One core, many products</span>
-              <h2 className="h-section" style={{ marginTop: "16px" }}>Why everything runs on the same rails.</h2>
+              <h2 className={hSection} style={{ marginTop: "16px" }}>Why everything runs on the same rails.</h2>
             </div>
             <div className="infra-grid">
               {INFRA.map((i) => (
@@ -239,15 +240,15 @@ export default function SolutionsPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-tight" style={{ paddingBottom: "96px" }} data-screen-label="Solutions — CTA">
-        <div className="wrap" style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
-          <h2 className="h-section reveal-words" data-reveal-words>Build on the rails moving Africa.</h2>
+      <section className={sectionTight} style={{ paddingBottom: "96px" }} data-screen-label="Solutions — CTA">
+        <div className={wrap} style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
+          <h2 className={`${hSection} reveal-words`} data-reveal-words>Build on the rails moving Africa.</h2>
           <div style={{ display: "flex", gap: "14px", justifyContent: "center", marginTop: "28px", flexWrap: "wrap" }} data-reveal>
-            <Link className="btn btn-primary btn-lg" href="/contact">
+            <Link className={btn("primary", "lg")} href="/contact">
               Get in touch
               <ArrowRight size={17} />
             </Link>
-            <Link className="btn btn-ghost btn-lg" href="/about">About Kuvar</Link>
+            <Link className={btn("ghost", "lg")} href="/about">About Kuvar</Link>
           </div>
         </div>
       </section>

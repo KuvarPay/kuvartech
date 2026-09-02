@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
+import { btn, card, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "Careers",
@@ -35,18 +36,18 @@ export default function CareersPage() {
   return (
     <>
       <header className="page-hero" data-screen-label="Careers — Hero">
-        <div className="wrap">
+        <div className={wrap}>
           <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>Careers</span></div>
           <span className="eyebrow" data-reveal>Careers</span>
-          <h1 className="h-display reveal-words" data-reveal-words style={{ marginTop: "18px", maxWidth: "15ch" }}>
+          <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "15ch" }}>
             Build the money rails for a continent.
           </h1>
-          <p className="lede" data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px", maxWidth: "660px" }}>
+          <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px", maxWidth: "660px" }}>
             We&apos;re a team of builders solving one of the hardest, highest-impact problems in the world
             — and we&apos;re hiring across engineering, product, compliance and operations.
           </p>
           <div style={{ display: "flex", gap: "14px", marginTop: "32px", flexWrap: "wrap" }} data-reveal>
-            <a className="btn btn-primary btn-lg" href="#roles">
+            <a className={btn("primary", "lg")} href="#roles">
               See open roles
               <ArrowRight size={17} />
             </a>
@@ -55,17 +56,17 @@ export default function CareersPage() {
       </header>
 
       {/* Why join */}
-      <section className="section" data-screen-label="Careers — Why join">
-        <div className="wrap">
+      <section className={section} data-screen-label="Careers — Why join">
+        <div className={wrap}>
           <div style={{ maxWidth: "640px", marginBottom: "44px" }}>
             <span className="eyebrow" data-reveal>Why Kuvar</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "16px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
               Work that actually moves the needle.
             </h2>
           </div>
           <div className="why-grid">
             {WHY.map((w) => (
-              <div className="card why" key={w.title} data-reveal style={{ "--reveal-delay": `${w.d}ms` }}>
+              <div className={`${card} why`} key={w.title} data-reveal style={{ "--reveal-delay": `${w.d}ms` }}>
                 <span className="why-icon"><Icon name={w.icon} size={23} sw={2} /></span>
                 <h3>{w.title}</h3>
                 <p>{w.body}</p>
@@ -76,8 +77,8 @@ export default function CareersPage() {
       </section>
 
       {/* Culture */}
-      <section className="section-tight" data-screen-label="Careers — Culture">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Careers — Culture">
+        <div className={wrap}>
           <div className="culture-band grid-2" data-reveal>
             <div>
               <span className="eyebrow">Our culture</span>
@@ -105,11 +106,11 @@ export default function CareersPage() {
       </section>
 
       {/* Perks */}
-      <section className="section" style={{ background: "var(--bg-2)" }} data-screen-label="Careers — Benefits">
-        <div className="wrap">
+      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Careers — Benefits">
+        <div className={wrap}>
           <div style={{ maxWidth: "640px", marginBottom: "40px" }}>
             <span className="eyebrow" data-reveal>Benefits</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "16px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
               How we take care of our team.
             </h2>
           </div>
@@ -125,16 +126,16 @@ export default function CareersPage() {
       </section>
 
       {/* Open roles */}
-      <section className="section" id="roles" data-screen-label="Careers — Open roles">
-        <div className="wrap">
+      <section className={section} id="roles" data-screen-label="Careers — Open roles">
+        <div className={wrap}>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "20px", marginBottom: "36px", flexWrap: "wrap" }}>
             <div style={{ maxWidth: "560px" }}>
               <span className="eyebrow" data-reveal>Open roles</span>
-              <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "16px" }}>
+              <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
                 Find your seat.
               </h2>
             </div>
-            <span className="muted" data-reveal style={{ fontSize: "14px" }}>
+            <span className="text-ink-3" data-reveal style={{ fontSize: "14px" }}>
               Don&apos;t see your role? Email{" "}
               <Link href="/contact" style={{ color: "var(--ink)", fontWeight: 600 }}>careers@kuvar.co</Link>
             </span>
@@ -156,14 +157,14 @@ export default function CareersPage() {
       </section>
 
       {/* CTA */}
-      <section className="section-tight" style={{ paddingBottom: "96px" }} data-screen-label="Careers — CTA">
-        <div className="wrap" style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
-          <h2 className="h-section reveal-words" data-reveal-words>Let&apos;s build it together.</h2>
-          <p className="lede" data-reveal style={{ "--reveal-delay": "100ms", margin: "18px auto 0" }}>
+      <section className={sectionTight} style={{ paddingBottom: "96px" }} data-screen-label="Careers — CTA">
+        <div className={wrap} style={{ textAlign: "center", maxWidth: "760px", margin: "0 auto" }}>
+          <h2 className={`${hSection} reveal-words`} data-reveal-words>Let&apos;s build it together.</h2>
+          <p className={lede} data-reveal style={{ "--reveal-delay": "100ms", margin: "18px auto 0" }}>
             Send us your CV and a note on what you&apos;d want to own.
           </p>
           <div style={{ display: "flex", gap: "14px", justifyContent: "center", marginTop: "28px", flexWrap: "wrap" }} data-reveal>
-            <Link className="btn btn-primary btn-lg" href="/contact">
+            <Link className={btn("primary", "lg")} href="/contact">
               Apply now
               <ArrowRight size={17} />
             </Link>

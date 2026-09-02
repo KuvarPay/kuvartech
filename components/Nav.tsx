@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icon, ArrowRight, BrandMark } from "./Icons";
+import { btn } from "@/components/styles";
 
 interface NavLink {
   label: string;
@@ -113,7 +114,7 @@ export default function Nav() {
             </span>
           </button>
 
-          <Link className="btn btn-primary btn-sm" href="/contact">
+          <Link className={btn("primary", "sm")} href="/contact">
             <span className="hidden w921:inline">Get in Touch</span>
             <ArrowRight />
           </Link>

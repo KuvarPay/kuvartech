@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BrandMark } from "./Icons";
+import { wrap } from "@/components/styles";
 
 function Social({ href, children }: { href: string; children: React.ReactNode }) {
   return (
@@ -32,7 +33,7 @@ export default function Footer() {
     /* The footer is a dark panel in both themes, so its text is always
        light — it does not follow the --ink/--bg flip. */
     <footer className="bg-ink pt-[72px] pb-9 text-white dark:border-t dark:border-line dark:bg-[#0F0F0F]">
-      <div className="wrap">
+      <div className={wrap}>
         <div className="grid grid-cols-1 gap-x-6 gap-y-9 border-b border-white/12 pb-14 w521:grid-cols-2 w881:grid-cols-[1.6fr_1fr_1fr_1fr] w881:gap-10 dark:border-line">
           <div className="flex max-w-[320px] flex-col gap-[18px]">
             <Link className="inline-flex items-center gap-[11px]" href="/" aria-label="Kuvar Technologies home">

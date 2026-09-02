@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Icon, ArrowRight } from "./Icons";
+import { btn, wrap } from "@/components/styles";
 
 interface Dept {
   id: string;
@@ -84,7 +85,7 @@ export default function ContactSection() {
   }
 
   return (
-    <div className="wrap contact-layout">
+    <div className={`${wrap} contact-layout`}>
       <div>
         <span className="eyebrow" data-reveal>
           Departments
@@ -173,10 +174,10 @@ export default function ContactSection() {
                   flexWrap: "wrap",
                 }}
               >
-                <span className="muted" style={{ fontSize: "12.5px" }}>
+                <span className="text-ink-3" style={{ fontSize: "12.5px" }}>
                   We typically reply within 1–2 business days.
                 </span>
-                <button type="submit" className="btn btn-primary btn-lg">
+                <button type="submit" className={btn("primary", "lg")}>
                   Send message
                   <ArrowRight />
                 </button>

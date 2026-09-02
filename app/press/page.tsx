@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight, BrandMark } from "@/components/Icons";
+import { arrowLink, btn, cardHover, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "Press & Newsroom",
@@ -30,13 +31,13 @@ export default function PressPage() {
   return (
     <>
       <header className="page-hero" data-screen-label="Press — Hero">
-        <div className="wrap">
+        <div className={wrap}>
           <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>Press</span></div>
           <span className="eyebrow" data-reveal>Newsroom</span>
-          <h1 className="h-display reveal-words" data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
+          <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
             Press &amp; media.
           </h1>
-          <p className="lede" data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px", maxWidth: "640px" }}>
+          <p className={lede} data-reveal style={{ "--reveal-delay": "140ms", marginTop: "24px", maxWidth: "640px" }}>
             The latest from Kuvar Technologies — announcements, coverage and resources for journalists
             and partners.
           </p>
@@ -44,8 +45,8 @@ export default function PressPage() {
       </header>
 
       {/* Featured */}
-      <section className="section-tight" data-screen-label="Press — Featured">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Press — Featured">
+        <div className={wrap}>
           <div className="feature-press" data-reveal>
             <div className="fp-media">
               <div className="morph2"></div>
@@ -54,11 +55,11 @@ export default function PressPage() {
             <div className="fp-body">
               <div className="fp-meta"><span className="press-tag">Announcement</span><span>· May 14, 2026</span></div>
               <h2 className="fp-title">Kuvar Technologies raises to expand its pan-African payment rails</h2>
-              <p className="muted" style={{ fontSize: "15px", margin: 0 }}>
+              <p className="text-ink-3" style={{ fontSize: "15px", margin: 0 }}>
                 New capital will accelerate corridor coverage across the continent and bring the Kuvar
                 Developer Platform to early access later this year.
               </p>
-              <a className="arrow-link" href="#" style={{ marginTop: "6px" }}>
+              <a className={arrowLink} href="#" style={{ marginTop: "6px" }}>
                 Read the release <ArrowRight size={16} />
               </a>
             </div>
@@ -67,23 +68,23 @@ export default function PressPage() {
       </section>
 
       {/* Press releases */}
-      <section className="section" data-screen-label="Press — Releases">
-        <div className="wrap">
+      <section className={section} data-screen-label="Press — Releases">
+        <div className={wrap}>
           <div style={{ maxWidth: "560px", marginBottom: "40px" }}>
             <span className="eyebrow" data-reveal>Press releases</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "16px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
               Latest announcements.
             </h2>
           </div>
           <div className="press-grid">
             {RELEASES.map((r) => (
-              <a className="card press-card card-hover" href="#" key={r.title} data-reveal style={{ "--reveal-delay": `${r.d}ms` }}>
+              <a className={`${cardHover} press-card`} href="#" key={r.title} data-reveal style={{ "--reveal-delay": `${r.d}ms` }}>
                 <div className="press-thumb"><Icon name={r.icon} size={40} sw={1.4} /></div>
                 <div className="press-body">
                   <div className="press-meta"><span className="press-tag">{r.tag}</span><span>{r.date}</span></div>
                   <h3 className="press-title">{r.title}</h3>
                   <p className="press-excerpt">{r.excerpt}</p>
-                  <span className="arrow-link" style={{ marginTop: "auto" }}>
+                  <span className={arrowLink} style={{ marginTop: "auto" }}>
                     Read more <ArrowRight size={16} />
                   </span>
                 </div>
@@ -94,11 +95,11 @@ export default function PressPage() {
       </section>
 
       {/* Media coverage */}
-      <section className="section" style={{ background: "var(--bg-2)" }} data-screen-label="Press — Coverage">
-        <div className="wrap">
+      <section className={section} style={{ background: "var(--bg-2)" }} data-screen-label="Press — Coverage">
+        <div className={wrap}>
           <div style={{ maxWidth: "560px", marginBottom: "36px" }}>
             <span className="eyebrow" data-reveal>In the media</span>
-            <h2 className="h-section reveal-words" data-reveal-words style={{ marginTop: "16px" }}>
+            <h2 className={`${hSection} reveal-words`} data-reveal-words style={{ marginTop: "16px" }}>
               Coverage.
             </h2>
           </div>
@@ -115,12 +116,12 @@ export default function PressPage() {
       </section>
 
       {/* Brand assets */}
-      <section className="section-tight" data-screen-label="Press — Brand assets">
-        <div className="wrap">
+      <section className={sectionTight} data-screen-label="Press — Brand assets">
+        <div className={wrap}>
           <div className="assets-band" data-reveal>
             <div>
               <span className="eyebrow">For media</span>
-              <h2 className="h-section" style={{ marginTop: "16px" }}>Brand &amp; press kit.</h2>
+              <h2 className={hSection} style={{ marginTop: "16px" }}>Brand &amp; press kit.</h2>
               <p style={{ color: "var(--dark-section-ink-3)", margin: "16px 0 0", maxWidth: "380px" }}>
                 Logos, product shots, executive headshots and boilerplate — everything you need to
                 cover Kuvar Technologies.
@@ -142,14 +143,14 @@ export default function PressPage() {
       </section>
 
       {/* Press contact */}
-      <section className="section-tight" style={{ paddingBottom: "96px" }} data-screen-label="Press — Contact">
-        <div className="wrap" style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto" }}>
-          <h2 className="h-section reveal-words" data-reveal-words>Media enquiries.</h2>
-          <p className="lede" data-reveal style={{ "--reveal-delay": "100ms", margin: "18px auto 0" }}>
+      <section className={sectionTight} style={{ paddingBottom: "96px" }} data-screen-label="Press — Contact">
+        <div className={wrap} style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto" }}>
+          <h2 className={`${hSection} reveal-words`} data-reveal-words>Media enquiries.</h2>
+          <p className={lede} data-reveal style={{ "--reveal-delay": "100ms", margin: "18px auto 0" }}>
             For interviews, statements and press requests, reach our communications team directly.
           </p>
           <div style={{ display: "flex", gap: "14px", justifyContent: "center", marginTop: "28px", flexWrap: "wrap" }} data-reveal>
-            <Link className="btn btn-primary btn-lg" href="/contact#press">
+            <Link className={btn("primary", "lg")} href="/contact#press">
               Contact press team
               <ArrowRight size={17} />
             </Link>
