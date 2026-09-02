@@ -1,17 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-/* ============================================================
-   Brand design system.
-   Tokens (CSS variables) below are mapped into Tailwind's theme
-   in tailwind.config.js, so utilities like bg-surface / text-ink-2 /
-   text-accent-deep / border-line resolve to these same variables and
-   flip automatically in dark mode. Reusable component classes
-   (.btn, .card, .eyebrow, .h-section, …) and the bespoke animated
-   visuals live here as plain CSS, appended after Tailwind's layers
-   so utilities remain available throughout the markup.
-   ============================================================ */
+/* Dark mode is driven by [data-theme="dark"] on <html>, not the OS setting,
+   so the `dark:` variant has to be pointed at that attribute. */
+@custom-variant dark ([data-theme="dark"] &);
 
 /* ============================================================
    Kuvar Technologies — shared design system

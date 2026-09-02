@@ -203,7 +203,7 @@ export default function SolutionsPage() {
             </div>
             <div className="prod-visual pay" data-reveal style={{ "--reveal-delay": "120ms" }}>
               <div className="gw-card tilt" style={{ fontFamily: "ui-monospace,SFMono-Regular,Menlo,monospace", fontSize: "12.5px", lineHeight: 1.7 }}>
-                <div style={{ color: "#9CA3AF" }}>// one call, every rail</div>
+                <div style={{ color: "#9CA3AF" }}>{"// one call, every rail"}</div>
                 <div><span style={{ color: "var(--accent)" }}>const</span> payout = <span style={{ color: "var(--accent)" }}>await</span> kuvar.payouts.create({"{"}</div>
                 <div style={{ paddingLeft: "16px" }}>amount: <span style={{ color: "#CDF140" }}>250</span>,</div>
                 <div style={{ paddingLeft: "16px" }}>currency: <span style={{ color: "#CDF140" }}>&quot;KES&quot;</span>,</div>
