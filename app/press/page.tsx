@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight, BrandMark } from "@/components/Icons";
-import { arrowLink, btn, cardHover, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
+import { arrowLink, breadcrumb, btn, cardHover, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "Press & Newsroom",
@@ -30,9 +30,9 @@ const ASSETS = [
 export default function PressPage() {
   return (
     <>
-      <header className="page-hero" data-screen-label="Press — Hero">
+      <header className={pageHero} data-screen-label="Press — Hero">
         <div className={wrap}>
-          <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>Press</span></div>
+          <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>Press</span></div>
           <span className="eyebrow" data-reveal>Newsroom</span>
           <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
             Press &amp; media.

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
-import { btn, card, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
+import { breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "Careers",
@@ -35,9 +35,9 @@ const ROLES = [
 export default function CareersPage() {
   return (
     <>
-      <header className="page-hero" data-screen-label="Careers — Hero">
+      <header className={pageHero} data-screen-label="Careers — Hero">
         <div className={wrap}>
-          <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>Careers</span></div>
+          <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>Careers</span></div>
           <span className="eyebrow" data-reveal>Careers</span>
           <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "15ch" }}>
             Build the money rails for a continent.

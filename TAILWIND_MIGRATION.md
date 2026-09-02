@@ -115,6 +115,20 @@ properties through React's `CSSProperties` type.
 
 ---
 
+## Cascade layers — learned the hard way
+
+Tailwind emits `@layer theme, base, components, utilities`. **Unlayered CSS outranks
+every layered rule regardless of specificity**, so any bare element selector left in
+`globals.css` silently beats utilities.
+
+`a { color: inherit }` did exactly that: after Nav was converted, `text-ink-2` on the nav
+links lost to it and they rendered `#0A0A0A` instead of `#2A2A2A`. Eyeballing a screenshot
+did not catch it; a pixel diff did. The site's base rules now sit in `@layer base`.
+
+The remaining component CSS is deliberately left **unlayered**. Moving it into
+`@layer components` would invert existing overrides — `.press-card { padding: 0 }` would
+start losing to `card-pad`'s `p-8`. It stays unlayered until each block is deleted.
+
 ## Phase 4 — What stays as CSS
 
 Roughly 120 lines, kept deliberately. These are not failures of the migration — they are

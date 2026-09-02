@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Icon, ArrowRight } from "./Icons";
-import { btn, wrap } from "@/components/styles";
+import { btn, field, fieldControl, fieldLabel, wrap } from "@/components/styles";
 
 interface Dept {
   id: string;
@@ -85,73 +85,79 @@ export default function ContactSection() {
   }
 
   return (
-    <div className={`${wrap} contact-layout`}>
+    <div className={`${wrap} grid grid-cols-1 items-start gap-11 w921:grid-cols-[0.9fr_1.1fr] w921:gap-14`}>
       <div>
         <span className="eyebrow" data-reveal>
           Departments
         </span>
         <h2
-          style={{
-            fontFamily: "var(--display)",
-            fontWeight: 800,
-            fontSize: "24px",
-            letterSpacing: "-0.03em",
-            margin: "14px 0 24px",
-          }}
+          className="mt-[14px] mb-6 font-display text-[24px] font-extrabold tracking-[-0.03em]"
           data-reveal
         >
           Route your message.
         </h2>
-        <div className="dept-cards" data-reveal style={{ "--reveal-delay": "120ms" }}>
+        <div className="flex flex-col gap-3 [--reveal-delay:120ms]" data-reveal>
           {DEPTS.map((d) => (
             <div
               key={d.id}
-              className={"dept-card" + (target === d.id ? " is-target" : "")}
               id={d.id}
+              className={
+                "flex scroll-mt-[110px] items-start gap-4 rounded-brand-md border bg-card p-[22px] transition-[border-color,transform] duration-[180ms] " +
+                (target === d.id
+                  ? "border-accent-deep shadow-[0_0_0_3px_var(--accent-glow)]"
+                  : "border-line")
+              }
             >
-              <span className="dept-icon">
+              <span className="grid size-[42px] shrink-0 place-items-center rounded-brand-sm bg-surface-2 text-ink-2">
                 <Icon name={d.icon as Parameters<typeof Icon>[0]["name"]} size={21} sw={2} />
               </span>
               <div>
-                <h3>{d.title}</h3>
-                <p>{d.desc}</p>
-                <a href={`mailto:${d.email}`}>{d.email}</a>
+                <h3 className="mb-1 font-display text-[17px] font-bold tracking-[-0.02em]">{d.title}</h3>
+                <p className="mb-1.5 text-[13.5px] text-ink-3">{d.desc}</p>
+                <a href={`mailto:${d.email}`} className="text-[13.5px] font-semibold text-accent-deep">
+                  {d.email}
+                </a>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="form-card" data-reveal style={{ "--reveal-delay": "160ms" }}>
-        <div className={"form-success-msg" + (sent ? " show" : "")}>
-          <span className="ck">
+      <div className="rounded-brand border border-line bg-card p-9 [--reveal-delay:160ms]" data-reveal>
+        <div
+          className={
+            "mb-5 items-center gap-3.5 rounded-brand-md bg-ink px-[18px] py-4 text-surface " +
+            (sent ? "flex" : "hidden")
+          }
+        >
+          <span className="grid size-[34px] shrink-0 place-items-center rounded-[9px] bg-accent text-[#0A0A0A]">
             <Icon name="check" size={18} sw={3} />
           </span>
           <div>
-            <strong style={{ fontFamily: "var(--display)", fontSize: "15px" }}>Message sent.</strong>
-            <div style={{ fontSize: "13px", opacity: 0.8 }}>
-              We'll route it to the right team and reply soon.
+            <strong className="font-display text-[15px]">Message sent.</strong>
+            <div className="text-[13px] opacity-80">
+              We&apos;ll route it to the right team and reply soon.
             </div>
           </div>
         </div>
         {!sent && (
           <form ref={formRef} onSubmit={onSubmit} noValidate>
-            <div className="form-grid">
-              <div className="field">
-                <label htmlFor="name">Full name</label>
-                <input id="name" name="name" type="text" placeholder="Your name" required />
+            <div className="grid grid-cols-1 gap-[18px] w561:grid-cols-2">
+              <div className={field}>
+                <label htmlFor="name" className={fieldLabel}>Full name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required className={fieldControl} />
               </div>
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" placeholder="you@company.com" required />
+              <div className={field}>
+                <label htmlFor="email" className={fieldLabel}>Email</label>
+                <input id="email" name="email" type="email" placeholder="you@company.com" required className={fieldControl} />
               </div>
-              <div className="field">
-                <label htmlFor="company">Company / organisation</label>
-                <input id="company" name="company" type="text" placeholder="Optional" />
+              <div className={field}>
+                <label htmlFor="company" className={fieldLabel}>Company / organisation</label>
+                <input id="company" name="company" type="text" placeholder="Optional" className={fieldControl} />
               </div>
-              <div className="field">
-                <label htmlFor="dept">What&apos;s this about?</label>
-                <select id="dept" name="dept" ref={selectRef} defaultValue="partnerships">
+              <div className={field}>
+                <label htmlFor="dept" className={fieldLabel}>What&apos;s this about?</label>
+                <select id="dept" name="dept" ref={selectRef} defaultValue="partnerships" className={fieldControl}>
                   <option value="partnerships">Partnerships</option>
                   <option value="press">Press &amp; media</option>
                   <option value="investors">Investor relations</option>
@@ -160,21 +166,18 @@ export default function ContactSection() {
                   <option value="other">Something else</option>
                 </select>
               </div>
-              <div className="field full">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" name="message" placeholder="Tell us how we can help…" required></textarea>
+              <div className={`${field} col-span-full`}>
+                <label htmlFor="message" className={fieldLabel}>Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us how we can help…"
+                  required
+                  className={`${fieldControl} min-h-[130px] resize-y`}
+                ></textarea>
               </div>
-              <div
-                className="full"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  gap: "16px",
-                  flexWrap: "wrap",
-                }}
-              >
-                <span className="text-ink-3" style={{ fontSize: "12.5px" }}>
+              <div className="col-span-full flex flex-wrap items-center justify-between gap-4">
+                <span className="text-[12.5px] text-ink-3">
                   We typically reply within 1–2 business days.
                 </span>
                 <button type="submit" className={btn("primary", "lg")}>

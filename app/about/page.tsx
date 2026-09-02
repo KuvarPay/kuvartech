@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
-import { btn, card, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
+import { breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "About",
@@ -38,9 +38,9 @@ const TEAM = [
 export default function AboutPage() {
   return (
     <>
-      <header className="page-hero" data-screen-label="About — Hero">
+      <header className={pageHero} data-screen-label="About — Hero">
         <div className={wrap}>
-          <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>About</span></div>
+          <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>About</span></div>
           <span className="eyebrow" data-reveal>About Kuvar</span>
           <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "16ch" }}>
             We&apos;re building Africa&apos;s money rails.

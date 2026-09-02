@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
-import { btn, card, hDisplay, hSection, lede, section, sectionTight, wrap } from "@/components/styles";
+import { breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap } from "@/components/styles";
 
 export const metadata = {
   title: "Solutions",
@@ -39,9 +39,9 @@ export default function SolutionsPage() {
   return (
     <>
       {/* hero */}
-      <header className="page-hero" data-screen-label="Solutions — Hero">
+      <header className={pageHero} data-screen-label="Solutions — Hero">
         <div className={wrap}>
-          <div className="breadcrumb"><Link href="/">Home</Link> <span>/</span> <span>Solutions</span></div>
+          <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>Solutions</span></div>
           <span className="eyebrow" data-reveal>Our Solutions</span>
           <h1 className={`${hDisplay} reveal-words`} data-reveal-words style={{ marginTop: "18px", maxWidth: "14ch" }}>
             Products built on shared rails.

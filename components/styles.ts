@@ -60,3 +60,19 @@ export const hSection =
 /** Standfirst paragraph under a headline. */
 export const lede =
   "max-w-[620px] text-[clamp(17px,1.4vw,21px)] leading-[1.55] text-ink-2 text-pretty";
+
+/** Top band on interior pages, above the display headline. */
+export const pageHero = "pt-[72px] pb-14";
+
+/** "Home / Section" trail at the top of an interior page. */
+export const breadcrumb = "mb-[22px] inline-flex items-center gap-2 text-[13px] text-ink-3";
+
+/** Text input, textarea and select share one look. */
+export const fieldControl =
+  "w-full rounded-brand-md border border-line-2 bg-surface px-4 py-3.5 font-body text-[15px] text-ink outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-ink-4 focus:border-accent-deep focus:shadow-[0_0_0_3px_var(--accent-glow)]";
+
+/** Label + control stack. */
+export const field = "flex flex-col gap-2";
+
+/** Label above a form control. */
+export const fieldLabel = "font-body text-[13.5px] font-semibold text-ink-2";
