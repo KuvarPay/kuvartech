@@ -19,15 +19,17 @@ const NAV_LINKS: NavLink[] = [
 
 function Brand() {
   return (
-    <Link className="brand" href="/" aria-label="Kuvar Technologies home">
-      <span className="brand-mark">
+    <Link className="inline-flex items-center gap-[11px]" href="/" aria-label="Kuvar Technologies home">
+      <span className="size-[38px] shrink-0">
         <BrandMark size={38} />
       </span>
-      <span className="brand-text">
-        <span className="brand-name">
-          Kuvar<em>Technologies</em>
+      <span className="flex flex-col gap-0.5 leading-none">
+        <span className="font-display text-[19px] font-extrabold tracking-[-0.03em] text-ink">
+          Kuvar<em className="font-semibold not-italic text-ink-3">Technologies</em>
         </span>
-        <span className="brand-sub">Financial infrastructure</span>
+        <span className="font-body text-[9.5px] font-semibold uppercase tracking-[0.22em] text-ink-4">
+          Financial infrastructure
+        </span>
       </span>
     </Link>
   );
@@ -60,41 +62,67 @@ export default function Nav() {
   }
 
   return (
-    <div className={"nav-outer" + (scrolled ? " is-scrolled" : "")}>
-      <nav className="nav">
+    <div
+      className={
+        "sticky top-0 z-100 border-b bg-surface/82 backdrop-blur-[14px] backdrop-saturate-150 transition-[background-color,border-color] duration-300 ease-[ease] " +
+        (scrolled ? "border-line" : "border-transparent")
+      }
+    >
+      <nav className="mx-auto flex max-w-wrap items-center justify-between gap-6 px-gutter py-[18px]">
         <Brand />
-        <div className={"nav-links" + (open ? " is-open" : "")}>
+
+        {/* Desktop: an inline row. Below 921px it collapses behind the burger
+            and reopens as a full-width dropdown. */}
+        <div
+          className={
+            "flex items-center gap-1 " +
+            (open
+              ? "max-w921:absolute max-w921:inset-x-0 max-w921:top-full max-w921:flex-col max-w921:items-stretch max-w921:gap-0.5 max-w921:border-b max-w921:border-line max-w921:bg-surface max-w921:px-gutter max-w921:pt-3 max-w921:pb-[22px]"
+              : "max-w921:hidden")
+          }
+        >
           {NAV_LINKS.map((l) => {
             const active = pathname === l.href || pathname.startsWith(l.href + "/");
             return (
               <Link
                 key={l.href}
-                className={"nav-link" + (active ? " is-active" : "")}
                 href={l.href}
+                className={
+                  "rounded-pill px-3.5 py-[9px] font-body text-[14.5px] transition-[color,background-color] duration-150 hover:bg-ink/6 hover:text-ink " +
+                  (active ? "font-semibold text-ink " : "font-medium text-ink-2 ") +
+                  (open ? "max-w921:rounded-brand-md max-w921:px-3 max-w921:py-3.5 max-w921:text-[17px]" : "")
+                }
               >
                 {l.label}
               </Link>
             );
           })}
         </div>
-        <div className="nav-right">
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle dark mode">
-            <span className="icon-sun">
+
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle dark mode"
+            className="grid size-10 cursor-pointer place-items-center rounded-pill border border-line-2 bg-card text-ink-2 transition-[transform,border-color,color] duration-[180ms] hover:-translate-y-0.5 hover:border-ink hover:text-ink"
+          >
+            <span className="dark:hidden">
               <Icon name="sun" size={18} sw={1.8} />
             </span>
-            <span className="icon-moon">
+            <span className="hidden dark:block">
               <Icon name="moon" size={18} sw={1.8} />
             </span>
           </button>
+
           <Link className="btn btn-primary btn-sm" href="/contact">
-            <span className="nav-cta-text">Get in Touch</span>
+            <span className="hidden w921:inline">Get in Touch</span>
             <ArrowRight />
           </Link>
+
           <button
-            className="nav-burger"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
             aria-expanded={open}
+            className="grid size-10 cursor-pointer place-items-center rounded-pill border border-line-2 bg-card text-ink w921:hidden"
           >
             <Icon name="burger" size={20} sw={2} />
           </button>

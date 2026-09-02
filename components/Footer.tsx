@@ -3,37 +3,56 @@ import { BrandMark } from "./Icons";
 
 function Social({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} aria-label="social">
-      <svg viewBox="0 0 24 24" fill="currentColor">
+    <a
+      href={href}
+      aria-label="social"
+      className="grid size-[38px] place-items-center rounded-pill border border-white/16 transition-[background-color,border-color,color] duration-[180ms] hover:border-accent hover:bg-accent hover:text-accent-ink"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" className="size-[17px]">
         {children}
       </svg>
     </a>
   );
 }
 
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link
+      href={href}
+      className="text-white/78 transition-colors duration-150 hover:text-accent"
+    >
+      {children}
+    </Link>
+  );
+}
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="footer">
+    /* The footer is a dark panel in both themes, so its text is always
+       light — it does not follow the --ink/--bg flip. */
+    <footer className="bg-ink pt-[72px] pb-9 text-white dark:border-t dark:border-line dark:bg-[#0F0F0F]">
       <div className="wrap">
-        <div className="footer-top">
-          <div className="footer-brand-block">
-            <Link className="brand" href="/" aria-label="Kuvar Technologies home">
-              <span className="brand-mark">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-9 border-b border-white/12 pb-14 w521:grid-cols-2 w881:grid-cols-[1.6fr_1fr_1fr_1fr] w881:gap-10 dark:border-line">
+          <div className="flex max-w-[320px] flex-col gap-[18px]">
+            <Link className="inline-flex items-center gap-[11px]" href="/" aria-label="Kuvar Technologies home">
+              <span className="size-[38px] shrink-0">
                 <BrandMark size={38} />
               </span>
-              <span className="brand-text">
-                <span className="brand-name">
-                  Kuvar<em>Technologies</em>
+              <span className="flex flex-col gap-0.5 leading-none">
+                <span className="font-display text-[19px] font-extrabold tracking-[-0.03em] text-white">
+                  Kuvar<em className="font-semibold not-italic text-white/55">Technologies</em>
                 </span>
-                <span className="brand-sub">Financial infrastructure</span>
+                <span className="font-body text-[9.5px] font-semibold uppercase tracking-[0.22em] text-white/45">
+                  Financial infrastructure
+                </span>
               </span>
             </Link>
-            <p className="footer-tag">
+            <p className="text-[14px] leading-[1.6] text-white/60">
               Building the financial infrastructure that moves money across Africa — and connects
               the continent to the world.
             </p>
-            <div className="footer-social">
+            <div className="flex gap-2.5">
               <Social href="#">
                 <path d="M22 5.8c-.7.3-1.5.5-2.3.6.8-.5 1.4-1.3 1.7-2.2-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5a4.1 4.1 0 0 0 3.3 4 4.1 4.1 0 0 1-1.8.1 4.1 4.1 0 0 0 3.8 2.8A8.2 8.2 0 0 1 2 18.1a11.6 11.6 0 0 0 6.3 1.8c7.5 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2z" />
               </Social>
@@ -45,63 +64,51 @@ export default function Footer() {
               </Social>
             </div>
           </div>
-          <div className="footer-col">
-            <h4>Products</h4>
-            <ul>
-              <li>
-                <Link href="/solutions#kuvarpay">KuvarPay</Link>
-              </li>
-              <li>
-                <Link href="/solutions#kuvarsend">KuvarSend</Link>
-              </li>
-              <li>
-                <Link href="/solutions#platform">Developer Platform</Link>
-              </li>
+
+          <div>
+            <h4 className="mb-[18px] font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-white/50">
+              Products
+            </h4>
+            <ul className="flex flex-col gap-3 text-[14.5px]">
+              <li><FooterLink href="/solutions#kuvarpay">KuvarPay</FooterLink></li>
+              <li><FooterLink href="/solutions#kuvarsend">KuvarSend</FooterLink></li>
+              <li><FooterLink href="/solutions#platform">Developer Platform</FooterLink></li>
             </ul>
           </div>
-          <div className="footer-col">
-            <h4>Company</h4>
-            <ul>
-              <li>
-                <Link href="/about">About</Link>
-              </li>
-              <li>
-                <Link href="/careers">Careers</Link>
-              </li>
-              <li>
-                <Link href="/press">Press</Link>
-              </li>
-              <li>
-                <Link href="/contact">Contact</Link>
-              </li>
+
+          <div>
+            <h4 className="mb-[18px] font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-white/50">
+              Company
+            </h4>
+            <ul className="flex flex-col gap-3 text-[14.5px]">
+              <li><FooterLink href="/about">About</FooterLink></li>
+              <li><FooterLink href="/careers">Careers</FooterLink></li>
+              <li><FooterLink href="/press">Press</FooterLink></li>
+              <li><FooterLink href="/contact">Contact</FooterLink></li>
             </ul>
           </div>
-          <div className="footer-col">
-            <h4>Legal</h4>
-            <ul>
-              <li>
-                <a href="#">Privacy</a>
-              </li>
-              <li>
-                <a href="#">Terms</a>
-              </li>
-              <li>
-                <a href="#">Security</a>
-              </li>
-              <li>
-                <a href="#">Compliance</a>
-              </li>
+
+          <div>
+            <h4 className="mb-[18px] font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-white/50">
+              Legal
+            </h4>
+            <ul className="flex flex-col gap-3 text-[14.5px]">
+              <li><FooterLink href="#">Privacy</FooterLink></li>
+              <li><FooterLink href="#">Terms</FooterLink></li>
+              <li><FooterLink href="#">Security</FooterLink></li>
+              <li><FooterLink href="#">Compliance</FooterLink></li>
             </ul>
           </div>
         </div>
-        <div className="footer-bottom">
-          <span className="footer-copy">
+
+        <div className="flex flex-wrap items-center justify-between gap-5 pt-7">
+          <span className="text-[13px] text-white/50">
             © {year} Kuvar Technologies. All rights reserved.
           </span>
-          <div className="footer-legal">
+          <div className="flex flex-wrap gap-[22px] text-[13px] text-white/55">
             <span>Lagos · Nairobi · Remote</span>
-            <a href="#">Status</a>
-            <a href="#">Cookies</a>
+            <FooterLink href="#">Status</FooterLink>
+            <FooterLink href="#">Cookies</FooterLink>
           </div>
         </div>
       </div>
