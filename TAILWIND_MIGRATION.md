@@ -1,4 +1,7 @@
-# Tailwind Migration Plan — kuvar-technologies
+# Tailwind Migration — kuvar-technologies
+
+> **Status: complete.** All six pages converted; `globals.css` 807 → 337 lines.
+> Kept as a record of what was decided and what went wrong.
 
 Moving the site from 807 lines of hand-written CSS to Tailwind v4 utilities.
 
@@ -102,9 +105,10 @@ independently verifiable in the browser.
 
 ---
 
-## Phase 3 — Inline styles
+## Phase 3 — Inline styles *(folded into the page steps)*
 
-178 `style={{}}` objects. Two kinds, handled differently:
+Done per page rather than as a separate pass — leaving `style={{background:…}}`
+beside utilities would have been half-done work. Two kinds:
 
 - **Static values** → utilities. `style={{ marginTop: "18px" }}` becomes `mt-[18px]`.
 - **Custom properties** → arbitrary properties, which Tailwind supports directly:
@@ -163,3 +167,28 @@ Real issues, but not this migration — raise separately:
 - Placeholder stats on home and about, labelled as such in-page
 - Unused brand assets in `../kuvar-technologies-brand/`
 - `kuvarpay-payment-frontend` Tailwind config is inconsistent (v4 PostCSS plugin, v3 dep and syntax)
+
+
+---
+
+## What actually went wrong
+
+Kept because each was silent — the build stayed green and the page looked fine.
+
+| # | Defect | How it was caught |
+|---|---|---|
+| 1 | Unlayered `a { color: inherit }` beat `text-ink-2`; nav links rendered `#0A0A0A` not `#2A2A2A` | pixel diff (a screenshot review had already missed it) |
+| 2 | 4200px capture window truncated every page, hiding a 736k-pixel regression on `/` | measuring real page heights |
+| 3 | `grid-cols-N` is `minmax(0,1fr)`, not `1fr` — impact figures collided | pixel diff |
+| 4 | `${wrap} max-w-[760px]` did not narrow the column — two `max-width` utilities, source order wins | pixel diff on `/solutions` only |
+| 5 | `border-transparent` in the button base beat the ghost variant's `border-line-2` | pixel diff |
+| 6 | `.h-display` was only ever used inside `.page-hero`, whose override was the real size | pixel diff |
+| 7 | Deleting `.section`'s media query would have taken `--gutter: 22px` with it | read before deleting |
+
+**The recurring one is #3/#4/#5: two utilities for the same CSS property resolve by source
+order in the generated stylesheet, not by the order written in `className`.** Never layer a
+shared string with an override; write a separate variant.
+
+Verification that worked: full-height headless Chrome with
+`--force-prefers-reduced-motion`, diffed per page against the previous commit, with the
+noise floor measured by capturing the same build twice.
