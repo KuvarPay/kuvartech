@@ -281,7 +281,7 @@ Full scope — nothing cut for speed.
 |---|---|---|
 | 00 | **Positioning & copy** — narrative, six service definitions, homepage story, case study write-ups. No code. The bottleneck; everything downstream composes it. | approved messaging + copy deck |
 | 01 | **Brand assets** — ✅ transparent, trimmed and sized. Outstanding: SVG wordmark, simplified 16px mark. | done, with noted limits |
-| 02 | **Sanity foundation** — project, schemas, Studio at `/studio`, revalidation webhook, preview mode. Parallel to 00. | editors can create content |
+| 02 | **Sanity foundation** — 🟡 scaffolded. Schemas, Studio, client, queries and webhook are written. Blocked only on a Sanity account for the project id and token. | editors can create content |
 | 03 | **Identity & nav** — rename to KuvarTech throughout, new logos wired, tagline, metadata, nav, routes, redirects | site no longer says "Kuvar Technologies" or "financial infrastructure" |
 | 04 | **Work** — index with filters, case study template including the anonymised-client variant. Highest-value surface. | `/work`, `/work/[slug]` |
 | 05 | **Services** — six capabilities. `/solutions` retires. | `/services` live, old route redirecting |
@@ -293,6 +293,32 @@ Full scope — nothing cut for speed.
 > **One content gate, not a scope cut.** Insights gets built in full at phase 06, but do not
 > *launch* it with fewer than about three articles — an empty blog reads as abandoned and
 > costs more credibility than it earns. Build it, hold the nav link until there is content.
+
+---
+
+## Dependency pinning — read before upgrading
+
+Two constraints found while scaffolding. Both matter if anyone bumps versions.
+
+| Package | Pinned to | Why |
+|---|---|---|
+| `next-sanity` | **11.6.13** | v12+ requires Next 16. v11 accepts `^15.1 \|\| ^16`, so it survives a future Next upgrade without a re-pin. |
+| `sanity` | **4.22.1** | v5 calls React's `Activity` and `useEffectEvent`. Our React 19.2.7 has both, but Next 15 vendors its own older React for client components, so the build fails on those imports. Sanity 5 becomes available with Next 16. |
+| `@sanity/code-input` | **6.0.4** | Matches Sanity 4. v7 requires Sanity 5. |
+
+**The upgrade path is a set, not one package:** Next 16 → `sanity@5+` → `next-sanity@12+` →
+`@sanity/code-input@7`. Moving one alone breaks the build.
+
+### Structural note
+
+Marketing pages live in the `app/(site)/` route group with their own layout carrying Nav,
+Footer and SiteEffects. The root layout is now `<html>`/`<body>`, fonts and the theme
+script only. This exists so `/studio` renders without a marketing nav wrapped around it.
+The route group does not affect URLs.
+
+The Studio adds ~1.85 MB to its own route. It is dynamic and code-split, so the marketing
+pages are unchanged at 106 kB First Load JS. If that ever becomes unwelcome, the Studio can
+be hosted separately with `sanity deploy` instead of being embedded.
 
 ---
 

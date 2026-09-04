@@ -1,17 +1,14 @@
 import "./globals.css";
 import Script from "next/script";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import SiteEffects from "@/components/SiteEffects";
 
 export const metadata = {
   metadataBase: new URL("https://kuvar.co"),
   title: {
-    default: "Kuvar Technologies — Africa's financial infrastructure layer",
-    template: "%s — Kuvar Technologies",
+    default: "KuvarTech — We build software businesses run on",
+    template: "%s — KuvarTech",
   },
   description:
-    "Kuvar Technologies builds the payment and money-movement infrastructure that powers commerce across Africa. Home of KuvarPay and KuvarSend.",
+    "KuvarTech is a technology consultancy. We build production software across payments, data, AI, blockchain, commerce and custom products.",
 };
 
 export const viewport = {
@@ -19,6 +16,9 @@ export const viewport = {
   initialScale: 1,
 };
 
+/* Root layout is deliberately thin: it owns <html>/<body>, fonts and the
+   no-flash theme script only. Nav and Footer live in app/(site)/layout.tsx
+   so that /studio can render without them. */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
@@ -38,12 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {`(function(){try{if(localStorage.getItem('kuvar-theme')==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();`}
         </Script>
 
-        <Nav />
-        <main>{children}</main>
-        <Footer />
-        <SiteEffects />
-
-        <Script src="/image-slot.js" strategy="afterInteractive" />
+        {children}
       </body>
     </html>
   );
