@@ -1,10 +1,10 @@
-# KuvarTech — Repositioning Plan
+# KuvarTechnology — Repositioning Plan
 
 Moving kuvar.co from a fintech product company to a technology consultancy.
 Working document — this is the source of truth across sessions.
 
-**Status:** planning. No code written yet.
-**Priority:** go live as soon as possible.
+**Status:** planning. Brand assets prepared; no site code written yet.
+**Priority:** follow the optimal plan. Speed matters, but not at the cost of the plan.
 
 ---
 
@@ -19,7 +19,21 @@ Working document — this is the source of truth across sessions.
 | WordPress | **Not offered as a service.** See below. |
 | Technology commitment | None. Best tool per use case — that judgement *is* the service. |
 | Client naming | Named with logos by default; anonymised where a client requires it. |
-| Blog / Insights | **Deferred past launch.** |
+| Blog / Insights | **In scope.** Built as part of the plan; its *launch* is gated on having 3+ articles, not on the build. |
+| Company name | **KuvarTechnology**, shortened to **KuvarTech**. No longer "Kuvar Technologies". |
+
+---
+
+## Naming
+
+| Context | Use |
+|---|---|
+| Brand name, nav, headings, body copy | **KuvarTech** |
+| Legal and formal — footer copyright, terms, contracts | **KuvarTechnology** |
+| Logo wordmark | KuvarTech (as supplied) |
+
+"Kuvar Technologies" is retired. It currently appears in the nav, the footer, every page
+title, the site metadata and throughout body copy — all of it changes.
 
 ---
 
@@ -68,7 +82,6 @@ Six nav items, hard cap.
 
 ```
 Work · Services · Insights · About · Careers · Contact
-             (Insights deferred past launch)
 ```
 
 | Today | Becomes |
@@ -90,15 +103,15 @@ styling, is the real engineering work.
 /work                 index
 /work/[slug]          case study                ← new dynamic route
 /services             index, six capabilities
+/insights             index
+/insights/[slug]      article                   ← new dynamic route
 /about  /careers  /contact
 /studio               Sanity Studio, embedded
-
-deferred: /insights, /insights/[slug]
 
 redirects (301)
 /solutions            → /services
 /solutions#kuvarpay   → /work/kuvarpay
-/press                → /about  (until Insights ships)
+/press                → /insights?category=news
 ```
 
 ---
@@ -160,9 +173,10 @@ testimonial    quote · name · role · company · caseStudy→
 industry       name · slug            ← taxonomy for filtering, not a page
 capability     name · slug            ← taxonomy for filtering, not a page
 
-siteSettings   nav · footer · defaultSeo · socials · offices
+article        title · slug · author→ · category · tags[] · excerpt
+               body(PortableText) · coverImage · publishedAt · featured · seo
 
-deferred:  article (title · slug · author→ · category · body · cover · seo)
+siteSettings   nav · footer · defaultSeo · socials · offices
 ```
 
 `client.isAnonymous` exists because some clients will not permit naming — the template
@@ -191,8 +205,8 @@ what stops the site sprawling into dozens of thin landing pages.
 | `bg-band` + `text-band-ink` | Testimonial and CTA bands |
 | `cardHover`, `btn()`, `hSection`, `lede` | Unchanged throughout |
 
-Genuinely new: filter chips (deferred with Insights), a Portable Text renderer, author
-byline and pagination (both deferred).
+Genuinely new: filter chips for Work and Insights, a Portable Text renderer mapping CMS
+blocks to the existing type styles, author byline, and pagination.
 
 > **Carry-over trap from the Tailwind migration.** Two utilities for the same CSS property
 > resolve by source order in the generated stylesheet, not by the order written in
@@ -202,30 +216,37 @@ byline and pagination (both deferred).
 
 ---
 
-## Brand assets — blocked
+## Brand assets
 
-Three logos were supplied in `public/assets/`:
+Prepared in `public/assets/brand/`. Originals kept alongside them.
 
-| File | Size | Background | Usable for |
-|---|---|---|---|
-| `KuvarTech-Favicon-logo.png` | 500×500 | white | favicon, social avatar, app icon |
-| `KuvarTech-logo1.png` | 500×500 | **solid black** | dark surfaces only |
-| `KuvarTech-logo2.png` | 500×500 | white, black pill | light surfaces only |
+| File | Size | Use |
+|---|---|---|
+| `mark.png` | 428×428 | Master badge, transparent, works on light and dark |
+| `mark-{512,192,180,64,32,16}.png` | as named | PWA icons, apple-touch, favicon sizes |
+| `favicon.ico` | 64/32/16 | Multi-resolution favicon |
+| `wordmark-on-light.png` | 473×124 | Black pill lockup — **light surfaces only** |
+| `wordmark-on-dark.png` | 472×72 | Green lockup — **dark surfaces only** |
 
-**Three blockers before these can be wired in:**
+### What was done
 
-1. **No alpha channel on any of them.** `logo1` renders a black square on a light page;
-   `logo2` renders a white square on a dark page. The site has both themes, so neither
-   works everywhere as supplied.
-2. **Raster, and small.** 500×500 makes the horizontal wordmark ~460px wide — fine in the
-   nav at ~180px, soft above that. The current `BrandMark` is inline SVG: sharp at any
-   size and it inherits theme colour.
-3. **The name changed.** The logo reads **KuvarTech**; the site says "Kuvar Technologies"
-   in the nav, footer, page titles, metadata and body copy. This is a naming decision, not
-   a logo swap.
+Backgrounds were flat `#FFFFFF` / `#000000`, so they were removed by flood-fill from the
+corners — which only clears the *connected* background and cannot punch holes in white
+areas inside the artwork. The badge is a true circle, so its edge was then re-cut with a
+clean circular mask; keying alone left a visible halo on dark grounds.
 
-**Needed:** SVG with transparent background, ideally mark and wordmark as separate files
-so the nav can compose and colour them per theme. Failing that, transparent PNG at 3×.
+### Remaining limitations
+
+- **The wordmarks are single-theme.** The colour is baked into the raster, so the nav needs
+  both files swapped by theme — the same `dark:hidden` / `hidden dark:block` pattern the
+  KuvarSend screenshots already use. A vector wordmark using `currentColor` would collapse
+  this to one file.
+- **The 16px favicon loses all detail.** At that size the mark is a green disc; the chevron
+  and "Tech" are gone. This is normal for a detailed mark — a **simplified 16px variant**
+  (chevron only, no inner text) would be a real improvement, and is a designer task.
+- **Everything is raster.** 500×500 sources cap the wordmark at ~473px wide. Fine at nav
+  size, soft above it. **SVG is still the right long-term answer** — ideally mark and
+  wordmark as separate files.
 
 ### Strings that contradict the new positioning today
 
@@ -240,41 +261,40 @@ These ship the old story regardless of what the pages say, and belong in the fir
 
 ## Build sequence
 
-Ordered for the fastest credible launch. **Copy is the critical path** — engineering runs
-in parallel behind it.
+**Copy is the critical path, not engineering.** Sanity setup is about a day and runs in
+parallel. What cannot be parallelised is deciding what you say.
 
-### Launch scope
-
-**In:** Home · Work (3–4 case studies) · Services · About · Careers · Contact
-**Out:** Insights/blog, service detail pages, filters
-
-Deferring the blog is deliberate: an empty blog, or one with two posts and no cadence,
-reads as abandoned and costs more credibility than it earns. Filters are pointless with
-four case studies.
+Full scope — nothing cut for speed.
 
 | # | Phase | Output |
 |---|---|---|
-| 00 | **Positioning & copy** — no code. Narrative, six service definitions, homepage story, 3–4 case study write-ups. The bottleneck. | approved messaging + copy deck |
-| 01 | **Brand assets** — SVG logos, naming decision (KuvarTech vs Kuvar Technologies) | usable, theme-aware brand files |
-| 02 | **Sanity foundation** — project, schemas, Studio at `/studio`, revalidation webhook, preview. Runs parallel to 00. | editors can create content |
-| 03 | **Identity strings & nav** — tagline, metadata, new nav, routes, redirects | site no longer says "financial infrastructure" |
-| 04 | **Work** — index plus case study template. The highest-value surface: this is what a prospect reads before contacting you. | `/work`, `/work/[slug]` |
+| 00 | **Positioning & copy** — narrative, six service definitions, homepage story, case study write-ups. No code. The bottleneck; everything downstream composes it. | approved messaging + copy deck |
+| 01 | **Brand assets** — ✅ transparent, trimmed and sized. Outstanding: SVG wordmark, simplified 16px mark. | done, with noted limits |
+| 02 | **Sanity foundation** — project, schemas, Studio at `/studio`, revalidation webhook, preview mode. Parallel to 00. | editors can create content |
+| 03 | **Identity & nav** — rename to KuvarTech throughout, new logos wired, tagline, metadata, nav, routes, redirects | site no longer says "Kuvar Technologies" or "financial infrastructure" |
+| 04 | **Work** — index with filters, case study template including the anonymised-client variant. Highest-value surface. | `/work`, `/work/[slug]` |
 | 05 | **Services** — six capabilities. `/solutions` retires. | `/services` live, old route redirecting |
-| 06 | **Homepage** — largest single piece, deliberately late: it composes Work and Services, so it is cheapest once those exist. | new homepage |
-| 07 | **About, Careers, Contact** — team and roles to CMS, story reframed, contact routing | no hardcoded people or roles left |
-| 08 | **SEO & launch** — sitemap, structured data, OG images, analytics, redirect audit | launch-ready |
-| — | *Post-launch:* Insights, filters, service detail pages | |
+| 06 | **Insights** — index, category filter, Portable Text article template, RSS | `/insights`, `/insights/[slug]`, `feed.xml` |
+| 07 | **Homepage** — largest single piece, deliberately late: it composes Work, Services and Insights, so it is cheapest once those exist. | new homepage |
+| 08 | **About, Careers, Contact** — team and roles to CMS, story reframed, contact routing | no hardcoded people or roles left |
+| 09 | **SEO & launch** — sitemap, structured data, OG images, analytics, redirect audit | launch-ready |
+
+> **One content gate, not a scope cut.** Insights gets built in full at phase 06, but do not
+> *launch* it with fewer than about three articles — an empty blog reads as abandoned and
+> costs more credibility than it earns. Build it, hold the nav link until there is content.
 
 ---
 
 ## Open questions
 
-- **Naming.** Is the company now KuvarTech, or is that a logo treatment of Kuvar
-  Technologies? Affects every page, metadata and all copy.
-- **Brand files.** SVG versions with transparency — blocker for phase 01.
-- **Case study count for launch.** Three strong ones beat eight thin ones; this sets the
-  Work page layout.
-- **Content owner.** Undecided. Sanity is chosen precisely so this can stay open — but a
-  CMS with nobody driving it is only a slower way to have a stale site.
-- **Domain.** Does `kuvar.co` stay?
+- **Case study count and selection.** How many for launch? Three strong ones beat eight thin
+  ones, and the number sets the Work page layout. Suggested: the digital humanities platform
+  (proves any industry), KuvarSend (proves depth), one client e-commerce build (proves
+  commercial delivery).
+- **Client naming.** Which clients can be named with logos, and which need anonymising? The
+  template handles both; the mix shapes the page.
+- **SVG brand files.** Mark and wordmark as vectors, plus a simplified 16px mark.
+- **Content owner.** Still undecided. Sanity is chosen so this can stay open — but a CMS
+  nobody drives is only a slower way to have a stale site.
+- **Domain.** Does `kuvar.co` stay, given the name is now KuvarTechnology?
 - **Lead capture.** Anything beyond the contact form — newsletter, booking link?
