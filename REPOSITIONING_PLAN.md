@@ -18,7 +18,8 @@ Working document — this is the source of truth across sessions.
 | KuvarPay / KuvarSend | Case studies under Work. No separate Products section. |
 | WordPress | **Not offered as a service.** See below. |
 | Technology commitment | None. Best tool per use case — that judgement *is* the service. |
-| Client naming | Named with logos by default; anonymised where a client requires it. |
+| Client naming | **All four launch clients can be named**, with logos. The anonymised variant stays in the schema for future clients who ask for it. |
+| Case studies at launch | **Four.** Enough for a 2×2 grid; too few for filters. |
 | Blog / Insights | **In scope.** Built as part of the plan; its *launch* is gated on having 3+ articles, not on the build. |
 | Company name | **KuvarTechnology**, shortened to **KuvarTech**. No longer "Kuvar Technologies". |
 
@@ -179,8 +180,9 @@ article        title · slug · author→ · category · tags[] · excerpt
 siteSettings   nav · footer · defaultSeo · socials · offices
 ```
 
-`client.isAnonymous` exists because some clients will not permit naming — the template
-must render "a pan-African lender" with metrics intact and no logo.
+`client.isAnonymous` is not needed for launch — all four clients can be named — but it
+stays in the schema. It costs nothing now and avoids a migration the first time a client
+asks not to be named, which you already flagged as likely.
 
 `industry` and `capability` are taxonomies, **not** page types. That single decision is
 what stops the site sprawling into dozens of thin landing pages.
@@ -189,11 +191,20 @@ what stops the site sprawling into dozens of thin landing pages.
 
 ## Staying minimal
 
-1. **Case studies are the hero content type.** One excellent template, reused. Three
-   strong ones beat eight thin ones.
+1. **Case studies are the hero content type.** One excellent template, reused. Four strong
+   ones beat a dozen thin ones.
 2. **No industry landing pages.** Industry is a filter, promoted to a page only if a
    sector proves out.
 3. **Six nav items, hard cap.** Anything new displaces something.
+
+### Four case studies changes the Work page
+
+A three-column grid leaves an orphan on the second row, so Work is a **2×2 grid with
+larger cards** — which suits four rich case studies better than a dense index would.
+
+**No filter UI at launch.** Filtering four items is friction, not help. The `industry` and
+`capability` taxonomies still go into the schema and get tagged on each case study, so the
+filter is a UI addition rather than a data migration once there are ten or twelve.
 
 ### The design system already covers most of it
 
@@ -287,12 +298,12 @@ Full scope — nothing cut for speed.
 
 ## Open questions
 
-- **Case study count and selection.** How many for launch? Three strong ones beat eight thin
-  ones, and the number sets the Work page layout. Suggested: the digital humanities platform
-  (proves any industry), KuvarSend (proves depth), one client e-commerce build (proves
-  commercial delivery).
-- **Client naming.** Which clients can be named with logos, and which need anonymising? The
-  template handles both; the mix shapes the page.
+- **Which four case studies.** Count and naming are settled; the specific four are needed
+  before phase 00 copy can be written. Worth checking the set covers range — ideally not all
+  fintech, since proving "any industry" is the whole point.
+- **Client logos.** Four logo files, ideally SVG or transparent PNG.
+- **Sanity account.** Someone needs to create the project and share the project ID and a
+  read token. Schemas can be scaffolded before this exists; nothing can be fetched without it.
 - **SVG brand files.** Mark and wordmark as vectors, plus a simplified 16px mark.
 - **Content owner.** Still undecided. Sanity is chosen so this can stay open — but a CMS
   nobody drives is only a slower way to have a stale site.
