@@ -37,7 +37,7 @@ const IMPACT = [
 ];
 
 const NEWS = [
-  { icon: "newspaper", tag: "Announcement", date: "· May 2026", title: "Kuvar Technologies raises to expand its pan-African payment rails", excerpt: "New capital will accelerate corridor coverage and the launch of the Kuvar Developer Platform.", d: 0 },
+  { icon: "newspaper", tag: "Announcement", date: "· May 2026", title: "KuvarTech raises to expand its pan-African payment rails", excerpt: "New capital will accelerate corridor coverage and the launch of the Kuvar Developer Platform.", d: 0 },
   { icon: "globe2", tag: "Product", date: "· Apr 2026", title: "KuvarSend opens its USD wallet to five new African markets", excerpt: "Recipients can now cash out in NGN, GHS, KES, XOF and ZAR within minutes.", d: 100 },
   { icon: "star", tag: "Recognition", date: "· Mar 2026", title: "Named among Africa's most promising fintech infrastructure firms", excerpt: "Kuvar recognised for reliability and breadth of its cross-border settlement network.", d: 200 },
 ] as const;
@@ -72,7 +72,7 @@ export default function HomePage() {
               The financial infrastructure layer for Africa.
             </h1>
             <p className="mb-9 max-w-[540px] text-[clamp(17px,1.3vw,20px)] text-ink-2 text-pretty [--reveal-delay:120ms]" data-reveal>
-              Kuvar Technologies builds the rails that move money across borders, power merchants,
+              KuvarTech builds the rails that move money across borders, power merchants,
               and connect African commerce to the world — one trusted product at a time.
             </p>
             <div className="mb-11 flex flex-wrap gap-3.5 [--reveal-delay:200ms]" data-reveal>
@@ -238,7 +238,7 @@ export default function HomePage() {
             data-reveal
           >
             <p className="!mb-7 font-display !text-[clamp(22px,2.2vw,28px)] font-semibold !leading-[1.32] tracking-[-0.02em] !text-ink">Africa is the youngest, fastest-growing market on earth — yet moving money within it remains slow, costly, and fragmented.</p>
-            <p>Kuvar Technologies was founded to fix that at the root: by building the underlying infrastructure that payments, transfers and commerce all depend on. Not another app on top of broken rails — the rails themselves.</p>
+            <p>KuvarTech was founded to fix that at the root: by building the underlying infrastructure that payments, transfers and commerce all depend on. Not another app on top of broken rails — the rails themselves.</p>
             <p>Today that infrastructure powers two products and a live developer platform. Every line of it is built in Africa, for Africa, to a global standard.</p>
             <Link className={`${arrowLink} mt-1.5`} href="/about">
               Read the full story <ArrowRight size={16} />

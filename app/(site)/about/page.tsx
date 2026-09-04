@@ -7,11 +7,11 @@ import {
 export const metadata = {
   title: "About",
   description:
-    "The story, mission, values and people behind Kuvar Technologies — the financial infrastructure layer for Africa.",
+    "The story, mission, values and people behind KuvarTech — the financial infrastructure layer for Africa.",
 };
 
 const TIMELINE = [
-  { year: "2022", h: "Founded", p: "Kuvar Technologies is started with a single belief: Africa needs its own money infrastructure.", d: 0 },
+  { year: "2022", h: "Founded", p: "KuvarTech is started with a single belief: Africa needs its own money infrastructure.", d: 0 },
   { year: "2023", h: "KuvarPay goes live", p: "The payment gateway and merchant tools launch, processing for the first businesses.", d: 100 },
   { year: "2024", h: "Agent network", p: "Cash-in / cash-out reach extends to the last mile across multiple markets.", d: 200 },
   { year: "2026", h: "KuvarSend & platform", p: "Cross-border transfers launch and the developer platform enters early access.", d: 300 },
@@ -55,7 +55,7 @@ export default function AboutPage() {
             We&apos;re building Africa&apos;s money rails.
           </h1>
           <p className={`${lede} mt-6 max-w-[680px] [--reveal-delay:140ms]`} data-reveal>
-            Kuvar Technologies is the infrastructure company behind KuvarPay and KuvarSend — laying
+            KuvarTech is the infrastructure company behind KuvarPay and KuvarSend — laying
             the foundation for how value moves across a continent of 1.4 billion people.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function AboutPage() {
           <div className="mt-12 grid grid-cols-1 gap-7 w881:grid-cols-2 w881:gap-14 [&_p]:mb-5 [&_p]:text-[16.5px] [&_p]:leading-[1.7] [&_p]:text-ink-2">
             <div data-reveal>
               <p>Sending money from Lagos to Nairobi could cost more and take longer than sending it to London. A merchant in Accra could lose a sale because the payment simply wouldn&apos;t go through. Behind every one of those failures was the same root cause: fragmented, ageing infrastructure that was never built for how Africa actually moves money.</p>
-              <p>Kuvar Technologies was founded to rebuild that foundation. Not another consumer app bolted onto broken rails — the rails themselves: secure, compliant, pan-African infrastructure that any product can stand on.</p>
+              <p>KuvarTech was founded to rebuild that foundation. Not another consumer app bolted onto broken rails — the rails themselves: secure, compliant, pan-African infrastructure that any product can stand on.</p>
             </div>
             <div data-reveal className="[--reveal-delay:120ms]">
               <p>We started with payments — KuvarPay — proving the core could move real money for real businesses at scale. Then KuvarSend, bringing borderless, USD-denominated transfers to families and freelancers across the continent.</p>

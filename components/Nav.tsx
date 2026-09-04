@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Icon, ArrowRight, BrandMark } from "./Icons";
+import { Icon, ArrowRight } from "./Icons";
 import { btn } from "@/components/styles";
 
 interface NavLink {
@@ -20,18 +20,25 @@ const NAV_LINKS: NavLink[] = [
 
 function Brand() {
   return (
-    <Link className="inline-flex items-center gap-[11px]" href="/" aria-label="Kuvar Technologies home">
-      <span className="size-[38px] shrink-0">
-        <BrandMark size={38} />
-      </span>
-      <span className="flex flex-col gap-0.5 leading-none">
-        <span className="font-display text-[19px] font-extrabold tracking-[-0.03em] text-ink">
-          Kuvar<em className="font-semibold not-italic text-ink-3">Technologies</em>
-        </span>
-        <span className="font-body text-[9.5px] font-semibold uppercase tracking-[0.22em] text-ink-4">
-          Financial infrastructure
-        </span>
-      </span>
+    <Link className="inline-flex items-center" href="/" aria-label="KuvarTech home">
+      {/* Two lockups. The pill carries its own dark ground so the accent green
+          reads on light surfaces; the bare lockup is used where the ground is
+          already dark. The heights are chosen so both render ~155px wide, which
+          stops the nav shifting when the theme is toggled. */}
+      <img
+        src="/assets/brand/wordmark-on-light.png"
+        alt="KuvarTech"
+        width={473}
+        height={124}
+        className="h-11 w-auto dark:hidden"
+      />
+      <img
+        src="/assets/brand/wordmark-on-dark.png"
+        alt="KuvarTech"
+        width={472}
+        height={72}
+        className="hidden h-6 w-auto dark:block"
+      />
     </Link>
   );
 }

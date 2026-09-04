@@ -5,7 +5,7 @@ import { breadcrumb, card, hDisplay, hSection, lede, pageHero, section, wrap } f
 export const metadata = {
   title: "Contact",
   description:
-    "Get in touch with Kuvar Technologies — partnerships, press, investor relations and product support.",
+    "Get in touch with KuvarTech — partnerships, press, investor relations and product support.",
 };
 
 const OFFICES = [

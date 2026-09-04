@@ -7,7 +7,7 @@ import {
 export const metadata = {
   title: "Careers",
   description:
-    "Join Kuvar Technologies and help build the financial infrastructure for Africa. Open roles, culture and benefits.",
+    "Join KuvarTech and help build the financial infrastructure for Africa. Open roles, culture and benefits.",
 };
 
 const WHY = [

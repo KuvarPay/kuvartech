@@ -33,6 +33,8 @@ Working document — this is the source of truth across sessions.
 | Legal and formal — footer copyright, terms, contracts | **KuvarTechnology** |
 | Logo wordmark | KuvarTech (as supplied) |
 
+The descriptive tagline is **gone entirely** — no replacement. The wordmark stands alone.
+
 "Kuvar Technologies" is retired. It currently appears in the nav, the footer, every page
 title, the site metadata and throughout body copy — all of it changes.
 
@@ -246,6 +248,19 @@ corners — which only clears the *connected* background and cannot punch holes 
 areas inside the artwork. The badge is a true circle, so its edge was then re-cut with a
 clean circular mask; keying alone left a visible halo on dark grounds.
 
+### How they are wired
+
+| Surface | Asset | Why |
+|---|---|---|
+| Nav, light theme | `wordmark-on-light.png` at 44px | The pill carries its own dark ground, so the accent green reads on a light surface |
+| Nav, dark theme | `wordmark-on-dark.png` at 24px | Bare lockup; the page ground is already dark |
+| Footer, both themes | `wordmark-on-dark.png` at 28px | The footer is a dark panel in both themes |
+| Favicon / touch icon | `app/favicon.ico`, `app/icon.png`, `app/apple-icon.png` | Next file conventions pick these up automatically |
+
+Heights are chosen so both nav lockups render ~160px wide; the pill needed to be taller
+than the bare lockup because its internal padding makes the wordmark optically smaller at
+the same height. Without that correction the brand visibly shrinks when the theme toggles.
+
 ### Remaining limitations
 
 - **The wordmarks are single-theme.** The colour is baked into the raster, so the nav needs
@@ -282,7 +297,7 @@ Full scope — nothing cut for speed.
 | 00 | **Positioning & copy** — narrative, six service definitions, homepage story, case study write-ups. No code. The bottleneck; everything downstream composes it. | approved messaging + copy deck |
 | 01 | **Brand assets** — ✅ transparent, trimmed and sized. Outstanding: SVG wordmark, simplified 16px mark. | done, with noted limits |
 | 02 | **Sanity foundation** — 🟡 scaffolded. Schemas, Studio, client, queries and webhook are written. Blocked only on a Sanity account for the project id and token. | editors can create content |
-| 03 | **Identity & nav** — rename to KuvarTech throughout, new logos wired, tagline, metadata, nav, routes, redirects | site no longer says "Kuvar Technologies" or "financial infrastructure" |
+| 03 | **Identity** — 🟡 rename done, logos wired, tagline removed, metadata updated, favicon set. Nav *restructure* deferred to land with the routes it points at. | no "Kuvar Technologies" or "Financial infrastructure" anywhere |
 | 04 | **Work** — index with filters, case study template including the anonymised-client variant. Highest-value surface. | `/work`, `/work/[slug]` |
 | 05 | **Services** — six capabilities. `/solutions` retires. | `/services` live, old route redirecting |
 | 06 | **Insights** — index, category filter, Portable Text article template, RSS | `/insights`, `/insights/[slug]`, `feed.xml` |

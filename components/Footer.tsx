@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BrandMark } from "./Icons";
 import { wrap } from "@/components/styles";
 
 function Social({ href, children }: { href: string; children: React.ReactNode }) {
@@ -36,18 +35,16 @@ export default function Footer() {
       <div className={wrap}>
         <div className="grid grid-cols-1 gap-x-6 gap-y-9 border-b border-white/12 pb-14 w521:grid-cols-2 w881:grid-cols-[1.6fr_1fr_1fr_1fr] w881:gap-10 dark:border-line">
           <div className="flex max-w-[320px] flex-col gap-[18px]">
-            <Link className="inline-flex items-center gap-[11px]" href="/" aria-label="Kuvar Technologies home">
-              <span className="size-[38px] shrink-0">
-                <BrandMark size={38} />
-              </span>
-              <span className="flex flex-col gap-0.5 leading-none">
-                <span className="font-display text-[19px] font-extrabold tracking-[-0.03em] text-white">
-                  Kuvar<em className="font-semibold not-italic text-white/55">Technologies</em>
-                </span>
-                <span className="font-body text-[9.5px] font-semibold uppercase tracking-[0.22em] text-white/45">
-                  Financial infrastructure
-                </span>
-              </span>
+            <Link className="inline-flex items-center" href="/" aria-label="KuvarTech home">
+              {/* The footer is a dark panel in both themes, so the bare lockup
+                  always applies here. */}
+              <img
+                src="/assets/brand/wordmark-on-dark.png"
+                alt="KuvarTech"
+                width={472}
+                height={72}
+                className="h-7 w-auto"
+              />
             </Link>
             <p className="text-[14px] leading-[1.6] text-white/60">
               Building the financial infrastructure that moves money across Africa — and connects
@@ -104,7 +101,7 @@ export default function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-5 pt-7">
           <span className="text-[13px] text-white/50">
-            © {year} Kuvar Technologies. All rights reserved.
+            © {year} KuvarTechnology. All rights reserved.
           </span>
           <div className="flex flex-wrap gap-[22px] text-[13px] text-white/55">
             <span>Lagos · Nairobi · Remote</span>

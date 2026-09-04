@@ -6,7 +6,7 @@ import {
 
 export const metadata = {
   title: "Press & Newsroom",
-  description: "Press releases, media coverage and brand assets from Kuvar Technologies.",
+  description: "Press releases, media coverage and brand assets from KuvarTech.",
 };
 
 const RELEASES = [
@@ -40,7 +40,7 @@ export default function PressPage() {
             Press &amp; media.
           </h1>
           <p className={`${lede} mt-6 max-w-[640px] [--reveal-delay:140ms]`} data-reveal>
-            The latest from Kuvar Technologies — announcements, coverage and resources for journalists
+            The latest from KuvarTech — announcements, coverage and resources for journalists
             and partners.
           </p>
         </div>
@@ -62,7 +62,7 @@ export default function PressPage() {
                 <span className={pressTag}>Announcement</span><span>· May 14, 2026</span>
               </div>
               <h2 className="font-display text-[clamp(24px,2.6vw,36px)] font-extrabold leading-[1.12] tracking-[-0.03em]">
-                Kuvar Technologies raises to expand its pan-African payment rails
+                KuvarTech raises to expand its pan-African payment rails
               </h2>
               <p className="text-[15px] text-ink-3">
                 New capital will accelerate corridor coverage across the continent and bring the Kuvar
@@ -150,7 +150,7 @@ export default function PressPage() {
               <h2 className={`${hSection} mt-4 text-band-ink`}>Brand &amp; press kit.</h2>
               <p className="mt-4 max-w-[380px] text-band-ink-3">
                 Logos, product shots, executive headshots and boilerplate — everything you need to
-                cover Kuvar Technologies.
+                cover KuvarTech.
               </p>
             </div>
             <div className="grid grid-cols-2 gap-3.5">
