@@ -73,3 +73,17 @@ export type Role = {
   location?: string;
   type?: string;
 };
+
+export type Article = {
+  _id: string;
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string;
+  publishedAt: string;
+  featured?: boolean;
+  coverImage?: SanityImage;
+  author?: { name: string; role?: string; bio?: string; photo?: SanityImage };
+  body?: PortableTextBlock[];
+  tags?: string[];
+};
