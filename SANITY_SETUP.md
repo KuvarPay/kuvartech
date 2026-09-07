@@ -132,6 +132,11 @@ renders, then imports it. **16 documents:**
 It is safe to re-run — `--replace` overwrites documents with the same id rather than
 duplicating them.
 
+> **Document ids use hyphens, never dots.** Sanity reads the segment before a dot as a
+> path prefix — the same mechanism behind `drafts.` — and path-prefixed documents are
+> **not readable anonymously**. An import of `service.payments` succeeds, reports success,
+> and then returns nothing to the website. If you ever hand-write ids, keep them flat.
+
 ---
 
 ## Step 8 — Check it worked

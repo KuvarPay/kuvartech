@@ -18,6 +18,10 @@ const outPath = resolve(here, "../sanity/seed/seed.ndjson");
 type Doc = Record<string, unknown>;
 const docs: Doc[] = [];
 
+/* Ids use hyphens, not dots. Sanity reads the segment before a dot as a path
+   prefix — the same mechanism behind `drafts.` — and path-prefixed documents
+   are not readable anonymously, so a public dataset silently returns nothing
+   for them. */
 const slugField = (current: string) => ({ _type: "slug", current });
 const ref = (id: string, key?: string) => ({
   _type: "reference",
@@ -37,16 +41,16 @@ for (const cs of CASE_STUDIES_SEED) {
 for (const s of SERVICES_SEED) capabilities.set(s.slug, s.title);
 
 for (const [slug, name] of industries) {
-  docs.push({ _id: `industry.${slug}`, _type: "industry", name, slug: slugField(slug) });
+  docs.push({ _id: `industry-${slug}`, _type: "industry", name, slug: slugField(slug) });
 }
 for (const [slug, name] of capabilities) {
-  docs.push({ _id: `capability.${slug}`, _type: "capability", name, slug: slugField(slug) });
+  docs.push({ _id: `capability-${slug}`, _type: "capability", name, slug: slugField(slug) });
 }
 
 /* ---- services ---- */
 SERVICES_SEED.forEach((s, i) => {
   docs.push({
-    _id: `service.${s.slug}`,
+    _id: `service-${s.slug}`,
     _type: "service",
     title: s.title,
     slug: slugField(s.slug),
@@ -60,7 +64,7 @@ SERVICES_SEED.forEach((s, i) => {
 /* ---- case studies ---- */
 CASE_STUDIES_SEED.forEach((cs, i) => {
   docs.push({
-    _id: `caseStudy.${cs.slug}`,
+    _id: `caseStudy-${cs.slug}`,
     _type: "caseStudy",
     title: cs.title,
     slug: slugField(cs.slug),
@@ -73,9 +77,9 @@ CASE_STUDIES_SEED.forEach((cs, i) => {
     // Every object inside a Sanity array needs its own _key.
     outcomes: cs.outcomes?.map((o, n) => ({ ...o, _key: `outcome-${n}` })),
     stack: cs.stack,
-    ...(cs.industry ? { industry: ref(`industry.${cs.industry.slug}`) } : {}),
+    ...(cs.industry ? { industry: ref(`industry-${cs.industry.slug}`) } : {}),
     capabilities: (cs.capabilities ?? []).map((c, n) =>
-      ref(`capability.${c.slug}`, `cap-${n}`),
+      ref(`capability-${c.slug}`, `cap-${n}`),
     ),
     order: i + 1,
     publishedAt: new Date().toISOString(),

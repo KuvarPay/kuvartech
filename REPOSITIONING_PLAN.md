@@ -296,7 +296,7 @@ Full scope — nothing cut for speed.
 |---|---|---|
 | 00 | **Positioning & copy** — narrative, six service definitions, homepage story, case study write-ups. No code. The bottleneck; everything downstream composes it. | approved messaging + copy deck |
 | 01 | **Brand assets** — ✅ transparent, trimmed and sized. Outstanding: SVG wordmark, simplified 16px mark. | done, with noted limits |
-| 02 | **Sanity foundation** — 🟡 scaffolded. Schemas, Studio, client, queries and webhook are written. Blocked only on a Sanity account for the project id and token. | editors can create content |
+| 02 | **Sanity foundation** — ✅ live on project `wuck81t6`, dataset `production`. 16 documents imported; /services and /work verified reading from the CMS. | done |
 | 03 | **Identity** — 🟡 rename done, logos wired, tagline removed, metadata updated, favicon set. Nav *restructure* deferred to land with the routes it points at. | no "Kuvar Technologies" or "Financial infrastructure" anywhere |
 | 04 | **Work** — index with filters, case study template including the anonymised-client variant. Highest-value surface. | `/work`, `/work/[slug]` |
 | 05 | **Services** — six capabilities. `/solutions` retires. | `/services` live, old route redirecting |

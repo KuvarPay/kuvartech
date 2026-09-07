@@ -5,8 +5,13 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  // CDN for published content; disabled in draft mode by the fetch helper.
-  useCdn: true,
+  /* Deliberately off. Pages are static and only re-read Sanity at build time
+     or when the publish webhook regenerates a route. The CDN lags a mutation by
+     roughly 20 seconds, so a webhook firing on publish would regenerate the
+     page with the content that was just replaced — which looks exactly like
+     the publish having failed. Visitors are served static HTML either way, so
+     an uncached read here costs nothing at request time. */
+  useCdn: false,
   perspective: "published",
 });
 
