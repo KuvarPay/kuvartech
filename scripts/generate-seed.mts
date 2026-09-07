@@ -10,7 +10,7 @@
 import { writeFileSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { SERVICES_SEED, CASE_STUDIES_SEED } from "../sanity/lib/seed.ts";
+import { SERVICES_SEED, CASE_STUDIES_SEED, PEOPLE_SEED } from "../sanity/lib/seed.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outPath = resolve(here, "../sanity/seed/seed.ndjson");
@@ -83,6 +83,18 @@ CASE_STUDIES_SEED.forEach((cs, i) => {
     ),
     order: i + 1,
     publishedAt: new Date().toISOString(),
+  });
+});
+
+/* ---- people ---- */
+PEOPLE_SEED.forEach((p) => {
+  docs.push({
+    _id: p._id.replace("seed-person-", "person-"),
+    _type: "person",
+    name: p.name,
+    role: p.role,
+    isLeadership: p.isLeadership ?? false,
+    order: p.order,
   });
 });
 

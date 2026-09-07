@@ -415,9 +415,9 @@ export default function HomePage() {
             </div>
             <div className="flex flex-wrap gap-9">
               {[
-                { n: "60+", l: "Team members" },
-                { n: "9", l: "Nationalities" },
-                { n: "Remote", l: "First culture" },
+                { n: "4", l: "Team members" },
+                { n: "2", l: "Products we build and run" },
+                { n: "Remote", l: "First, async culture" },
               ].map((s) => (
                 <div key={s.l}>
                   <div className="font-display text-[32px] font-extrabold tracking-[-0.03em] text-accent">{s.n}</div>

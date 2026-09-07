@@ -1,4 +1,4 @@
-import type { CaseStudy, Service } from "./types";
+import type { CaseStudy, Person, Service } from "./types";
 
 /* Seed content.
  *
@@ -162,6 +162,43 @@ export const CASE_STUDIES_SEED: CaseStudy[] = [
     ],
   },
   {
+    _id: "seed-litscape",
+    title: "LitScape: an interactive literary atlas of Lagos",
+    slug: "litscape",
+    icon: "globe",
+    featured: true,
+    summary:
+      "A digital humanities platform mapping the places Nigerian novelists named between 1954 and 2024, built so that machine output can never become a scholarly claim without a human verifying it.",
+    client: { name: "GLOBALS Research Lab, Universitat Oberta de Catalunya" },
+    industry: { name: "Research & education", slug: "research-education" },
+    capabilities: [
+      { name: "Product engineering", slug: "product-engineering" },
+      { name: "Data & infrastructure", slug: "data-infrastructure" },
+      { name: "AI & automation", slug: "ai-automation" },
+    ],
+    challenge: pt([
+      "Bar Beach is buried under Eko Atlantic. Ilojo Bar was demolished in 2016 despite being a listed national monument. When a city erases its own landmarks, the novels become the archive — but that archive is locked inside prose, scattered across seventy years of writing.",
+      "The research needed to make a place, not a book, the unit of analysis: click Bar Beach and see every novel that named it, oldest first, with the passage and the page. Doing that at corpus scale needs automated extraction. Publishing it as scholarship means automation can never be the final word.",
+      "There was a hard copyright constraint too. The corpus is full novels under copyright, and none of it could reach the deployed site.",
+    ]),
+    approach: pt([
+      "We split the system in two. An offline Python pipeline normalises PDFs and DOCX into page-indexed text, matches a gazetteer to produce cited keyword-in-context quotes, and imports the researcher's own curated spreadsheets with provenance preserved. It never deploys.",
+      "Everything the pipeline produces is written as unverified and shown in the interface as a candidate. Only the researcher can promote a candidate to a claim. That rule is enforced in the data model rather than left to discipline, so an extraction error cannot quietly become a citation.",
+      "Fiction rarely gives coordinates, so precision is drawn rather than hidden: every place carries a confidence level rendered as an actual geographic circle on the map — 500m exact, 1km approximate, 2km symbolic, 1.5km temporal. A reader can see how firmly a place is located, not just where.",
+      "Copyright is handled structurally. Full normalised texts are gitignored and never leave the researcher's machine; only short excerpts for criticism and teaching are committed or served. Images will not save without an attribution.",
+      "Public pages are statically generated, so the database sits outside the runtime read path — the site stays fast and stays up regardless of what the pipeline is doing.",
+    ]),
+    outcomes: [
+      { metric: "1954–2024", label: "Seventy years of writing mapped" },
+      { metric: "Place", label: "The unit of analysis, not the book" },
+      { metric: "0", label: "Machine claims published without review" },
+    ],
+    stack: [
+      "Next.js", "TypeScript", "Tailwind", "Drizzle", "Neon Postgres",
+      "MapLibre GL", "OpenStreetMap", "Python",
+    ],
+  },
+  {
     _id: "seed-kuvarsend",
     title: "KuvarSend: a self-custody wallet with local-currency payouts",
     slug: "kuvarsend",
@@ -196,4 +233,15 @@ export const CASE_STUDIES_SEED: CaseStudy[] = [
       "Firebase Cloud Messaging", "Notifee",
     ],
   },
+];
+
+
+/* ---- People ---- */
+
+
+export const PEOPLE_SEED: Person[] = [
+  { _id: "seed-person-1", name: "Aderemi Azeez", role: "Software Engineer", isLeadership: true, order: 1 },
+  { _id: "seed-person-2", name: "Abdulazeez Jubril", role: "Business Analyst", isLeadership: true, order: 2 },
+  { _id: "seed-person-3", name: "Abdulazeez Abdulhammed", role: "Data Engineer", isLeadership: true, order: 3 },
+  { _id: "seed-person-4", name: "Alarape Yusuf", role: "Product Designer", isLeadership: true, order: 4 },
 ];

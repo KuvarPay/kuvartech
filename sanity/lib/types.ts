@@ -54,3 +54,22 @@ export type CaseStudy = CaseStudyCard & {
   stack?: string[];
   testimonial?: { quote: string; name?: string; role?: string; company?: string } | null;
 };
+
+export type Person = {
+  _id: string;
+  name: string;
+  role?: string;
+  bio?: string;
+  photo?: SanityImage;
+  isLeadership?: boolean;
+  order?: number;
+};
+
+export type Role = {
+  _id: string;
+  title: string;
+  slug?: string;
+  dept?: string;
+  location?: string;
+  type?: string;
+};

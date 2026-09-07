@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { Icon, ArrowRight } from "@/components/Icons";
+import { sanityFetch } from "@/sanity/lib/client";
+import { openRolesQuery } from "@/sanity/lib/queries";
+import type { Role } from "@/sanity/lib/types";
 import {
   breadcrumb, btn, card, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap, wrapBase,
 } from "@/components/styles";
@@ -25,22 +28,19 @@ const PERKS = [
   { icon: "usersSmall", label: "Annual team off-sites" },
 ] as const;
 
-const ROLES = [
-  { dept: "Engineering", title: "Senior Backend Engineer, Payments", loc: "Remote · Africa" },
-  { dept: "Engineering", title: "Platform / Infrastructure Engineer", loc: "Lagos · Hybrid" },
-  { dept: "Product", title: "Product Manager, KuvarSend", loc: "Remote · Africa" },
-  { dept: "Compliance", title: "Compliance & AML Analyst", loc: "Nairobi · Hybrid" },
-  { dept: "Operations", title: "Payments Operations Lead", loc: "Accra · On-site" },
-  { dept: "Design", title: "Senior Product Designer", loc: "Remote · Africa" },
-];
 
 const CULTURE_STATS = [
-  { n: "60+", l: "Team members" },
-  { n: "9", l: "Nationalities" },
+  { n: "4", l: "Team members" },
+  { n: "2", l: "Products we build and run" },
   { n: "Remote", l: "First, async culture" },
 ];
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  /* Roles come from the CMS so they can be opened and closed without a deploy.
+     There are none open right now, and the page says so rather than inventing
+     listings people could apply to. */
+  const roles = await sanityFetch<Role[]>(openRolesQuery, {}, []);
+
   return (
     <>
       <header className={pageHero} data-screen-label="Careers — Hero">
@@ -153,27 +153,45 @@ export default function CareersPage() {
               <Link href="/contact" className="font-semibold text-ink">careers@kuvar.co</Link>
             </span>
           </div>
-          <div className="flex flex-col border-t border-line" data-reveal>
-            {ROLES.map((r) => (
-              <Link
-                className="group grid grid-cols-[1fr_auto] items-center gap-x-[18px] gap-y-1.5 border-b border-line px-1.5 py-6 transition-[padding,background-color] duration-[180ms] hover:pl-3.5 w721:grid-cols-[2fr_1fr_1fr_auto] w721:gap-[18px]"
-                href="/contact"
-                key={r.title}
-              >
-                <div>
-                  <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-3">
-                    {r.dept}
-                  </span>
-                  <div className="mt-2 font-display text-[18.5px] font-bold tracking-[-0.02em]">{r.title}</div>
-                </div>
-                <div className="col-start-1 text-[13.5px] text-ink-3 w721:col-start-auto">{r.dept}</div>
-                <div className="col-start-1 text-[13.5px] text-ink-3 w721:col-start-auto">{r.loc}</div>
-                <span className="grid size-[38px] place-items-center rounded-full border border-line-2 text-ink-2 transition-[background-color,color,border-color] duration-[180ms] group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+          {roles.length === 0 ? (
+            <div className={`${card} px-9 py-12 text-center`} data-reveal>
+              <p className="font-display text-[20px] font-bold tracking-[-0.02em] text-ink">
+                No open roles right now.
+              </p>
+              <p className="mx-auto mt-3 max-w-[46ch] text-[15px] text-ink-2">
+                We hire in bursts rather than continuously. If you build the kind of thing we
+                build, send us a note anyway — we keep good people in mind.
+              </p>
+              <div className="mt-7 flex justify-center">
+                <Link className={btn("primary")} href="/contact">
+                  Introduce yourself
                   <ArrowRight size={17} />
-                </span>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col border-t border-line" data-reveal>
+              {roles.map((r) => (
+                <Link
+                  className="group grid grid-cols-[1fr_auto] items-center gap-x-[18px] gap-y-1.5 border-b border-line px-1.5 py-6 transition-[padding,background-color] duration-[180ms] hover:pl-3.5 w721:grid-cols-[2fr_1fr_1fr_auto] w721:gap-[18px]"
+                  href="/contact"
+                  key={r._id}
+                >
+                  <div>
+                    <span className="inline-flex items-center rounded-full bg-surface-2 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-3">
+                      {r.dept}
+                    </span>
+                    <div className="mt-2 font-display text-[18.5px] font-bold tracking-[-0.02em]">{r.title}</div>
+                  </div>
+                  <div className="col-start-1 text-[13.5px] text-ink-3 w721:col-start-auto">{r.dept}</div>
+                  <div className="col-start-1 text-[13.5px] text-ink-3 w721:col-start-auto">{r.location}</div>
+                  <span className="grid size-[38px] place-items-center rounded-full border border-line-2 text-ink-2 transition-[background-color,color,border-color] duration-[180ms] group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+                    <ArrowRight size={17} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
