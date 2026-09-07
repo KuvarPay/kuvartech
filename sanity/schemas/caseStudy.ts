@@ -40,6 +40,16 @@ export default defineType({
     }),
     defineField({ name: "coverImage", type: "image", group: "overview", options: { hotspot: true } }),
     defineField({
+      name: "coverPath", type: "string", group: "overview",
+      description: "Path to a generated cover in /public. A uploaded coverImage above wins.",
+      readOnly: true,
+    }),
+    defineField({
+      name: "logoPath", type: "string", group: "overview",
+      description: "Product or client mark shipped in /public.",
+      readOnly: true,
+    }),
+    defineField({
       name: "icon", type: "string", group: "overview",
       description: "Fallback mark shown when there is no cover image. Key from components/Icons.tsx.",
     }),

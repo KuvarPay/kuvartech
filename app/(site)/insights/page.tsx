@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "@/components/Icons";
 import {
   arrowLink, breadcrumb, btn, cardHover, hDisplay, hSection, lede, pageHero,
@@ -65,16 +66,25 @@ export default async function InsightsPage() {
                   data-reveal
                   style={{ "--reveal-delay": `${(i % 3) * 100}ms` }}
                 >
-                  <div className={pressThumb}>
-                    <span className="font-display text-[15px] font-bold uppercase tracking-[0.14em] text-ink-3">
-                      {CATEGORY_LABEL[a.category] ?? a.category}
-                    </span>
-                  </div>
+                  {a.coverPath ? (
+                    <div className="relative aspect-video w-full overflow-hidden bg-surface-2">
+                      <Image src={a.coverPath} alt="" fill sizes="(max-width: 880px) 100vw, 33vw" className="object-cover" />
+                    </div>
+                  ) : (
+                    <div className={pressThumb}>
+                      <span className="font-display text-[15px] font-bold uppercase tracking-[0.14em] text-ink-3">
+                        {CATEGORY_LABEL[a.category] ?? a.category}
+                      </span>
+                    </div>
+                  )}
                   <div className={pressBody}>
                     {/* Category is already the thumbnail's label; repeating it here
                         was pure duplication. */}
                     <div className={pressMeta}>
-                      <span>{formatDate(a.publishedAt)}</span>
+                      <span className="font-semibold uppercase tracking-[0.06em] text-accent-deep">
+                        {CATEGORY_LABEL[a.category] ?? a.category}
+                      </span>
+                      <span>· {formatDate(a.publishedAt)}</span>
                     </div>
                     <h2 className={pressTitle}>{a.title}</h2>
                     <p className={pressExcerpt}>{a.excerpt}</p>

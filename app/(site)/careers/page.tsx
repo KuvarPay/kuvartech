@@ -10,13 +10,13 @@ import {
 export const metadata = {
   title: "Careers",
   description:
-    "Join KuvarTech and help build the financial infrastructure for Africa. Open roles, culture and benefits.",
+    "Join KuvarTech. How we work, what we value, and whether we are hiring.",
 };
 
 const WHY = [
-  { icon: "globe", title: "Continent-scale impact", body: "The work you ship reaches businesses and families across Africa. Few problems are this hard — or this worth solving.", d: 0 },
+  { icon: "globe", title: "Continent-scale impact", body: "The work you ship runs in production for businesses and researchers. Few places let you see the consequences of your decisions this directly.", d: 0 },
   { icon: "file", title: "Real ownership", body: "Small teams, big mandates. You'll own meaningful surface area from day one — and the outcomes that come with it.", d: 80 },
-  { icon: "building", title: "Build to last", body: "This is infrastructure. We hire people who care about getting the hard, unglamorous things right — at bank-grade quality.", d: 160 },
+  { icon: "building", title: "Build to last", body: "We hire people who care about getting the hard, unglamorous things right, because someone always inherits the system.", d: 160 },
 ] as const;
 
 const PERKS = [
@@ -48,11 +48,11 @@ export default async function CareersPage() {
           <div className={breadcrumb}><Link href="/" className="hover:text-ink">Home</Link> <span>/</span> <span>Careers</span></div>
           <span className="eyebrow" data-reveal>Careers</span>
           <h1 className={`${hDisplay} reveal-words mt-[18px] max-w-[15ch]`} data-reveal-words>
-            Build the money rails for a continent.
+            Build things that have to work.
           </h1>
           <p className={`${lede} mt-6 max-w-[660px] [--reveal-delay:140ms]`} data-reveal>
-            We&apos;re a team of builders solving one of the hardest, highest-impact problems in the world
-            — and we&apos;re hiring across engineering, product, compliance and operations.
+            We are a small team that builds production software across payments, data, AI and
+            commerce — and runs a good deal of it ourselves.
           </p>
           <div className="mt-8 flex flex-wrap gap-3.5" data-reveal>
             <a className={btn("primary", "lg")} href="#roles">
@@ -97,7 +97,7 @@ export default async function CareersPage() {
               <span className="eyebrow is-accent">Our culture</span>
               <p className="mt-[22px] max-w-[20ch] font-display text-[clamp(24px,3vw,38px)] font-bold leading-[1.28] tracking-[-0.03em] text-band-ink">
                 We move with <em className="italic text-accent">urgency</em>, hold ourselves to <em className="italic text-accent">bank-grade</em> standards, and
-                never forget there&apos;s a real person behind every transaction.
+                never forget there is a real person on the other side of the screen.
               </p>
             </div>
             <div className="flex flex-wrap gap-10">

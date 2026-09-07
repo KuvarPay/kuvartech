@@ -1,4 +1,3 @@
-import Script from "next/script";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SiteEffects from "@/components/SiteEffects";
@@ -12,7 +11,6 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       <main>{children}</main>
       <Footer />
       <SiteEffects />
-      <Script src="/image-slot.js" strategy="afterInteractive" />
     </>
   );
 }

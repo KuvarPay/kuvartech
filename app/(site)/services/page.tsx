@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Icon, ArrowRight } from "@/components/Icons";
 import {
   breadcrumb, btn, hDisplay, hSection, lede, pageHero, section, sectionTight, wrap, wrapBase,
@@ -42,10 +43,16 @@ export default async function ServicesPage() {
             {services.map((s, i) => (
               <div
                 key={s._id}
-                className="flex flex-col gap-3.5 border-r border-b border-line px-8 py-[34px] transition-[background-color] duration-200 hover:bg-card-2"
+                className="flex flex-col border-r border-b border-line transition-[background-color] duration-200 hover:bg-card-2"
                 data-reveal
                 style={{ "--reveal-delay": `${(i % 3) * 80}ms` }}
               >
+                {s.coverPath ? (
+                  <div className="relative aspect-[16/7] w-full overflow-hidden border-b border-line bg-surface-2">
+                    <Image src={s.coverPath} alt="" fill sizes="(max-width: 880px) 100vw, 33vw" className="object-cover" />
+                  </div>
+                ) : null}
+                <div className="flex flex-1 flex-col gap-3.5 px-8 py-[34px]">
                 <span className="grid size-[46px] place-items-center rounded-brand-md bg-accent text-accent-ink">
                   <Icon name={(s.icon ?? "grid") as Parameters<typeof Icon>[0]["name"]} size={23} sw={2} />
                 </span>
@@ -61,6 +68,7 @@ export default async function ServicesPage() {
                     ))}
                   </ul>
                 ) : null}
+                </div>
               </div>
             ))}
           </div>

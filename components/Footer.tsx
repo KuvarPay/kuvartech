@@ -47,8 +47,8 @@ export default function Footer() {
               />
             </Link>
             <p className="text-[14px] leading-[1.6] text-white/60">
-              Building the financial infrastructure that moves money across Africa — and connects
-              the continent to the world.
+              A technology consultancy in Kigali. We build production software — and run our own
+              products on it.
             </p>
             <div className="flex gap-2.5">
               <Social href="#">
@@ -106,7 +106,7 @@ export default function Footer() {
             © {year} KuvarTechnology. All rights reserved.
           </span>
           <div className="flex flex-wrap gap-[22px] text-[13px] text-white/55">
-            <span>Lagos · Nairobi · Remote</span>
+            <span>Kigali · Remote</span>
             <FooterLink href="#">Status</FooterLink>
             <FooterLink href="#">Cookies</FooterLink>
           </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Icon, ArrowRight } from "@/components/Icons";
 import RichText from "@/components/RichText";
@@ -60,7 +61,14 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             <Link href="/work" className="hover:text-ink">Work</Link> <span>/</span>{" "}
             <span>{cs.client?.isOwnProduct ? cs.client?.name : attribution}</span>
           </div>
-          <span className="eyebrow" data-reveal>{attribution}</span>
+          <div className="flex items-center gap-3.5" data-reveal>
+            {cs.logoPath ? (
+              <span className="grid size-11 shrink-0 place-items-center rounded-brand-md bg-ink p-2">
+                <Image src={cs.logoPath} alt="" width={28} height={28} className="size-7 object-contain" />
+              </span>
+            ) : null}
+            <span className="eyebrow">{attribution}</span>
+          </div>
           <h1 className={`${hDisplay} reveal-words mt-[18px] max-w-[18ch]`} data-reveal-words>
             {cs.title}
           </h1>

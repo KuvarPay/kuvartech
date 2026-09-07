@@ -16,6 +16,7 @@ export default defineType({
       name: "summary", type: "text", rows: 3,
       validation: (r) => r.required().max(280),
     }),
+    defineField({ name: "coverPath", type: "string", readOnly: true, description: "Generated cover in /public." }),
     defineField({
       name: "icon", type: "string",
       description: "Key from components/Icons.tsx.",

@@ -29,6 +29,7 @@ export default defineType({
       description: "Shown on the Insights index and in search results.",
       validation: (r) => r.required().max(240),
     }),
+    defineField({ name: "coverPath", type: "string", readOnly: true, description: "Generated cover in /public." }),
     defineField({ name: "coverImage", type: "image", options: { hotspot: true } }),
     defineField({ name: "body", type: "blockContent" }),
     defineField({ name: "publishedAt", type: "datetime", initialValue: () => new Date().toISOString(), validation: (r) => r.required() }),

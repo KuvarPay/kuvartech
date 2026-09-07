@@ -14,6 +14,7 @@ export const SERVICES_SEED: Service[] = [
     _id: "seed-payments",
     title: "Payments infrastructure",
     slug: "payments-infrastructure",
+    coverPath: "/assets/covers/payments-infrastructure.png",
     icon: "card",
     summary:
       "Gateways, merchant tooling and payout rails, built to move real money under real regulatory load.",
@@ -29,6 +30,7 @@ export const SERVICES_SEED: Service[] = [
     _id: "seed-data",
     title: "Data & infrastructure",
     slug: "data-infrastructure",
+    coverPath: "/assets/covers/data-infrastructure.png",
     icon: "network",
     summary:
       "The layer everything else depends on: schema design, connection pooling, pipelines, and the observability to know it is healthy.",
@@ -44,6 +46,7 @@ export const SERVICES_SEED: Service[] = [
     _id: "seed-ai",
     title: "AI & automation",
     slug: "ai-automation",
+    coverPath: "/assets/covers/ai-automation.png",
     icon: "bolt",
     summary:
       "Agents and automated workflows that take real work off people, running in production rather than in a demo.",
@@ -59,6 +62,7 @@ export const SERVICES_SEED: Service[] = [
     _id: "seed-blockchain",
     title: "Blockchain & crypto",
     slug: "blockchain-crypto",
+    coverPath: "/assets/covers/blockchain-crypto.png",
     icon: "chevrons",
     summary:
       "Smart contracts, exchange mechanics and on-chain payments, written to be read and audited.",
@@ -74,6 +78,7 @@ export const SERVICES_SEED: Service[] = [
     _id: "seed-ecommerce",
     title: "E-commerce",
     slug: "e-commerce",
+    coverPath: "/assets/covers/e-commerce.png",
     icon: "dollar",
     summary:
       "Storefronts and checkout that convert, wired properly into payments, inventory and fulfilment.",
@@ -89,6 +94,7 @@ export const SERVICES_SEED: Service[] = [
     _id: "seed-product",
     title: "Product engineering",
     slug: "product-engineering",
+    coverPath: "/assets/covers/product-engineering.png",
     icon: "grid",
     summary:
       "Custom web and mobile products, from a research platform to an internal dashboard to a consumer app.",
@@ -135,6 +141,8 @@ export const CASE_STUDIES_SEED: CaseStudy[] = [
     _id: "seed-kuvarpay",
     title: "KuvarPay: accept crypto on any chain, settle in local currency",
     slug: "kuvarpay",
+    coverPath: "/assets/covers/kuvarpay.png",
+    logoPath: "/assets/kuvarpay-mark.svg",
     icon: "card",
     featured: true,
     summary:
@@ -168,12 +176,13 @@ export const CASE_STUDIES_SEED: CaseStudy[] = [
   },
   {
     _id: "seed-litscape",
-    title: "LitScape: an interactive literary atlas of Lagos",
+    title: "LitScape: when a city erases its landmarks, the novels become the archive",
     slug: "litscape",
+    coverPath: "/assets/covers/litscape.png",
     icon: "globe",
     featured: true,
     summary:
-      "A digital humanities platform mapping the places Nigerian novelists named between 1954 and 2024, built so that machine output can never become a scholarly claim without a human verifying it.",
+      "Bar Beach is buried under Eko Atlantic. Ilojo Bar was demolished despite being a listed monument. LitScape turns seventy years of Nigerian fiction into a map of the Lagos that no longer exists.",
     client: { name: "LitScape" },
     industry: { name: "Research & education", slug: "research-education" },
     capabilities: [
@@ -182,20 +191,19 @@ export const CASE_STUDIES_SEED: CaseStudy[] = [
       { name: "AI & automation", slug: "ai-automation" },
     ],
     challenge: pt([
-      "Bar Beach is buried under Eko Atlantic. Ilojo Bar was demolished in 2016 despite being a listed national monument. When a city erases its own landmarks, the novels become the archive — but that archive is locked inside prose, scattered across seventy years of writing.",
-      "The research needed to make a place, not a book, the unit of analysis: click Bar Beach and see every novel that named it, oldest first, with the passage and the page. Doing that at corpus scale needs automated extraction. Publishing it as scholarship means automation can never be the final word.",
-      "There was a hard copyright constraint too. The corpus is full novels under copyright, and none of it could reach the deployed site.",
+      "Lagos keeps demolishing its own memory. Bar Beach is buried under Eko Atlantic. Ilojo Bar came down in 2016 despite being a listed national monument. What remains of those places is often nothing more than a paragraph in a novel.",
+      "That archive is real but unusable. A researcher who wants to know how Lagosians described Bar Beach across seventy years has to read seventy years of novels and hold the answer in their head. The knowledge exists; it just cannot be asked a question.",
+      "There was a harder problem underneath. Making this searchable at all means letting software read the corpus and propose connections — and the moment software proposes a literary claim, someone has to decide whether scholarship can stand on it.",
     ]),
     approach: pt([
-      "We split the system in two. An offline Python pipeline normalises PDFs and DOCX into page-indexed text, matches a gazetteer to produce cited keyword-in-context quotes, and imports the researcher's own curated spreadsheets with provenance preserved. It never deploys.",
-      "Everything the pipeline produces is written as unverified and shown in the interface as a candidate. Only the researcher can promote a candidate to a claim. That rule is enforced in the data model rather than left to discipline, so an extraction error cannot quietly become a citation.",
-      "Fiction rarely gives coordinates, so precision is drawn rather than hidden: every place carries a confidence level rendered as an actual geographic circle on the map — 500m exact, 1km approximate, 2km symbolic, 1.5km temporal. A reader can see how firmly a place is located, not just where.",
-      "Copyright is handled structurally. Full normalised texts are gitignored and never leave the researcher's machine; only short excerpts for criticism and teaching are committed or served. Images will not save without an attribution.",
-      "Public pages are statically generated, so the database sits outside the runtime read path — the site stays fast and stays up regardless of what the pipeline is doing.",
+      "We inverted the unit of analysis. Libraries organise by book; LitScape organises by place. Click Bar Beach and you get every novel that named it, oldest first, each with the passage and the page — a single location read across seven decades of writing.",
+      "Automation does the reading, but it is never given the last word. Everything the pipeline proposes is marked unverified and shown as a candidate, visibly separate from a claim. Only the researcher can promote one, and that rule sits in the data model rather than in a review process, so an extraction error cannot quietly become a citation someone else builds on.",
+      "Fiction rarely gives coordinates. Rather than dropping a confident pin and implying a precision the text never had, every place is drawn with its actual uncertainty — a tight circle where the novel is exact, a wide one where the reference is symbolic. The reader can see how firmly a place is known.",
+      "The corpus is under copyright, so it never reaches the internet. Full texts stay on the researcher's machine; only short quotations for criticism and teaching are ever published.",
     ]),
     outcomes: [
-      { metric: "1954–2024", label: "Seventy years of writing mapped" },
       { metric: "Place", label: "The unit of analysis, not the book" },
+      { metric: "1954–2024", label: "Seventy years readable in one view" },
       { metric: "0", label: "Machine claims published without review" },
     ],
     stack: [
@@ -203,10 +211,12 @@ export const CASE_STUDIES_SEED: CaseStudy[] = [
       "MapLibre GL", "OpenStreetMap", "Python",
     ],
   },
-  {
+{
     _id: "seed-kuvarsend",
     title: "KuvarSend: a self-custody wallet with local-currency payouts",
     slug: "kuvarsend",
+    coverPath: "/assets/covers/kuvarsend.png",
+    logoPath: "/assets/kuvarsend-mark.png",
     icon: "globe2",
     featured: true,
     summary:
@@ -263,6 +273,7 @@ export const ARTICLES_SEED: Article[] = [
     _id: "seed-article-local-currency",
     title: "Why we settle merchants in local currency, not crypto",
     slug: "settle-in-local-currency",
+    coverPath: "/assets/covers/settle-in-local-currency.png",
     category: "engineering",
     excerpt:
       "A merchant who accepts crypto and gets paid in crypto has not been paid. They have been handed a position they did not ask for.",
@@ -287,6 +298,7 @@ export const ARTICLES_SEED: Article[] = [
     _id: "seed-article-machine-suggests",
     title: "When the machine is only allowed to suggest",
     slug: "when-the-machine-is-only-allowed-to-suggest",
+    coverPath: "/assets/covers/when-the-machine-is-only-allowed-to-suggest.png",
     category: "engineering",
     excerpt:
       "We built a system where automated extraction can never become a published claim without a human promoting it — and the rule lives in the data model, not in a policy document.",
@@ -311,6 +323,7 @@ export const ARTICLES_SEED: Article[] = [
     _id: "seed-article-build-or-buy",
     title: "Build or buy: how to tell which one you actually need",
     slug: "build-or-buy",
+    coverPath: "/assets/covers/build-or-buy.png",
     category: "industry",
     excerpt:
       "The question is not which is cheaper. It is which parts of your business you are willing to let someone else define.",

@@ -11,10 +11,10 @@ export default function CaseStudyThumb({
   caseStudy,
   iconSize = 44,
 }: {
-  caseStudy: Pick<CaseStudy, "coverImage" | "icon" | "title">;
+  caseStudy: Pick<CaseStudy, "coverImage" | "coverPath" | "icon" | "title">;
   iconSize?: number;
 }) {
-  const { coverImage, icon, title } = caseStudy;
+  const { coverImage, coverPath, icon, title } = caseStudy;
 
   if (coverImage?.asset) {
     return (
@@ -26,6 +26,14 @@ export default function CaseStudyThumb({
           sizes="(max-width: 880px) 100vw, 50vw"
           className="object-cover"
         />
+      </div>
+    );
+  }
+
+  if (coverPath) {
+    return (
+      <div className="relative aspect-video w-full overflow-hidden bg-surface-2">
+        <Image src={coverPath} alt="" fill sizes="(max-width: 880px) 100vw, 50vw" className="object-cover" />
       </div>
     );
   }

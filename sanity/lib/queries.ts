@@ -9,6 +9,8 @@ export const caseStudyCardFields = groq`
   summary,
   featured,
   icon,
+  coverPath,
+  logoPath,
   coverImage { ${imageFields} },
   client { name, isOwnProduct, isAnonymous, logo { ${imageFields} } },
   "industry": industry->{ name, "slug": slug.current },
@@ -47,13 +49,13 @@ export const featuredCaseStudiesQuery = groq`
 
 export const allServicesQuery = groq`
   *[_type == "service"] | order(order asc) {
-    _id, title, "slug": slug.current, summary, icon, includes
+    _id, title, "slug": slug.current, summary, icon, coverPath, includes
   }
 `;
 
 export const allArticlesQuery = groq`
   *[_type == "article"] | order(publishedAt desc) {
-    _id, title, "slug": slug.current, excerpt, category, publishedAt,
+    _id, title, "slug": slug.current, excerpt, category, publishedAt, coverPath,
     coverImage { ${imageFields} },
     author->{ name, role, photo { ${imageFields} } }
   }
@@ -92,6 +94,6 @@ export const siteSettingsQuery = groq`
 
 export const latestArticlesQuery = groq`
   *[_type == "article"] | order(publishedAt desc)[0...3] {
-    _id, title, "slug": slug.current, excerpt, category, publishedAt
+    _id, title, "slug": slug.current, excerpt, category, publishedAt, coverPath
   }
 `;

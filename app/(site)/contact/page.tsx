@@ -9,9 +9,8 @@ export const metadata = {
 };
 
 const OFFICES = [
-  { badge: "Headquarters", h: "Lagos, Nigeria", lines: ["Victoria Island", "Lagos, Nigeria"], d: 0 },
-  { badge: "East Africa", h: "Nairobi, Kenya", lines: ["Westlands", "Nairobi, Kenya"], d: 80 },
-  { badge: "Everywhere else", h: "Remote-first", lines: ["A distributed team", "across 9 countries."], d: 160 },
+  { badge: "Headquarters", h: "Kigali, Rwanda", lines: ["Kigali", "Rwanda"], d: 0 },
+  { badge: "Everywhere else", h: "Remote-first", lines: ["A small, distributed", "team."], d: 80 },
 ];
 
 export default function ContactPage() {

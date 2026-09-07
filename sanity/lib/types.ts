@@ -11,6 +11,8 @@ export type Taxonomy = { name: string; slug: string };
 
 export type Service = {
   _id: string;
+  /** Static cover shipped in /public. A Sanity coverImage overrides it. */
+  coverPath?: string;
   title: string;
   slug: string;
   summary: string;
@@ -46,6 +48,9 @@ export type PortableTextBlock = {
 export type Outcome = { metric: string; label: string };
 
 export type CaseStudy = CaseStudyCard & {
+  coverPath?: string;
+  /** Product or client mark, shown on the case study hero. */
+  logoPath?: string;
   /** Icon key used when no coverImage is set — seed content has no images yet. */
   icon?: string;
   challenge?: PortableTextBlock[];
@@ -76,6 +81,7 @@ export type Role = {
 
 export type Article = {
   _id: string;
+  coverPath?: string;
   title: string;
   slug: string;
   category: string;
