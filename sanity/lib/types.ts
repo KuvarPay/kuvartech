@@ -34,3 +34,23 @@ export type CaseStudyCard = {
   industry?: Taxonomy;
   capabilities?: Taxonomy[];
 };
+
+export type PortableTextBlock = {
+  _type: string;
+  _key?: string;
+  style?: string;
+  markDefs?: unknown[];
+  children?: { _type: string; _key?: string; text: string; marks?: string[] }[];
+};
+
+export type Outcome = { metric: string; label: string };
+
+export type CaseStudy = CaseStudyCard & {
+  /** Icon key used when no coverImage is set — seed content has no images yet. */
+  icon?: string;
+  challenge?: PortableTextBlock[];
+  approach?: PortableTextBlock[];
+  outcomes?: Outcome[];
+  stack?: string[];
+  testimonial?: { quote: string; name?: string; role?: string; company?: string } | null;
+};

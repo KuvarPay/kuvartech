@@ -130,3 +130,13 @@ export const statNumOnAccent =
   "font-display text-[clamp(44px,5.4vw,76px)] font-black leading-[0.95] tracking-[-0.05em] text-accent-ink [&_.suffix]:text-[#0A0A0A] [&_.suffix]:opacity-55";
 export const statLabelOnAccent = "font-body text-[14px] font-medium text-[rgba(10,10,10,0.62)]";
 export const statDividerOnAccent = "my-1 h-px w-full bg-[rgba(10,10,10,0.14)]";
+
+/** Outcome grid sized to the number of figures, so three outcomes do not sit in
+ *  a four-column track with an empty cell. Keys are written out rather than
+ *  built at runtime, because Tailwind only sees class names present in source. */
+export const outcomeGrid: Record<number, string> = {
+  1: "grid grid-cols-1 gap-5",
+  2: "grid grid-cols-[repeat(2,1fr)] gap-5 w881:gap-7",
+  3: "grid grid-cols-[repeat(2,1fr)] gap-5 w881:grid-cols-[repeat(3,1fr)] w881:gap-7",
+  4: "grid grid-cols-[repeat(2,1fr)] gap-5 w881:grid-cols-[repeat(4,1fr)] w881:gap-7",
+};
