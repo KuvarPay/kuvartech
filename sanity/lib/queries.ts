@@ -8,6 +8,7 @@ export const caseStudyCardFields = groq`
   "slug": slug.current,
   summary,
   featured,
+  icon,
   coverImage { ${imageFields} },
   client { name, isOwnProduct, isAnonymous, logo { ${imageFields} } },
   "industry": industry->{ name, "slug": slug.current },

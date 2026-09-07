@@ -2,12 +2,15 @@
   "name": "kuvar-technologies",
   "version": "1.0.0",
   "private": true,
-  "description": "Kuvar Technologies marketing site — Next.js 15 (App Router, React 19) + Tailwind CSS.",
+  "description": "Kuvar Technologies marketing site \u2014 Next.js 15 (App Router, React 19) + Tailwind CSS.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed:generate": "node --experimental-strip-types scripts/generate-seed.mts",
+    "seed:import": "npm run seed:generate && npx sanity dataset import sanity/seed/seed.ndjson production --replace",
+    "studio:deploy": "npx sanity deploy"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

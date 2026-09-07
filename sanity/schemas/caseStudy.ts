@@ -40,6 +40,10 @@ export default defineType({
     }),
     defineField({ name: "coverImage", type: "image", group: "overview", options: { hotspot: true } }),
     defineField({
+      name: "icon", type: "string", group: "overview",
+      description: "Fallback mark shown when there is no cover image. Key from components/Icons.tsx.",
+    }),
+    defineField({
       name: "featured", type: "boolean", group: "overview",
       description: "Surfaces on the homepage.", initialValue: false,
     }),
