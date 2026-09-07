@@ -265,59 +265,12 @@ image-slot { position: absolute; inset: 0; width: 100%; height: 100%; }
    ============================================================ */
 
 /* ===== page: home ===== */
-/* hero visual: currency network on a morphing shape */
-.hero-stage { position: relative; aspect-ratio: 1 / 1; max-width: 520px; margin: 0 auto; width: 100%; }
-.morph {
-  position: absolute; inset: 8% 8% 8% 8%; z-index: 0;
-  background: linear-gradient(140deg, var(--accent), var(--accent-deep));
-  filter: blur(2px); opacity: 0.92;
-  border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%;
-  animation: morph 16s ease-in-out infinite, spin 40s linear infinite;
-}
-[data-theme="dark"] .morph { opacity: 0.85; }
-@keyframes morph {
-  0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
-  33% { border-radius: 60% 40% 38% 62% / 56% 58% 42% 44%; }
-  66% { border-radius: 38% 62% 56% 44% / 62% 38% 62% 38%; }
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .morph { animation: none; } }
+/* The hero currency network lived here: an animated morphing blob with
+   currency nodes on SVG paths. Retired with the homepage rewrite - it said
+   "payments company" on the one page that now has to say the opposite.
+   Recoverable from git history if it is ever wanted on the KuvarPay case
+   study, where it would be true. */
 
-.net-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
-.net-line { stroke: rgba(10,10,10,0.32); stroke-width: 1.6; fill: none; stroke-dasharray: 5 7; }
-.net-pulse { stroke: #0A0A0A; stroke-width: 3; fill: none; stroke-linecap: round; stroke-dasharray: 26 1000; animation: dash 3.2s linear infinite; opacity: 0.7; }
-@keyframes dash { to { stroke-dashoffset: -360; } }
-@media (prefers-reduced-motion: reduce) { .net-pulse { animation: none; opacity: 0; } }
-
-.node {
-  position: absolute; z-index: 2; transform: translate(-50%, -50%);
-  display: flex; align-items: center; gap: 8px;
-  background: var(--card); border: 1px solid var(--border);
-  padding: 9px 13px; border-radius: var(--r-pill);
-  box-shadow: var(--sh-md); font-family: var(--body); font-weight: 600; font-size: 13px;
-  animation: bob 6s ease-in-out infinite;
-}
-.node .flag { font-size: 16px; line-height: 1; }
-.node .cur { color: var(--ink-3); font-weight: 500; font-size: 11.5px; }
-@keyframes bob { 0%,100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, calc(-50% - 7px)); } }
-@media (prefers-reduced-motion: reduce) { .node { animation: none; } }
-.node-core {
-  width: 96px; height: 96px; border-radius: 50%; background: #0A0A0A; color: var(--accent);
-  flex-direction: column; gap: 1px; padding: 0; justify-content: center; box-shadow: 0 18px 40px rgba(10,10,10,0.28);
-  animation: none;
-}
-.node-core .core-amt { font-family: var(--display); font-weight: 900; font-size: 22px; letter-spacing: -0.03em; }
-.node-core .core-lbl { font-size: 10px; letter-spacing: 0.1em; opacity: 0.7; text-transform: uppercase; }
-
-.n-core { left: 50%; top: 50%; }
-.n-ngn  { left: 50%; top: 7%; animation-delay: 0s; }
-.n-kes  { left: 91%; top: 33%; animation-delay: 0.8s; }
-.n-zar  { left: 80%; top: 87%; animation-delay: 1.6s; }
-.n-ghs  { left: 20%; top: 87%; animation-delay: 2.4s; }
-.n-xof  { left: 9%;  top: 33%; animation-delay: 3.2s; }
-
-@media (max-width: 980px) { .hero-stage { max-width: 460px; } }
-@media (max-width: 420px) { .node { font-size: 11.5px; padding: 7px 10px; } .node-core { width: 80px; height: 80px; } }
 
 /* ===== page: about ===== */
 

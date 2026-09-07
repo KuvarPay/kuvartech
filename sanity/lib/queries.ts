@@ -89,3 +89,9 @@ export const siteSettingsQuery = groq`
     siteName, legalName, tagline, defaultSeo, socials, offices
   }
 `;
+
+export const latestArticlesQuery = groq`
+  *[_type == "article"] | order(publishedAt desc)[0...3] {
+    _id, title, "slug": slug.current, excerpt, category, publishedAt
+  }
+`;

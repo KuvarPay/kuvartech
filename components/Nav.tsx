@@ -12,10 +12,11 @@ interface NavLink {
 }
 
 const NAV_LINKS: NavLink[] = [
-  { label: "Solutions", href: "/solutions" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "Insights", href: "/insights" },
   { label: "About", href: "/about" },
   { label: "Careers", href: "/careers" },
-  { label: "Press", href: "/press" },
 ];
 
 function Brand() {

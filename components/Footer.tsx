@@ -65,12 +65,13 @@ export default function Footer() {
 
           <div>
             <h4 className="mb-[18px] font-display text-[13px] font-semibold uppercase tracking-[0.08em] text-white/50">
-              Products
+              Work
             </h4>
             <ul className="flex flex-col gap-3 text-[14.5px]">
-              <li><FooterLink href="/solutions#kuvarpay">KuvarPay</FooterLink></li>
-              <li><FooterLink href="/solutions#kuvarsend">KuvarSend</FooterLink></li>
-              <li><FooterLink href="/solutions#platform">Developer Platform</FooterLink></li>
+              <li><FooterLink href="/work/kuvarpay">KuvarPay</FooterLink></li>
+              <li><FooterLink href="/work/kuvarsend">KuvarSend</FooterLink></li>
+              <li><FooterLink href="/work/litscape">LitScape</FooterLink></li>
+              <li><FooterLink href="/work">All work</FooterLink></li>
             </ul>
           </div>
 
@@ -79,9 +80,10 @@ export default function Footer() {
               Company
             </h4>
             <ul className="flex flex-col gap-3 text-[14.5px]">
+              <li><FooterLink href="/services">Services</FooterLink></li>
               <li><FooterLink href="/about">About</FooterLink></li>
+              <li><FooterLink href="/insights">Insights</FooterLink></li>
               <li><FooterLink href="/careers">Careers</FooterLink></li>
-              <li><FooterLink href="/press">Press</FooterLink></li>
               <li><FooterLink href="/contact">Contact</FooterLink></li>
             </ul>
           </div>
